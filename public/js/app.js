@@ -7184,37 +7184,7 @@ var render = function render() {
 
   return _c("div", {
     staticClass: "position-absolute w-100 h-100 top-0 start-0 bottom-0 end-0"
-  }, [_c("GmapMap", {
-    staticClass: "w-100 h-100",
-    attrs: {
-      center: {
-        lat: 10.4833584,
-        lng: 123.3998655
-      },
-      zoom: 14
-    }
-  }, [_c("GmapMarker", {
-    attrs: {
-      position: {
-        lat: parseFloat(_vm.MyLocation.lat),
-        lng: parseFloat(_vm.MyLocation.lng)
-      },
-      clickable: true,
-      draggable: true
-    }
-  }), _vm._v(" "), _vm._l(_vm.markers, function (m, index) {
-    return _c("GmapInfoWindow", {
-      key: index,
-      attrs: {
-        position: m
-      },
-      on: {
-        click: function click($event) {
-          _vm.center = m;
-        }
-      }
-    }, [_vm._v("\n          aa\n        ")]);
-  })], 2)], 1);
+  });
 };
 
 var staticRenderFns = [];

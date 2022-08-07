@@ -1,25 +1,6 @@
 <template>
     <div class="position-absolute w-100 h-100 top-0 start-0 bottom-0 end-0">
-        <GmapMap
-            class="w-100 h-100"
-            :center="{ lat: 10.4833584, lng: 123.3998655 }"
-            :zoom="14"
-        >
-            <GmapMarker
-                :position="{ lat: parseFloat(MyLocation.lat), lng: parseFloat(MyLocation.lng) }"
-                :clickable="true"
-                :draggable="true"
-            />
-
-            <GmapInfoWindow
-                :key="index"
-                v-for="(m, index) in markers"
-                :position="m"
-                @click="center = m"
-            >
-              aa
-            </GmapInfoWindow>
-        </GmapMap>
+        
     </div>
 </template>
 
