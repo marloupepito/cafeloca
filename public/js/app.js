@@ -7184,7 +7184,7 @@ var render = function render() {
 
   return _c("div", {
     staticClass: "position-absolute w-100 h-100 top-0 start-0 bottom-0 end-0"
-  }, [_c("GmapMap", {
+  }, [_c("gmap-map", {
     staticClass: "w-100 h-100",
     attrs: {
       center: {
@@ -9571,9 +9571,7 @@ Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_3__["default"]);
 Vue.use(vue2_google_maps__WEBPACK_IMPORTED_MODULE_2__, {
   load: {
     key: "AIzaSyBzlLYISGjL_ovJwAehh6ydhB56fCCpPQw",
-    libraries: "geometry",
-    v: '3.26',
-    installComponents: false
+    libraries: "geometry"
   }
 });
 /**

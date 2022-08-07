@@ -15,8 +15,6 @@ Vue.use(VueRouter);
             load: {
                 key: "AIzaSyBzlLYISGjL_ovJwAehh6ydhB56fCCpPQw",
                 libraries: "geometry",
-                v: '3.26',
-                installComponents: false,
             },
         });
 /**

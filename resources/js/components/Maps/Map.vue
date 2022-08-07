@@ -1,6 +1,6 @@
 <template>
     <div class="position-absolute w-100 h-100 top-0 start-0 bottom-0 end-0">
-        <GmapMap
+        <gmap-map
             class="w-100 h-100"
             :center="{ lat: 10.4833584, lng: 123.3998655 }"
             :zoom="14"
@@ -25,7 +25,7 @@
                     </a
                 >
             </gmap-info-window>
-        </GmapMap>
+        </gmap-map>
     </div>
 </template>
 
