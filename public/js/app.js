@@ -5432,6 +5432,7 @@ vue__WEBPACK_IMPORTED_MODULE_2__["default"].use(vue2_google_maps__WEBPACK_IMPORT
 
     axios.post("/get_all_users").then(function (res) {
       _this2.markers = res.data.status;
+      console.log(res.data.status);
     })["catch"](function (err) {});
   }
 });
