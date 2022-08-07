@@ -19,11 +19,7 @@
             >
                 <a class="text-center" @click="visitStore(m.store_name, index,[m.lat,m.lng])"
                     ><i class="fas fa-coffee"></i> {{ m.store_name }}<br />
-                   <center>
-                    {{
-                     parseInt(google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(MyLocation.lat, MyLocation.lng), new google.maps.LatLng(m.lat, m.lng)))
-                    }}m
-                    </center>
+               
                     </a
                 >
             </GmapInfoWindow>
@@ -32,6 +28,11 @@
 </template>
 
 <script>
+    // <center>
+    //                 {{
+    //                  parseInt(google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(MyLocation.lat, MyLocation.lng), new google.maps.LatLng(m.lat, m.lng)))
+    //                 }}
+    //                 </center>
 import Swal from 'sweetalert2'
 import { gmapApi } from "vue2-google-maps";
 export default {

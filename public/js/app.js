@@ -5371,6 +5371,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue2_google_maps__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue2-google-maps */ "./node_modules/vue2-google-maps/dist/main.js");
+// <center>
+//                 {{
+//                  parseInt(google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(MyLocation.lat, MyLocation.lng), new google.maps.LatLng(m.lat, m.lng)))
+//                 }}
+//                 </center>
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -7224,7 +7229,7 @@ var render = function render() {
       }
     }, [_c("i", {
       staticClass: "fas fa-coffee"
-    }), _vm._v(" " + _vm._s(m.store_name)), _c("br"), _vm._v(" "), _c("center", [_vm._v("\n                " + _vm._s(parseInt(_vm.google.maps.geometry.spherical.computeDistanceBetween(new _vm.google.maps.LatLng(_vm.MyLocation.lat, _vm.MyLocation.lng), new _vm.google.maps.LatLng(m.lat, m.lng)))) + "m\n                ")])], 1)]);
+    }), _vm._v(" " + _vm._s(m.store_name)), _c("br")])]);
   })], 2)], 1);
 };
 
