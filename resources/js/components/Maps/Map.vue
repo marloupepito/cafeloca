@@ -6,7 +6,7 @@
             :zoom="14"
         >
             <GmapMarker
-                :position="{ lat: parseFloat(MyLocation.lat), lng: parseFloat(MyLocation.lng) }"
+                :position="{ lat: 10.4833584, lng: 123.3998655 }"
                 :clickable="true"
                 :draggable="true"
             />
@@ -77,6 +77,7 @@ export default {
                 this.MyLocation.lat = position.coords.latitude;
                 this.MyLocation.lng = position.coords.longitude;
                 var distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(position.coords.latitude, position.coords.longitude), new google.maps.LatLng(10.4809679, 123.4157364));
+            console.log(distance)
             }); 
          }
              axios.post("/get_all_users")
