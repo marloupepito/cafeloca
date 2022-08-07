@@ -6,7 +6,7 @@
             :zoom="14"
         >
             <GmapMarker
-                :position="{ lat: 10.4833584, lng: 123.3998655 }"
+                :position="MyLocation"
                 :clickable="true"
                 :draggable="true"
             />
@@ -41,8 +41,8 @@ export default {
     data() {
         return {
             MyLocation: {
-                lat: null,
-                lng: null,
+                lat: 0,
+                lng: 0,
             },
             markers: [],
         };
@@ -75,8 +75,7 @@ export default {
             const meter = navigator.geolocation.getCurrentPosition((position) => {
                 this.MyLocation.lat = position.coords.latitude;
                 this.MyLocation.lng = position.coords.longitude;
-                var distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(position.coords.latitude, position.coords.longitude), new google.maps.LatLng(10.4809679, 123.4157364));
-            }); 
+           }); 
          }
              axios.post("/get_all_users")
             .then((res) => {

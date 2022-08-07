@@ -5380,8 +5380,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       MyLocation: {
-        lat: null,
-        lng: null
+        lat: 0,
+        lng: 0
       },
       markers: []
     };
@@ -5418,7 +5418,6 @@ __webpack_require__.r(__webpack_exports__);
       var meter = navigator.geolocation.getCurrentPosition(function (position) {
         _this2.MyLocation.lat = position.coords.latitude;
         _this2.MyLocation.lng = position.coords.longitude;
-        var distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(position.coords.latitude, position.coords.longitude), new google.maps.LatLng(10.4809679, 123.4157364));
       });
     }
 
@@ -7196,10 +7195,7 @@ var render = function render() {
     }
   }, [_c("GmapMarker", {
     attrs: {
-      position: {
-        lat: 10.4833584,
-        lng: 123.3998655
-      },
+      position: _vm.MyLocation,
       clickable: true,
       draggable: true
     }
