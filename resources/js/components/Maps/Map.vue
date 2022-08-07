@@ -6,19 +6,25 @@
             :zoom="14"
         >
             <GmapMarker
-                 v-for="(m, i) in MyLocation"
-                :key="i[0]"
-                :position="m.position"
+                :position="{ lat: parseFloat(MyLocation.lat), lng: parseFloat(MyLocation.lng) }"
                 :clickable="true"
                 :draggable="true"
             />
 
             <GmapInfoWindow
-                v-for="(m, index) in markers"
                 :key="index"
-                :position="m"
+                v-for="(m, index) in markers"
+                :position="{ lat: parseFloat(m.lat), lng: parseFloat(m.lng) }"
             >
-               
+                <a class="text-center" @click="visitStore(m.store_name, index,[m.lat,m.lng])"
+                    ><i class="fas fa-coffee"></i> {{ m.store_name }}<br />
+                   <center>
+                    {{
+                     parseInt(google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(parseFloat(MyLocation.lat), parseFloat(MyLocation.lng)), new google.maps.LatLng(parseFloat(m.lat), parseFloat(m.lng))))
+                    }}m
+                    </center>
+                    </a
+                >
             </GmapInfoWindow>
         </GmapMap>
     </div>
@@ -34,12 +40,10 @@ export default {
 
     data() {
         return {
-            MyLocation:  [{
-                position: {
-                lat: 0.0,
-                lng: 0.1
-                }
-            }],
+            MyLocation: {
+                lat: 0,
+                lng: 0,
+            },
             markers: [],
         };
     },
@@ -69,13 +73,14 @@ export default {
       
         if (navigator.geolocation) {
             const meter = navigator.geolocation.getCurrentPosition((position) => {
-                this.MyLocation[0].position.lat = parseFloat(position.coords.latitude);
-                this.MyLocation[0].position.lng = parseFloat(position.coords.longitude);
+                this.MyLocation.lat = position.coords.latitude;
+                this.MyLocation.lng = position.coords.longitude;
            }); 
          }
              axios.post("/get_all_users")
             .then((res) => {
                 this.markers = res.data.status;
+                console.log(res.data.status)
             })
             .catch((err) => {});
         }

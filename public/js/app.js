@@ -5379,12 +5379,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      MyLocation: [{
-        position: {
-          lat: 0.0,
-          lng: 0.1
-        }
-      }],
+      MyLocation: {
+        lat: 0,
+        lng: 0
+      },
       markers: []
     };
   },
@@ -5418,13 +5416,14 @@ __webpack_require__.r(__webpack_exports__);
 
     if (navigator.geolocation) {
       var meter = navigator.geolocation.getCurrentPosition(function (position) {
-        _this2.MyLocation[0].position.lat = parseFloat(position.coords.latitude);
-        _this2.MyLocation[0].position.lng = parseFloat(position.coords.longitude);
+        _this2.MyLocation.lat = position.coords.latitude;
+        _this2.MyLocation.lng = position.coords.longitude;
       });
     }
 
     axios.post("/get_all_users").then(function (res) {
       _this2.markers = res.data.status;
+      console.log(res.data.status);
     })["catch"](function (err) {});
   }
 });
@@ -7195,22 +7194,34 @@ var render = function render() {
       },
       zoom: 14
     }
-  }, [_vm._l(_vm.MyLocation, function (m, i) {
-    return _c("GmapMarker", {
-      key: i[0],
-      attrs: {
-        position: m.position,
-        clickable: true,
-        draggable: true
-      }
-    });
+  }, [_c("GmapMarker", {
+    attrs: {
+      position: {
+        lat: parseFloat(_vm.MyLocation.lat),
+        lng: parseFloat(_vm.MyLocation.lng)
+      },
+      clickable: true,
+      draggable: true
+    }
   }), _vm._v(" "), _vm._l(_vm.markers, function (m, index) {
     return _c("GmapInfoWindow", {
       key: index,
       attrs: {
-        position: m
+        position: {
+          lat: parseFloat(m.lat),
+          lng: parseFloat(m.lng)
+        }
       }
-    });
+    }, [_c("a", {
+      staticClass: "text-center",
+      on: {
+        click: function click($event) {
+          return _vm.visitStore(m.store_name, index, [m.lat, m.lng]);
+        }
+      }
+    }, [_c("i", {
+      staticClass: "fas fa-coffee"
+    }), _vm._v(" " + _vm._s(m.store_name)), _c("br"), _vm._v(" "), _c("center", [_vm._v("\n                " + _vm._s(parseInt(_vm.google.maps.geometry.spherical.computeDistanceBetween(new _vm.google.maps.LatLng(parseFloat(_vm.MyLocation.lat), parseFloat(_vm.MyLocation.lng)), new _vm.google.maps.LatLng(parseFloat(m.lat), parseFloat(m.lng))))) + "m\n                ")])], 1)]);
   })], 2)], 1);
 };
 
