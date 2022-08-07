@@ -23,5 +23,5 @@
             <root-app></root-app>
         </div>
     </body>
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&v=3&libraries=geometry"></script>
+    
 </html>

@@ -5368,16 +5368,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue2_google_maps__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue2-google-maps */ "./node_modules/vue2-google-maps/dist/main.js");
-// <center>
-//                 {{
-//                  parseInt(google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(MyLocation.lat, MyLocation.lng), new google.maps.LatLng(m.lat, m.lng)))
-//                 }}
-//                 </center>
 
 
+
+
+vue__WEBPACK_IMPORTED_MODULE_2__["default"].use(vue2_google_maps__WEBPACK_IMPORTED_MODULE_1__, {
+  load: {
+    key: "AIzaSyDGe5vjL8wBmilLzoJ0jNIwe9SAuH2xS_0",
+    libraries: "geometry"
+  }
+});
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   computed: {
     google: vue2_google_maps__WEBPACK_IMPORTED_MODULE_1__.gmapApi
@@ -7194,6 +7198,15 @@ var render = function render() {
   }, [_c("GmapMap", {
     staticClass: "w-100 h-100",
     attrs: {
+      options: {
+        zoomControl: true,
+        mapTypeControl: false,
+        scaleControl: false,
+        streetViewControl: false,
+        rotateControl: false,
+        fullscreenControl: true,
+        disableDefaultUi: false
+      },
       center: {
         lat: 10.4833584,
         lng: 123.3998655
@@ -7229,7 +7242,7 @@ var render = function render() {
       }
     }, [_c("i", {
       staticClass: "fas fa-coffee"
-    }), _vm._v(" " + _vm._s(m.store_name)), _c("br")])]);
+    }), _vm._v(" " + _vm._s(m.store_name)), _c("br"), _vm._v(" "), _c("center", [_vm._v("\n                   " + _vm._s(parseInt(_vm.google.maps.geometry.spherical.computeDistanceBetween(new _vm.google.maps.LatLng(_vm.MyLocation.lat, _vm.MyLocation.lng), new _vm.google.maps.LatLng(m.lat, m.lng)))) + "m\n                   ")])], 1)]);
   })], 2)], 1);
 };
 
@@ -9560,8 +9573,7 @@ render._withStripped = true;
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _src_plugins_vuetify__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./src/plugins/vuetify */ "./resources/js/src/plugins/vuetify.js");
 /* harmony import */ var _components_routes_Route__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/routes/Route */ "./resources/js/components/routes/Route.js");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var vue2_google_maps__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue2-google-maps */ "./node_modules/vue2-google-maps/dist/main.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -9572,15 +9584,8 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
-
 window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js")["default"]);
-Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_3__["default"]);
-Vue.use(vue2_google_maps__WEBPACK_IMPORTED_MODULE_2__, {
-  load: {
-    key: "AIzaSyBZaYqubog7_bntwcjIJRXKfo_b09peUUg",
-    libraries: "geometry"
-  }
-});
+Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -9615,7 +9620,7 @@ var opts = {
     }
   }
 };
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_3__["default"]({
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
   routes: _components_routes_Route__WEBPACK_IMPORTED_MODULE_1__["default"],
   mode: 'history'
 });

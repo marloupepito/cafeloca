@@ -1,6 +1,15 @@
 <template>
     <div class="position-absolute w-100 h-100 top-0 start-0 bottom-0 end-0">
         <GmapMap
+        :options="{
+   zoomControl: true,
+   mapTypeControl: false,
+   scaleControl: false,
+   streetViewControl: false,
+   rotateControl: false,
+   fullscreenControl: true,
+   disableDefaultUi: false
+ }"
             class="w-100 h-100"
             :center="{ lat: 10.4833584, lng: 123.3998655 }"
             :zoom="14"
@@ -19,7 +28,11 @@
             >
                 <a class="text-center" @click="visitStore(m.store_name, index,[m.lat,m.lng])"
                     ><i class="fas fa-coffee"></i> {{ m.store_name }}<br />
-               
+                   <center>
+                    {{
+                     parseInt(google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(MyLocation.lat, MyLocation.lng), new google.maps.LatLng(m.lat, m.lng)))
+                    }}m
+                    </center>
                     </a
                 >
             </GmapInfoWindow>
@@ -28,13 +41,16 @@
 </template>
 
 <script>
-    // <center>
-    //                 {{
-    //                  parseInt(google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(MyLocation.lat, MyLocation.lng), new google.maps.LatLng(m.lat, m.lng)))
-    //                 }}
-    //                 </center>
+import Vue from 'vue'
 import Swal from 'sweetalert2'
+import * as VueGoogleMaps from "vue2-google-maps";
 import { gmapApi } from "vue2-google-maps";
+ Vue.use(VueGoogleMaps, {
+            load: {
+                key: "AIzaSyDGe5vjL8wBmilLzoJ0jNIwe9SAuH2xS_0",
+                libraries: "geometry",
+            },
+        });
 export default {
     computed: {
         google: gmapApi,
