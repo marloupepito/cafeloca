@@ -8,9 +8,15 @@ require('./bootstrap');
 import Vuetify from './src/plugins/vuetify'
 import routes from './components/routes/Route'
 import VueRouter from 'vue-router'
+import * as VueGoogleMaps from "vue2-google-maps";
 window.Vue = require('vue').default;
 Vue.use(VueRouter);
-
+ Vue.use(VueGoogleMaps, {
+            load: {
+                key: "AIzaSyDGe5vjL8wBmilLzoJ0jNIwe9SAuH2xS_0",
+                libraries: "geometry",
+            },
+        });
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
