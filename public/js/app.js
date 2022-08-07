@@ -7199,23 +7199,14 @@ var render = function render() {
       clickable: true,
       draggable: true
     }
-  }), _vm._v(" "), _vm._l(_vm.markers, function (m, index) {
-    return _c("GmapInfoWindow", {
-      key: index,
-      attrs: {
-        position: m
+  }), _vm._v(" "), _c("GmapInfoWindow", {
+    attrs: {
+      position: {
+        lat: 10.4833584,
+        lng: 123.3998655
       }
-    }, [_c("a", {
-      staticClass: "text-center",
-      on: {
-        click: function click($event) {
-          return _vm.visitStore(m.store_name, index, [m.lat, m.lng]);
-        }
-      }
-    }, [_c("i", {
-      staticClass: "fas fa-coffee"
-    }), _vm._v(" " + _vm._s(m.store_name)), _c("br"), _vm._v(" "), _c("center", [_vm._v("\n                " + _vm._s(parseInt(_vm.google.maps.geometry.spherical.computeDistanceBetween(new _vm.google.maps.LatLng(parseFloat(_vm.MyLocation.lat), parseFloat(_vm.MyLocation.lng)), new _vm.google.maps.LatLng(parseFloat(m.lat), parseFloat(m.lng))))) + "m\n                ")])], 1)]);
-  })], 2)], 1);
+    }
+  }, [_vm._v("\n            waaa\n        ")])], 1)], 1);
 };
 
 var staticRenderFns = [];
