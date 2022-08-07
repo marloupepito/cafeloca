@@ -6,15 +6,19 @@
             :zoom="14"
         >
             <GmapMarker
-                :position="MyLocation"
+                 v-for="(m, i) in MyLocation"
+                :key="i[0]"
+                :position="m.position"
                 :clickable="true"
                 :draggable="true"
             />
 
             <GmapInfoWindow
-                :position="{ lat: 10.4833584, lng: 123.3998655 }"
+                v-for="(m, index) in markers"
+                :key="index"
+                :position="m"
             >
-                waaa
+               
             </GmapInfoWindow>
         </GmapMap>
     </div>
@@ -30,10 +34,12 @@ export default {
 
     data() {
         return {
-            MyLocation: {
-                lat: 0,
-                lng: 0,
-            },
+            MyLocation:  [{
+                position: {
+                lat: 0.0,
+                lng: 0.1
+                }
+            }],
             markers: [],
         };
     },
@@ -63,8 +69,8 @@ export default {
       
         if (navigator.geolocation) {
             const meter = navigator.geolocation.getCurrentPosition((position) => {
-                this.MyLocation.lat = position.coords.latitude;
-                this.MyLocation.lng = position.coords.longitude;
+                this.MyLocation[0].position.lat = position.coords.latitude;
+                this.MyLocation[0].position.lng = position.coords.longitude;
            }); 
          }
              axios.post("/get_all_users")

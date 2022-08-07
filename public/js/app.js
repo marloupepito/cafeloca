@@ -5379,10 +5379,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      MyLocation: {
-        lat: 0,
-        lng: 0
-      },
+      MyLocation: [{
+        position: {
+          lat: 0.0,
+          lng: 0.1
+        }
+      }],
       markers: []
     };
   },
@@ -5416,8 +5418,8 @@ __webpack_require__.r(__webpack_exports__);
 
     if (navigator.geolocation) {
       var meter = navigator.geolocation.getCurrentPosition(function (position) {
-        _this2.MyLocation.lat = position.coords.latitude;
-        _this2.MyLocation.lng = position.coords.longitude;
+        _this2.MyLocation[0].position.lat = position.coords.latitude;
+        _this2.MyLocation[0].position.lng = position.coords.longitude;
       });
     }
 
@@ -7193,20 +7195,23 @@ var render = function render() {
       },
       zoom: 14
     }
-  }, [_c("GmapMarker", {
-    attrs: {
-      position: _vm.MyLocation,
-      clickable: true,
-      draggable: true
-    }
-  }), _vm._v(" "), _c("GmapInfoWindow", {
-    attrs: {
-      position: {
-        lat: 10.4833584,
-        lng: 123.3998655
+  }, [_vm._l(_vm.MyLocation, function (m, i) {
+    return _c("GmapMarker", {
+      key: i[0],
+      attrs: {
+        position: m.position,
+        clickable: true,
+        draggable: true
       }
-    }
-  }, [_vm._v("\n            waaa\n        ")])], 1)], 1);
+    });
+  }), _vm._v(" "), _vm._l(_vm.markers, function (m, index) {
+    return _c("GmapInfoWindow", {
+      key: index,
+      attrs: {
+        position: m
+      }
+    });
+  })], 2)], 1);
 };
 
 var staticRenderFns = [];
