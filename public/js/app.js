@@ -5368,10 +5368,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue2_google_maps__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue2-google-maps */ "./node_modules/vue2-google-maps/dist/main.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
 
 
 
@@ -5427,13 +5427,11 @@ vue__WEBPACK_IMPORTED_MODULE_2__["default"].use(vue2_google_maps__WEBPACK_IMPORT
       var meter = navigator.geolocation.getCurrentPosition(function (position) {
         _this2.MyLocation.lat = position.coords.latitude;
         _this2.MyLocation.lng = position.coords.longitude;
-        var distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(position.coords.latitude, position.coords.longitude), new google.maps.LatLng(10.4809679, 123.4157364));
       });
     }
 
     axios.post("/get_all_users").then(function (res) {
       _this2.markers = res.data.status;
-      console.log(res.data.status);
     })["catch"](function (err) {});
   }
 });
@@ -7216,8 +7214,8 @@ var render = function render() {
   }, [_c("GmapMarker", {
     attrs: {
       position: {
-        lat: _vm.MyLocation.lat,
-        lng: _vm.MyLocation.lng
+        lat: parseFloat(_vm.MyLocation.lat),
+        lng: parseFloat(_vm.MyLocation.lng)
       },
       clickable: true,
       draggable: true
@@ -7242,7 +7240,7 @@ var render = function render() {
       }
     }, [_c("i", {
       staticClass: "fas fa-coffee"
-    }), _vm._v(" " + _vm._s(m.store_name)), _c("br"), _vm._v(" "), _c("center", [_vm._v("\n                   " + _vm._s(parseInt(_vm.google.maps.geometry.spherical.computeDistanceBetween(new _vm.google.maps.LatLng(_vm.MyLocation.lat, _vm.MyLocation.lng), new _vm.google.maps.LatLng(m.lat, m.lng)))) + "m\n                   ")])], 1)]);
+    }), _vm._v(" " + _vm._s(m.store_name)), _c("br"), _vm._v(" "), _c("center", [_vm._v("\n                   " + _vm._s(parseInt(_vm.google.maps.geometry.spherical.computeDistanceBetween(new _vm.google.maps.LatLng(parseFloat(_vm.MyLocation.lat), parseFloat(_vm.MyLocation.lng)), new _vm.google.maps.LatLng(m.lat, m.lng)))) + "m\n                   ")])], 1)]);
   })], 2)], 1);
 };
 

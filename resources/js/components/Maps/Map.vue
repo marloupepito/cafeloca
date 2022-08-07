@@ -15,7 +15,7 @@
             :zoom="14"
         >
             <GmapMarker
-                :position="{ lat: MyLocation.lat, lng: MyLocation.lng }"
+                :position="{ lat: parseFloat(MyLocation.lat), lng: parseFloat(MyLocation.lng) }"
                 :clickable="true"
                 :draggable="true"
             />
@@ -30,21 +30,20 @@
                     ><i class="fas fa-coffee"></i> {{ m.store_name }}<br />
                    <center>
                     {{
-                     parseInt(google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(MyLocation.lat, MyLocation.lng), new google.maps.LatLng(m.lat, m.lng)))
+                     parseInt(google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(parseFloat(MyLocation.lat), parseFloat(MyLocation.lng)), new google.maps.LatLng(m.lat, m.lng)))
                     }}m
                     </center>
-                    </a
-                >
+                    </a>
             </GmapInfoWindow>
         </GmapMap>
     </div>
 </template>
 
 <script>
-import Vue from 'vue'
 import Swal from 'sweetalert2'
-import * as VueGoogleMaps from "vue2-google-maps";
 import { gmapApi } from "vue2-google-maps";
+import Vue from 'vue'
+import * as VueGoogleMaps from "vue2-google-maps";
  Vue.use(VueGoogleMaps, {
             load: {
                 key: "AIzaSyDGe5vjL8wBmilLzoJ0jNIwe9SAuH2xS_0",
@@ -93,13 +92,11 @@ export default {
             const meter = navigator.geolocation.getCurrentPosition((position) => {
                 this.MyLocation.lat = position.coords.latitude;
                 this.MyLocation.lng = position.coords.longitude;
-                var distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(position.coords.latitude, position.coords.longitude), new google.maps.LatLng(10.4809679, 123.4157364));
             }); 
          }
              axios.post("/get_all_users")
             .then((res) => {
                 this.markers = res.data.status;
-                console.log(res.data.status)
             })
             .catch((err) => {});
         }
