@@ -5418,6 +5418,7 @@ __webpack_require__.r(__webpack_exports__);
       var meter = navigator.geolocation.getCurrentPosition(function (position) {
         _this2.MyLocation.lat = position.coords.latitude;
         _this2.MyLocation.lng = position.coords.longitude;
+        var distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(position.coords.latitude, position.coords.longitude), new google.maps.LatLng(10.4809679, 123.4157364));
       });
     }
 
@@ -7184,7 +7185,7 @@ var render = function render() {
 
   return _c("div", {
     staticClass: "position-absolute w-100 h-100 top-0 start-0 bottom-0 end-0"
-  }, [_c("gmap-map", {
+  }, [_c("GmapMap", {
     staticClass: "w-100 h-100",
     attrs: {
       center: {
@@ -7203,15 +7204,10 @@ var render = function render() {
       draggable: true
     }
   }), _vm._v(" "), _vm._l(_vm.markers, function (m, index) {
-    return _c("gmap-info-window", {
+    return _c("GmapInfoWindow", {
       key: index,
       attrs: {
         position: m
-      },
-      on: {
-        click: function click($event) {
-          _vm.center = m;
-        }
       }
     }, [_c("a", {
       staticClass: "text-center",
@@ -7222,7 +7218,7 @@ var render = function render() {
       }
     }, [_c("i", {
       staticClass: "fas fa-coffee"
-    }), _vm._v(" " + _vm._s(m.store_name)), _c("br"), _vm._v(" "), _c("center", [_vm._v("\n                m\n                ")])], 1)]);
+    }), _vm._v(" " + _vm._s(m.store_name)), _c("br"), _vm._v(" "), _c("center", [_vm._v("\n                " + _vm._s(parseInt(_vm.google.maps.geometry.spherical.computeDistanceBetween(new _vm.google.maps.LatLng(parseFloat(_vm.MyLocation.lat), parseFloat(_vm.MyLocation.lng)), new _vm.google.maps.LatLng(parseFloat(m.lat), parseFloat(m.lng))))) + "m\n                ")])], 1)]);
   })], 2)], 1);
 };
 

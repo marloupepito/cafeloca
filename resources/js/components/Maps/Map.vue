@@ -1,6 +1,6 @@
 <template>
     <div class="position-absolute w-100 h-100 top-0 start-0 bottom-0 end-0">
-        <gmap-map
+        <GmapMap
             class="w-100 h-100"
             :center="{ lat: 10.4833584, lng: 123.3998655 }"
             :zoom="14"
@@ -11,21 +11,22 @@
                 :draggable="true"
             />
 
-            <gmap-info-window
-                v-for="(m, index) in markers"
+            <GmapInfoWindow
                 :key="index"
+                v-for="(m, index) in markers"
                 :position="m"
-                @click="center = m"
             >
                 <a class="text-center" @click="visitStore(m.store_name, index,[m.lat,m.lng])"
                     ><i class="fas fa-coffee"></i> {{ m.store_name }}<br />
                    <center>
-                    m
+                    {{
+                     parseInt(google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(parseFloat(MyLocation.lat), parseFloat(MyLocation.lng)), new google.maps.LatLng(parseFloat(m.lat), parseFloat(m.lng))))
+                    }}m
                     </center>
                     </a
                 >
-            </gmap-info-window>
-        </gmap-map>
+            </GmapInfoWindow>
+        </GmapMap>
     </div>
 </template>
 
@@ -74,6 +75,7 @@ export default {
             const meter = navigator.geolocation.getCurrentPosition((position) => {
                 this.MyLocation.lat = position.coords.latitude;
                 this.MyLocation.lng = position.coords.longitude;
+                var distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(position.coords.latitude, position.coords.longitude), new google.maps.LatLng(10.4809679, 123.4157364));
             }); 
          }
              axios.post("/get_all_users")
