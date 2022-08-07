@@ -5424,6 +5424,7 @@ __webpack_require__.r(__webpack_exports__);
 
     axios.post("/get_all_users").then(function (res) {
       _this2.markers = res.data.status;
+      console.log(res.data.status);
     })["catch"](function (err) {});
   }
 });

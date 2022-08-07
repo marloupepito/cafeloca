@@ -82,6 +82,7 @@ export default {
              axios.post("/get_all_users")
             .then((res) => {
                 this.markers = res.data.status;
+                console.log(res.data.status)
             })
             .catch((err) => {});
         }
