@@ -6,7 +6,7 @@
             :zoom="14"
         >
             <GmapMarker
-                :position="{ lat: parseFloat(MyLocation.lat), lng: parseFloat(MyLocation.lng) }"
+                :position="{ lat: 10.4833584, lng: 123.3998655 }"
                 :clickable="true"
                 :draggable="true"
             />

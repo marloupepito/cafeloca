@@ -7197,8 +7197,8 @@ var render = function render() {
   }, [_c("GmapMarker", {
     attrs: {
       position: {
-        lat: parseFloat(_vm.MyLocation.lat),
-        lng: parseFloat(_vm.MyLocation.lng)
+        lat: 10.4833584,
+        lng: 123.3998655
       },
       clickable: true,
       draggable: true
