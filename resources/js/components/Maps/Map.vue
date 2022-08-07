@@ -12,17 +12,15 @@
             />
 
             <gmap-info-window
-                :key="index"
                 v-for="(m, index) in markers"
+                :key="index"
                 :position="m"
                 @click="center = m"
             >
                 <a class="text-center" @click="visitStore(m.store_name, index,[m.lat,m.lng])"
                     ><i class="fas fa-coffee"></i> {{ m.store_name }}<br />
                    <center>
-                    {{
-                     parseInt(google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(parseFloat(MyLocation.lat), parseFloat(MyLocation.lng)), new google.maps.LatLng(parseFloat(m.lat), parseFloat(m.lng))))
-                    }}m
+                    m
                     </center>
                     </a
                 >

@@ -7222,7 +7222,7 @@ var render = function render() {
       }
     }, [_c("i", {
       staticClass: "fas fa-coffee"
-    }), _vm._v(" " + _vm._s(m.store_name)), _c("br"), _vm._v(" "), _c("center", [_vm._v("\n                " + _vm._s(parseInt(_vm.google.maps.geometry.spherical.computeDistanceBetween(new _vm.google.maps.LatLng(parseFloat(_vm.MyLocation.lat), parseFloat(_vm.MyLocation.lng)), new _vm.google.maps.LatLng(parseFloat(m.lat), parseFloat(m.lng))))) + "m\n                ")])], 1)]);
+    }), _vm._v(" " + _vm._s(m.store_name)), _c("br"), _vm._v(" "), _c("center", [_vm._v("\n                m\n                ")])], 1)]);
   })], 2)], 1);
 };
 
