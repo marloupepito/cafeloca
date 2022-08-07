@@ -6,7 +6,7 @@
             :zoom="14"
         >
             <GmapMarker
-                :position="{ lat: 10.4833584, lng: 123.3998655 }"
+                :position="{ lat: parseFloat(MyLocation.lat), lng: parseFloat(MyLocation.lng) }"
                 :clickable="true"
                 :draggable="true"
             />
@@ -17,15 +17,7 @@
                 :position="m"
                 @click="center = m"
             >
-                <a class="text-center" @click="visitStore(m.store_name, index,[m.lat,m.lng])"
-                    ><i class="fas fa-coffee"></i> {{ m.store_name }}<br />
-                   <center>
-                    {{
-                     parseInt(google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(parseFloat(MyLocation.lat), parseFloat(MyLocation.lng)), new google.maps.LatLng(m.lat, m.lng)))
-                    }}m
-                    </center>
-                    </a
-                >
+              aa
             </GmapInfoWindow>
         </GmapMap>
     </div>
@@ -76,8 +68,6 @@ export default {
             const meter = navigator.geolocation.getCurrentPosition((position) => {
                 this.MyLocation.lat = position.coords.latitude;
                 this.MyLocation.lng = position.coords.longitude;
-                var distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(position.coords.latitude, position.coords.longitude), new google.maps.LatLng(10.4809679, 123.4157364));
-            console.log(distance)
             }); 
          }
              axios.post("/get_all_users")
