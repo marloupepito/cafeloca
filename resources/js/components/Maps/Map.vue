@@ -69,8 +69,8 @@ export default {
       
         if (navigator.geolocation) {
             const meter = navigator.geolocation.getCurrentPosition((position) => {
-                this.MyLocation[0].position.lat = position.coords.latitude;
-                this.MyLocation[0].position.lng = position.coords.longitude;
+                this.MyLocation[0].position.lat = parseFloat(position.coords.latitude);
+                this.MyLocation[0].position.lng = parseFloat(position.coords.longitude);
            }); 
          }
              axios.post("/get_all_users")

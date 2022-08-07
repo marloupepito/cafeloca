@@ -5418,8 +5418,8 @@ __webpack_require__.r(__webpack_exports__);
 
     if (navigator.geolocation) {
       var meter = navigator.geolocation.getCurrentPosition(function (position) {
-        _this2.MyLocation[0].position.lat = position.coords.latitude;
-        _this2.MyLocation[0].position.lng = position.coords.longitude;
+        _this2.MyLocation[0].position.lat = parseFloat(position.coords.latitude);
+        _this2.MyLocation[0].position.lng = parseFloat(position.coords.longitude);
       });
     }
 
