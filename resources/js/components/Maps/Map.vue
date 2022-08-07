@@ -11,7 +11,7 @@
                 :draggable="true"
             />
 
-            <GmapInfoWindow
+            <gmap-info-window
                 :key="index"
                 v-for="(m, index) in markers"
                 :position="m"
@@ -26,7 +26,7 @@
                     </center>
                     </a
                 >
-            </GmapInfoWindow>
+            </gmap-info-window>
         </GmapMap>
     </div>
 </template>

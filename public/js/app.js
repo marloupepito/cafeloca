@@ -7203,7 +7203,7 @@ var render = function render() {
       draggable: true
     }
   }), _vm._v(" "), _vm._l(_vm.markers, function (m, index) {
-    return _c("GmapInfoWindow", {
+    return _c("gmap-info-window", {
       key: index,
       attrs: {
         position: m
@@ -9570,8 +9570,10 @@ window.Vue = (__webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js
 Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_3__["default"]);
 Vue.use(vue2_google_maps__WEBPACK_IMPORTED_MODULE_2__, {
   load: {
-    key: "AIzaSyDGe5vjL8wBmilLzoJ0jNIwe9SAuH2xS_0",
-    libraries: "geometry"
+    key: "AIzaSyBzlLYISGjL_ovJwAehh6ydhB56fCCpPQw",
+    libraries: "geometry",
+    v: '3.26',
+    installComponents: false
   }
 });
 /**

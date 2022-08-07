@@ -13,8 +13,10 @@ window.Vue = require('vue').default;
 Vue.use(VueRouter);
  Vue.use(VueGoogleMaps, {
             load: {
-                key: "AIzaSyDGe5vjL8wBmilLzoJ0jNIwe9SAuH2xS_0",
+                key: "AIzaSyBzlLYISGjL_ovJwAehh6ydhB56fCCpPQw",
                 libraries: "geometry",
+                v: '3.26',
+                installComponents: false,
             },
         });
 /**
