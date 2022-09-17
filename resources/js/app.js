@@ -9,9 +9,30 @@ import Vuetify from './src/plugins/vuetify'
 import routes from './components/routes/Route'
 import VueRouter from 'vue-router'
 import * as VueGoogleMaps from "vue2-google-maps";
+import VueInsProgressBar from 'vue-ins-progress-bar'
+import loading from 'vuejs-loading-screen'
+
+
 window.Vue = require('vue').default;
+
+
+Vue.use(loading, {
+  bg: 'black',
+  slot: `
+    <div class="px-5 py-3 rounded">
+               <img src="/images/logo.jpeg" width='300px' >
+        </div>
+  `
+})
+
+Vue.use(VueInsProgressBar, {
+  position: 'fixed',
+  show: true,
+  height: '5px'
+})
+
 Vue.use(VueRouter);
- Vue.use(VueGoogleMaps, {
+   Vue.use(VueGoogleMaps, {
             load: {
                 key: "AIzaSyBzlLYISGjL_ovJwAehh6ydhB56fCCpPQw",
                 libraries: "geometry",
@@ -40,6 +61,10 @@ Vue.component('root-app', require('./components/Index.vue').default);
  const opts = {
     icons: {
         iconfont: 'md',  // 'mdi' || 'mdiSvg' || 'md' || 'fa' || 'fa4'
+         iconfont: 'mdiSvg',
+         iconfont: 'mdi',
+         iconfont: 'fa',
+         iconfont: 'fa4',
       },
       theme: {
         dark: false,

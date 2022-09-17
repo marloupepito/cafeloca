@@ -15,15 +15,23 @@
                 v-for="(m, index) in markers"
                 :position="{ lat: parseFloat(m.lat), lng: parseFloat(m.lng) }"
             >
-                <a class="text-center" @click="visitStore(m.store_name, index,[m.lat,m.lng])"
-                    ><i class="fas fa-coffee"></i> {{ m.store_name }}<br />
-                   <center>
-                    {{
-                     parseInt(google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(parseFloat(MyLocation.lat), parseFloat(MyLocation.lng)), new google.maps.LatLng(parseFloat(m.lat), parseFloat(m.lng))))
-                    }}m
-                    </center>
-                    </a
-                >
+				  <v-dialog
+				      v-model="dialog"
+				      fullscreen
+				      hide-overlay
+				      transition="dialog-bottom-transition"
+				    >
+				      <template v-slot:activator="{ on, attrs }">
+				        <a
+				          v-bind="attrs"
+				          v-on="on" @click="visit">
+				        {{ m.store_name }}
+				        </a>
+				      </template>
+				      <v-card>
+				      	<router-view></router-view> 
+				      </v-card>
+				    </v-dialog>
             </GmapInfoWindow>
         </GmapMap>
     </div>
@@ -32,7 +40,7 @@
 <script>
 //  :clickable="true"
 //  :draggable="true"
-import Carousel from './../homepage/Carousel.vue'
+
 import Swal from 'sweetalert2'
 import { gmapApi } from "vue2-google-maps";
 export default {
@@ -42,14 +50,52 @@ export default {
 
     data() {
         return {
+        	 items: [
+        {
+          color: '#952175',
+          src: 'https://cdn.vuetifyjs.com/images/cards/cooking.png',
+          title: 'Supermodel',
+          artist: 'Foster the People',
+        },
+        {
+          color: '#952175',
+          src: 'https://cdn.vuetifyjs.com/images/cards/cooking.png',
+          title: 'Halcyon Days',
+          artist: 'Ellie Goulding',
+        },{
+          color: '#952175',
+          src: 'https://cdn.vuetifyjs.com/images/cards/cooking.png',
+          title: 'Halcyon Days',
+          artist: 'Ellie Goulding',
+        },
+      ],
             MyLocation: {
                 lat: 0,
                 lng: 0,
             },
             markers: [],
-        };
+            dialog: false,
+	        notifications: false,
+	        sound: true,
+	        widgets: false,
+	        timerCount: 1
+	        };
+
     },
     methods: {
+
+
+    	visit(){
+    			
+                    if (this.timerCount > 0) {
+                        setTimeout(() => {
+                            this.timerCount--;
+                            this.$router.push({path:'/visit'})
+                        }, 1000);
+                    }
+
+                
+    		},
         visitStore(name, id, ll) {
            
               if (navigator.geolocation) {

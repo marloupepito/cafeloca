@@ -1,176 +1,79 @@
 <template lang="">
-    <div>
-        <div id="mobile-list" class="section-container pt-0">
-			<!-- BEGIN container -->
-			<div class="container">
-				<!-- BEGIN section-title -->
-				<h4 class="section-title clearfix">
-					<span class="flex-1">
-						Product List
-						<small>Shop and get your favourite phone at amazing prices!</small>
-					</span>
-					<a href="#" class="btn">SHOW ALL</a>
-				</h4>
-				<!-- END section-title -->
-				<!-- BEGIN category-container -->
-				<div class="category-container">
-					<!-- BEGIN category-sidebar -->
-					<div class="category-sidebar">
-						<ul class="category-list">
-							<li class="list-header">Top Categories</li>
-							<li><a href="#">Microsoft</a></li>
-							<li><a href="#">Samsung</a></li>
-							<li><a href="#">Apple</a></li>
-							<li><a href="#">Micromax</a></li>
-							<li><a href="#">Karbonn</a></li>
-							<li><a href="#">Intex</a></li>
-							<li><a href="#">Sony</a></li>
-							<li><a href="#">HTC</a></li>
-							<li><a href="#">Asus</a></li>
-							<li><a href="#">Nokia</a></li>
-							<li><a href="#">Blackberry</a></li>
-							<li><a href="#">All Brands</a></li>
-						</ul>
-					</div>
-					<!-- END category-sidebar -->
-					<!-- BEGIN category-detail -->
-					<div class="category-detail">
-						<!-- BEGIN category-item -->
-						<a href="#" class="category-item full">
-							<div class="item">
-								<div class="item-cover">
-									<img src="assets/img/product/product-samsung-s7-edge.jpg" alt="" />
-								</div>
-								<div class="item-info bottom">
-									<h4 class="item-title">Samsung Galaxy s7 Edge + Geat 360 + Gear VR</h4>
-									<p class="item-desc">Redefine what a phone can do</p>
-									<div class="item-price">$799.00</div>
-								</div>
-							</div>
-						</a>
-						<!-- END category-item -->
-						<!-- BEGIN category-item -->
-						<div class="category-item list">
-							<!-- BEGIN item-row -->
-							<div class="item-row">
-								<!-- BEGIN item -->
-								<div class="item item-thumbnail">
-									<a href="product_detail.html" class="item-image">
-										<img src="assets/img/product/product-iphone.png" alt="" />
-										<div class="discount">15% OFF</div>
-									</a>
-									<div class="item-info">
-										<h4 class="item-title">
-											<a href="product_detail.html">iPhone 6s Plus<br />16GB</a>
-										</h4>
-										<p class="item-desc">3D Touch. 12MP photos. 4K video.</p>
-										<div class="item-price">$649.00</div>
-										<div class="item-discount-price">$739.00</div>
-									</div>
-								</div>
-								<!-- END item -->
-								<!-- BEGIN item -->
-								<div class="item item-thumbnail">
-									<a href="product_detail.html" class="item-image">
-										<img src="assets/img/product/product-samsung-note5.png" alt="" />
-										<div class="discount">32% OFF</div>
-									</a>
-									<div class="item-info">
-										<h4 class="item-title">
-											<a href="product.html">Samsung Galaxy Note 5<br />Black</a>
-										</h4>
-										<p class="item-desc">Super. Computer. Now in two sizes.</p>
-										<div class="item-price">$599.00</div>
-										<div class="item-discount-price">$799.00</div>
-									</div>
-								</div>
-								<!-- END item -->
-								<!-- BEGIN item -->
-								<div class="item item-thumbnail">
-									<a href="product_detail.html" class="item-image">
-										<img src="assets/img/product/product-iphone-se.png" alt="" />
-										<div class="discount">20% OFF</div>
-									</a>
-									<div class="item-info">
-										<h4 class="item-title">
-											<a href="product.html">iPhone SE<br />32/64Gb</a>
-										</h4>
-										<p class="item-desc">A big step for small.</p>
-										<div class="item-price">$499.00</div>
-										<div class="item-discount-price">$599.00</div>
-									</div>
-								</div>
-								<!-- END item -->
-							</div>
-							<!-- END item-row -->
-							<!-- BEGIN item-row -->
-							<div class="item-row">
-								<!-- BEGIN item -->
-								<div class="item item-thumbnail">
-									<a href="product_detail.html" class="item-image">
-										<img src="assets/img/product/product-zenfone2.png" alt="" />
-										<div class="discount">15% OFF</div>
-									</a>
-									<div class="item-info">
-										<h4 class="item-title">
-											<a href="product_detail.html">Assus ZenFone 2<br />‏(ZE550ML)</a>
-										</h4>
-										<p class="item-desc">See What Others Can’t See</p>
-										<div class="item-price">$399.00</div>
-										<div class="item-discount-price">$453.00</div>
-									</div>
-								</div>
-								<!-- END item -->
-								<!-- BEGIN item -->
-								<div class="item item-thumbnail">
-									<a href="product_detail.html" class="item-image">
-										<img src="assets/img/product/product-xperia-z.png" alt="" />
-										<div class="discount">32% OFF</div>
-									</a>
-									<div class="item-info">
-										<h4 class="item-title">
-											<a href="product.html">Sony Xperia Z<br />Black Color</a>
-										</h4>
-										<p class="item-desc">For unexpectedly beautiful moments</p>
-										<div class="item-price">$599.00</div>
-										<div class="item-discount-price">$799.00</div>
-									</div>
-								</div>
-								<!-- END item -->
-								<!-- BEGIN item -->
-								<div class="item item-thumbnail">
-									<a href="product_detail.html" class="item-image">
-										<img src="assets/img/product/product-lumia-532.png" alt="" />
-										<div class="discount">20% OFF</div>
-									</a>
-									<div class="item-info">
-										<h4 class="item-title">
-											<a href="product.html">Microsoft Lumia 531<br />Smartphone Orange</a>
-										</h4>
-										<p class="item-desc">1 Year Local Manufacturer Warranty</p>
-										<div class="item-price">$99.00</div>
-										<div class="item-discount-price">$199.00</div>
-									</div>
-								</div>
-								<!-- END item -->
-							</div>
-							<!-- END item-row -->
-						</div>
-						<!-- END category-item -->
-					</div>
-					<!-- END category-detail -->
-				</div>
-				<!-- END category-container -->
-			</div>
-			<!-- END container -->
-		</div>
-		<!-- END #mobile-list -->
-		
-    </div>
+  
+<div>
+        <v-col
+          v-for="(item, i) in items"
+          :key="i"
+          cols="12"
+        >
+          <v-card
+            :color="item.color"
+            dark
+          >
+            <div class="d-flex flex-no-wrap">
+            <v-avatar
+                class="ma-3"
+                size="125"
+                tile
+              >
+                <v-img :src="item.src"></v-img>
+              </v-avatar>
+              <div>
+                <v-card-title
+                  class="text-h5"
+                  v-text="item.title"
+                ></v-card-title>
+
+                <v-card-subtitle v-text="item.artist"></v-card-subtitle>
+
+                <v-card-actions>
+                  <v-row
+                        align="center"
+                        class="mx-0"
+                      >
+                        <v-rating
+                          :value="4.5"
+                          color="amber"
+                          dense
+                          half-increments
+                          readonly
+                          size="14"
+                        ></v-rating>
+
+                        <div class="grey--text ms-4">
+                          4.5 (413)
+                        </div>
+                      </v-row>
+                </v-card-actions>
+              </div>
+
+              
+            </div>
+          </v-card>
+        </v-col>
+      </div>
+
 </template>
 <script>
 export default {
-    
+    data(){
+    	return{
+    		  items: [
+        {
+          color: '#952175',
+          src: 'https://cdn.vuetifyjs.com/images/cards/cooking.png',
+          title: 'Supermodel',
+          artist: 'Foster the People',
+        },
+        {
+          color: '#952175',
+          src: 'https://cdn.vuetifyjs.com/images/cards/cooking.png',
+          title: 'Halcyon Days',
+          artist: 'Ellie Goulding',
+        },
+      ],
+    	}
+    }
 }
 </script>
 <style lang="">

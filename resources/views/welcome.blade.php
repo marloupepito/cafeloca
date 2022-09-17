@@ -6,14 +6,19 @@
         <title>Cafe Location App</title>
         <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
         <!-- Fonts -->
-      
+      <link rel="shortcut icon" type="image/x-icon" href="images/brand-apple.png" />
         <!-- Styles -->
         <script src="{{ asset('js/app.js') }}" defer></script>
-        <link href="../../assets/css/e-commerce/vendor.min.css" rel="stylesheet" />
-        <link href="../../assets/css/e-commerce/app.min.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+        <link href="assets/css/e-commerce/vendor.min.css" rel="stylesheet" />
+        <link href="assets/css/e-commerce/app.min.css" rel="stylesheet" />
         <style>
             body {
                 font-family: 'Nunito', sans-serif;
+            }
+
+            h3.text-3xl.text-white{
+                background-image: url(images/brand-apple.png) !important;
             }
         </style>
     </head>
