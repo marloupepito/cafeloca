@@ -10,20 +10,10 @@ import routes from './components/routes/Route'
 import VueRouter from 'vue-router'
 import * as VueGoogleMaps from "vue2-google-maps";
 import VueInsProgressBar from 'vue-ins-progress-bar'
-import loading from 'vuejs-loading-screen'
+import Vue from 'vue'
 
 
-window.Vue = require('vue').default;
 
-
-Vue.use(loading, {
-  bg: 'black',
-  slot: `
-    <div class="px-5 py-3 rounded">
-               <img src="/images/logo.jpeg" width='300px' >
-        </div>
-  `
-})
 
 Vue.use(VueInsProgressBar, {
   position: 'fixed',
