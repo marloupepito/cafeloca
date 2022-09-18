@@ -9,7 +9,7 @@
       :show-arrows="true"
       hide-delimiter-background
       delimiter-icon="mdi-minus"
-      height="300"
+      height="150"
     >
       <v-carousel-item
         v-for="(slide, i) in slides"

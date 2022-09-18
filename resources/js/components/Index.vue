@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <div class="col-md-4 offset-md-4 p-0">
+        <div class="col-md-4 offset-md-4 p-0" style="padding:0px !important">
               <vue-ins-progress-bar></vue-ins-progress-bar>
                   <router-view></router-view> 
               </div>

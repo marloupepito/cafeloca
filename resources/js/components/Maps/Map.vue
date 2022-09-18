@@ -1,5 +1,5 @@
 <template>
-    <div class="position-absolute w-100 h-100 top-0 start-0 bottom-0 end-0 col-md-4 offset-md-4 p-0">
+    <div  style="height:91vh">
         <GmapMap
             class="w-100 h-100"
             :center="{ lat: 10.4833584, lng: 123.3998655 }"
@@ -15,24 +15,9 @@
                 v-for="(m, index) in markers"
                 :position="{ lat: parseFloat(m.lat), lng: parseFloat(m.lng) }"
             >
-				  <v-dialog
-                  class="col-md-4 p-0"
-				      v-model="dialog"
-				      fullscreen
-				      hide-overlay
-				      transition="dialog-bottom-transition"
-				    >
-				      <template v-slot:activator="{ on, attrs }">
-				        <a
-				          v-bind="attrs"
-				          v-on="on" @click="visit">
-				        {{ m.store_name }}
-				        </a>
-				      </template>
-				      <v-card>
-				      	<router-view></router-view> 
-				      </v-card>
-				    </v-dialog>
+				<a @click="visit(m.store_name,m.id)">
+                        {{ m.store_name }}
+                        </a>
             </GmapInfoWindow>
         </GmapMap>
     </div>
@@ -86,16 +71,10 @@ export default {
     methods: {
 
 
-    	visit(){
-    			
-                    if (this.timerCount > 0) {
-                        setTimeout(() => {
-                            this.timerCount--;
-                            this.$router.push({path:'/visit'})
-                        }, 1000);
-                    }
-
+    	visit(branch_name,id){
+                 this.$router.push({path:'/search/'+branch_name.replace(/ /g,'-')})
                 
+                localStorage.setItem("id",id)
     		},
         visitStore(name, id, ll) {
            

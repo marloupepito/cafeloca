@@ -5,15 +5,9 @@
           class=" w-100 mb-3 text-white font-weight-bold"
           @click="searchMap"
           color="brown"
+          large
         >
-          Visit
-        </v-btn>
-            <v-btn
-          class=" w-100 font-weight-bold"
-          
-          color="success"
-        >
-          Register
+          Start Visit
         </v-btn>
         </div>
     </v-container>

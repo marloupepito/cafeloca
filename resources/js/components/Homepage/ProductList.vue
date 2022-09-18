@@ -1,6 +1,7 @@
 <template lang="">
   
-<div>
+<v-app>
+
         <v-col
           v-for="(item, i) in items"
           :key="i"
@@ -32,7 +33,7 @@
                         class="mx-0"
                       >
                         <v-rating
-                          :value="4.5"
+                        v-model="star"
                           color="amber"
                           dense
                           half-increments
@@ -51,13 +52,14 @@
             </div>
           </v-card>
         </v-col>
-      </div>
+      </v-app>
 
 </template>
 <script>
 export default {
     data(){
     	return{
+        star:5,
     		  items: [
         {
           color: 'brown',
