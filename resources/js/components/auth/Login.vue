@@ -9,7 +9,16 @@
                <img src="/images/logo.png" width="100px">
               </div>
               <div class="col-md-12 col-12">
-              <b class="text-danger">{{incorrect}}</b>
+                <center>
+                  <b class="text-danger" v-if="incorrect === null"></b>
+                    <div v-if="incorrect === 'load'">
+                     <v-progress-linear
+                      indeterminate
+                      color="brown"
+                    ></v-progress-linear>
+                      </div>
+                    <div v-else class="text-danger">{{incorrect}}</div>
+                </center>
               </div>
             </div>
             <div class="login login-v2 fw-bold" >
@@ -84,7 +93,7 @@
 
     methods: {
       validate () {
-        this.incorrect = null
+        this.incorrect = 'load'
         this.$refs.form.validate()
         if(this.$refs.form.validate() === true){
             axios.post('/user_login',{
