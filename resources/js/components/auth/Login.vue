@@ -1,8 +1,6 @@
 <template lang="">
     <div class="container">
-        <div id="app">
-        <br /> <br />
-           
+        <div id="app" style="padding-top:40px;">
             <div class="row">
               <div class="col-md-8 col-8">
               <img src="/images/logins.png" width="100%">
