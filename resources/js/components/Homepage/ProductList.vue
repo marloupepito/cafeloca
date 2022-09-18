@@ -1,6 +1,6 @@
 <template lang="">
   
-<v-app>
+<div>
 
         <v-col
           v-for="(item, i) in items"
@@ -52,7 +52,7 @@
             </div>
           </v-card>
         </v-col>
-      </v-app>
+      </div>
 
 </template>
 <script>
