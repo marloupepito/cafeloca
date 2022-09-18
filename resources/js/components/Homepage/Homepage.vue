@@ -5,14 +5,16 @@
     max-width="500"
   >
     <v-bottom-navigation
+    :value="2"
       absolute
       hide-on-scroll
       horizontal
+      background-color="brown"
       scroll-target="#hide-on-scroll-example"
     >
 
      <v-btn
-        color="deep-purple accent-4"
+        color="white"
         text
 
         @click="backToHome"
@@ -22,7 +24,7 @@
       </v-btn>
 
       <v-btn
-        color="deep-purple accent-4"
+        color="white"
         text
       >
 <!--         <span>Back</span>
@@ -30,7 +32,7 @@
         <center><v-icon>mdi-history</v-icon></center>
       </v-btn>
   <v-btn
-        color="deep-purple accent-4"
+        color="white"
         text
 @click="gotoMap"
       >
@@ -39,7 +41,7 @@
         <center><v-icon>mdi-map-marker</v-icon></center>
       </v-btn>
       <v-btn
-        color="deep-purple accent-4"
+        color="white"
         text
         @click="gotoUser"
       >
