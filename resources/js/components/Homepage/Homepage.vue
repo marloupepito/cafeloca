@@ -32,7 +32,7 @@
   <v-btn
         color="deep-purple accent-4"
         text
-
+@click="gotoMap"
       >
 <!--         <span>Location</span> -->
 
@@ -41,6 +41,7 @@
       <v-btn
         color="deep-purple accent-4"
         text
+        @click="gotoUser"
       >
        <!--  <span>My Account</span> -->
 
@@ -72,6 +73,15 @@ export default {
 		methods:{
 			backToHome(){
 				this.$router.push({path:'/'})
+				.catch(err=>{})
+			},
+			gotoUser(){
+				this.$router.push({path:'/users'})
+				.catch(err=>{})
+			},
+			gotoMap(){
+				this.$router.push({path:'/search'})
+				.catch(err=>{})
 			}
 		},
 		mounted(){

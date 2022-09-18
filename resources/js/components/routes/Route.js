@@ -2,6 +2,9 @@
 import Map from './../Maps/Map.vue'
 import Home from './../Home.vue'
 import Show from './../Homepage/pages/Show.vue'
+import Users from './../Homepage/pages/Users.vue'
+
+
 import Homepage from './../Homepage/Homepage.vue'
 const routes = [
   { path: '/', component: Home },
@@ -9,8 +12,10 @@ const routes = [
       children:[
         {path: '/search', component: Map},
         {path: '/search/:id', component: Show},
+        { path: '/users', component: Users },
       ]
    },
+   
   { path: '/admin', component: Map, name:'admin',
   beforeEnter: (to, from, next) => {
     axios.get('/authenticated')
