@@ -53,7 +53,7 @@
     <v-responsive
       id="hide-on-scroll-example"
       class="overflow-y-auto"
-      max-height="600"
+      height="100vh"
     >
       <v-responsive height="auto">
       	 <router-view></router-view>
