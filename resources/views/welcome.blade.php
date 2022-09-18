@@ -6,7 +6,7 @@
         <title>Cafe Location App</title>
         <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> 
         <!-- Fonts -->
-      <link rel="shortcut icon" type="image/x-icon" href="images/brand-apple.png" />
+      <link rel="shortcut icon" type="image/x-icon" href="images/logo.png" />
         <!-- Styles -->
         <script src="{{ asset('js/app.js') }}" defer></script>
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
@@ -18,7 +18,7 @@
             }
 
             h3.text-3xl.text-white{
-                background-image: url(images/brand-apple.png) !important;
+                background-image: url(images/logo.png) !important;
             }
         </style>
     </head>

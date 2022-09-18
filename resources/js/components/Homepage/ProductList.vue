@@ -60,13 +60,13 @@ export default {
     	return{
     		  items: [
         {
-          color: '#952175',
+          color: 'brown',
           src: 'https://cdn.vuetifyjs.com/images/cards/cooking.png',
           title: 'Supermodel',
           artist: 'Foster the People',
         },
         {
-          color: '#952175',
+          color: 'brown',
           src: 'https://cdn.vuetifyjs.com/images/cards/cooking.png',
           title: 'Halcyon Days',
           artist: 'Ellie Goulding',

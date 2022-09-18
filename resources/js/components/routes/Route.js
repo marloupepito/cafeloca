@@ -1,13 +1,10 @@
 
 import Map from './../Maps/Map.vue'
+import Home from './../Home.vue'
 import Show from './../Homepage/pages/Show.vue'
 const routes = [
-	// { path: '*', redirect: '/dashboard/v2' },
-//   { path: '*', component: ExtraError },
-  { path: '/', component: Map,
-     
-   },
-  { path: '/visit', component: Show },
+  { path: '/', component: Home },
+  { path: '/search', component: Map },
   { path: '/admin', component: Map, name:'admin',
   beforeEnter: (to, from, next) => {
     axios.get('/authenticated')

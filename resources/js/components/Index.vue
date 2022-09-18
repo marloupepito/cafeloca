@@ -1,13 +1,9 @@
 <template>
     <v-app>
-        <div :class="hidden" v-if="path === '/'">
-        <div id="loading"/>
-            
-        <div class="cpsu"/>
-
-        </div>
-        <vue-ins-progress-bar></vue-ins-progress-bar>
-              <router-view></router-view> 
+        <div class="col-md-4 offset-md-4 p-0">
+              <vue-ins-progress-bar></vue-ins-progress-bar>
+                  <router-view></router-view> 
+              </div>
      </v-app>
 </template>
 
