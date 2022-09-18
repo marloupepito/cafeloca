@@ -1,53 +1,65 @@
 <template lang="">
     <div class="container">
-        <div id="app" class="app col-md-5 offset-md-4">
-        <br /> <br /> <br />
-            
+        <div id="app">
+        <br /> <br />
+           
             <div class="row">
-              <div class="col-md-5 col-5">
-              <h2>Login</h2>
+              <div class="col-md-8 col-8">
+              <img src="/images/logins.png" width="100%">
               </div>
-              <div class="col-md-7 col-7">
+              <div class="col-md-4 col-4">
+               <img src="/images/logo.png" width="100px">
+              </div>
+              <div class="col-md-12 col-12">
               <b class="text-danger">{{incorrect}}</b>
               </div>
             </div>
-            <div class="login login-v2 fw-bold"  style="height:65vh">
+            <div class="login login-v2 fw-bold" >
              
                 <div class="login-container">
                     <div class="login-content">
                         <v-form
-    ref="form"
-    v-model="valid"
-    lazy-validation
-  >
-    <v-text-field
-      v-model="email"
-      :rules="emailRules"
-      label="Email"
-      required
-      v-on:keyup.enter="validate"
-    ></v-text-field>
+                            ref="form"
+                            v-model="valid"
+                            lazy-validation
+                          >
+                            <v-text-field
+                              v-model="email"
+                              :rules="emailRules"
+                              label="Email"
+                              required
+                              v-on:keyup.enter="validate"
+                            ></v-text-field>
 
-    <v-text-field
-      type="password"
-      v-model="password"
-      :rules="passwordRules"
-      label="Password"
-      required
-      v-on:keyup.enter="validate"
-    ></v-text-field>
+                            <v-text-field
+                              type="password"
+                              v-model="password"
+                              :rules="passwordRules"
+                              label="Password"
+                              required
+                              v-on:keyup.enter="validate"
+                            ></v-text-field>
 
-
-    <v-btn
-      :disabled="!valid"
-      color="black"
-      class="mt-4 text-white"
-      block
-      @click="validate"
-    >
-      Sign In
-    </v-btn>
-  </v-form>
+                              <a class="float-right">
+                                    <u class="text-dark">Forget Password?</u>
+                                  </a>
+                                   <br /> <br />
+                            <v-btn
+                              :disabled="!valid"
+                              color="brown"
+                              class="mt-4 text-white"
+                              block
+                              @click="validate"
+                            >
+                              Sign In
+                            </v-btn>
+                            <br />
+                            <center class=" text-brown">
+                              Not registered?   <a>
+                                    <u>Create an account!?</u>
+                                  </a>
+                            </center>
+                          </v-form>
 
                     </div>
                 </div>
