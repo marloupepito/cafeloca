@@ -1,7 +1,7 @@
 <template>
-    <div  style="height:100vh">
+    <div>
         <GmapMap
-           style="height:100vh"
+           style="height:90vh"
             :center="{ lat: 10.4833584, lng: 123.3998655 }"
             :zoom="14"
         >
