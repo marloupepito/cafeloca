@@ -62,9 +62,9 @@
                             </v-btn>
                             <br />
                             <center class=" text-brown">
-                              Not registered?   <a>
+                              Not registered?   <router-link to="/register">
                                     <u>Create an account!?</u>
-                                  </a>
+                                  </router-link>
                             </center>
                           </v-form>
 
@@ -102,7 +102,7 @@
             })
             .then(res=>{        
                 if(res.data.status === 'success'){
-                    window.location ='/admin'
+                    window.location ='/administrator/dashboard'
                 }else{
                   this.incorrect = res.data.status
                 }

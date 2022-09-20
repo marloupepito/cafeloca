@@ -22,11 +22,36 @@ class CreateUsersTable extends Migration
             $table->double('lng')->nullable();
             $table->string('usertype')->nullable();
             $table->string('year')->nullable();
+            $table->string('status')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
     }
 
+
+      //       {
+      //     text: 'administrator',
+      //     disabled: true,
+      //   },
+      //   {
+      //     text: 'Accounts',
+      //     disabled: false,
+      //     href: '#',
+      //   },
+      // ],
+      //   headers: [
+      //     {
+      //       text: 'Stores',
+      //       align: 'start',
+      //       filterable: false,
+      //       value: 'store_name',
+      //     },
+      //     { text: 'Email', value: 'email' },
+      //     { text: 'Mobile', value: 'mobile' },
+      //     { text: 'Address', value: 'address' },
+      //     { text: 'Status', value: 'status' },
+      //     { text: 'Iron (%)', value: 'iron' },
+      //   ],
     /**
      * Reverse the migrations.
      *

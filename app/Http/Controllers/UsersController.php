@@ -38,4 +38,42 @@ class UsersController extends Controller
     public function logout(){
       Auth::logout();
     }
+
+    public function add_user(Request $request){
+     
+     $users = User::where('store_name', '=' , $request->storename)->get();
+     if(count($users) === 0){
+        User::create([
+            'store_name' => $request->storename,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'usertype' => 'cafe',
+            'year' => date('Y'),
+            'status' => 'pending'
+        ]);
+
+        return response()->json([
+            'status' => 'success'
+        ]);
+     }else{
+         return response()->json([
+            'status' => 'exist'
+        ]);
+     }
+
+       
+
+    }
+    public function otp_submit(Request $request){
+     if(session('otp') === $request->otp){
+        return response()->json([
+            'status' => true
+        ]);
+     }else{
+        return response()->json([
+            'status' => false,
+            'otp' =>session('otp')
+        ]);
+     }
+    }
 }

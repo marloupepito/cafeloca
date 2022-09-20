@@ -29,7 +29,7 @@
       >
 <!--         <span>Back</span>
  -->
-        <center><v-icon>mdi-history</v-icon></center>
+        <center><v-icon>mdi-map-search</v-icon></center>
       </v-btn>
   <v-btn
         color="white"

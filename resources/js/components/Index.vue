@@ -1,9 +1,9 @@
 <template>
     <v-app>
-        <div class="col-md-4 offset-md-4 p-0" style="padding:0px !important">
-              <vue-ins-progress-bar></vue-ins-progress-bar>
-                  <router-view></router-view> 
-              </div>
+        <div :class="auth === 'administrator'?'col-md-12 offset-md-12 p-0':'col-md-4 offset-md-4 p-0'" style="padding:0px !important">
+           <vue-ins-progress-bar></vue-ins-progress-bar>
+           <router-view></router-view> 
+        </div>
      </v-app>
 </template>
 
@@ -12,9 +12,23 @@ const path = window.location.pathname
 import axios from 'axios'
 export default {
     components:{
+
+    },
+    mounted(){
+         axios.get('/user')
+        .then(res=>{
+            this.$insProgress.finish()
+            this.auth = window.location.pathname.split('/')[1]
+            localStorage.setItem("user_id", res.data.id);
+            console.log(window.location.pathname.split('/')[1])
+        })
+        .catch(err=>{
+            this.auth = false
+        })
     },
     data() {
         return {
+            auth:'',
             component:window.location.pathname === '/'?"true":"false",
             timeHide:4,
             path:path,
@@ -37,9 +51,6 @@ export default {
         },
      methods: {
      
-    },
-    mounted() {
-         this.$insProgress.finish()
     },
      created () {
     this.$insProgress.start()
