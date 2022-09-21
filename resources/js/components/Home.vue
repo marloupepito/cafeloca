@@ -2,7 +2,7 @@
   <v-container class="hero d-flex ">
         <div class="mb-6  align-self-end w-100">
               <v-btn
-          class=" w-100 mb-3 text-white font-weight-bold"
+          class=" w-100 mb-3 text-white font-weight-bold w-100"
           @click="searchMap"
           color="brown"
           large

@@ -100,15 +100,17 @@
                 email:this.email,
                 password:this.password
             })
-            .then(res=>{        
-                if(res.data.status === 'success'){
-                    window.location ='/administrator/dashboard'
+            .then(res=>{     
+                if(res.data.usertype === 'cafe'){
+                  window.location ='/my_account/profile'
+                  localStorage.setItem("active", 3)
+                  localStorage.setItem("usertype", res.data.usertype)
                 }else{
-                  this.incorrect = res.data.status
+                     window.location ='/administrator/dashboard'
+                      localStorage.setItem("usertype", res.data.usertype)
                 }
             })
             .catch(err=>{
-                console.log(err)
             //    this.$refs.form.reset()
             })
         }else{

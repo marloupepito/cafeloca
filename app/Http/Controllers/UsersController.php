@@ -15,9 +15,7 @@ class UsersController extends Controller
         ]);
 
         if(Auth::attempt($request->only('email','password'))){
-            return response()->json([
-                'status' => 'success'
-            ]);
+           return response()->json(Auth::user(), 200);
         }else{
             return response()->json([
                 'status' => 'Incorrect email or password!'

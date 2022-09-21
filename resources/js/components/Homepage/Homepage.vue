@@ -74,7 +74,7 @@ export default {
 		},
 		methods:{
 			backToHome(){
-				this.$router.push({path:'/'})
+				this.$router.push({path:'/news_feed'})
 				.catch(err=>{})
 			},
 			gotoUser(){

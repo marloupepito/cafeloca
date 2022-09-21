@@ -58,11 +58,25 @@
       </div>
     </v-container>
   </v-card>
+
+
+<div v-else-if="usertype === 'cafe'">
+
+    <Branch />
+
+
+</div>
+
+
   </div>
 </template>
 
 <script>
+import Branch from './../branch/Index.vue'
   export default {
+    components:{
+      Branch
+      },
     data () {
       return {
         usertype:'',
@@ -80,6 +94,7 @@
       axios.get('/user')
       .then(res=>{
         this.usertype = res.data.usertype
+        localStorage.setItem("usertype", res.data.usertype);
         })
       .catch(err=>{
 

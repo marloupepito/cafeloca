@@ -1,9 +1,14 @@
 <template>
     <v-app>
-        <div :class="auth === 'administrator'?'col-md-12 offset-md-12 p-0':'col-md-4 offset-md-4 p-0'" style="padding:0px !important">
+        <div v-if="auth === 'administrator' && load === true && usertype === 'admin'" class="col-md-12 p-0" style="padding:0px !important">
            <vue-ins-progress-bar></vue-ins-progress-bar>
            <router-view></router-view> 
         </div>
+        <div v-else class="col-md-4 offset-md-4 p-0" style="padding:0px !important">
+           <vue-ins-progress-bar></vue-ins-progress-bar>
+           <router-view></router-view> 
+        </div>
+
      </v-app>
 </template>
 
@@ -20,7 +25,9 @@ export default {
             this.$insProgress.finish()
             this.auth = window.location.pathname.split('/')[1]
             localStorage.setItem("user_id", res.data.id);
-            console.log(window.location.pathname.split('/')[1])
+            this.load=true
+            this.usertype = localStorage.getItem("usertype");
+            console.log(this.usertype)
         })
         .catch(err=>{
             this.auth = false
@@ -28,6 +35,8 @@ export default {
     },
     data() {
         return {
+            usertype:'',
+            load:false,
             auth:'',
             component:window.location.pathname === '/'?"true":"false",
             timeHide:4,
@@ -42,6 +51,7 @@ export default {
                         setTimeout(() => {
                             this.timeHide--;
                         }, 1000);
+                        this.load=true
                     }else{
                         this.hidden ='d-none'
                     }

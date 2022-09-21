@@ -10,6 +10,7 @@
   	axios.post('/logout')
 			.then(res=>{
 				window.location='/users'
+				sessionStorage.clear()
 			})
   }
   	}
