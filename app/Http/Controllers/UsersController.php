@@ -15,14 +15,19 @@ class UsersController extends Controller
         ]);
 
         if(Auth::attempt($request->only('email','password'))){
-           return response()->json(Auth::user(), 200);
+            return response()->json([
+                'status' => Auth::user(),
+                'status2' => 'success'
+            ]);
         }else{
             return response()->json([
-                'status' => 'Incorrect email or password!'
+                'status' => 'Incorrect email or password!',
+                'status2' => 'Incorrect email or password!'
             ]);
         }
         throw ValidationException::withMessages([
-            'email' => ['Incorrect email or password!'],
+            'status' => 'Incorrect email or password!',
+            'status2' => 'Incorrect email or password!',
         ]);
         
     }

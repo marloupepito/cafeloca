@@ -100,14 +100,16 @@
                 email:this.email,
                 password:this.password
             })
-            .then(res=>{     
-                if(res.data.usertype === 'cafe'){
+            .then(res=>{    
+                if(res.data.status.usertype === 'cafe'){
                   window.location ='/my_account/profile'
                   localStorage.setItem("active", 3)
-                  localStorage.setItem("usertype", res.data.usertype)
-                }else{
+                  localStorage.setItem("usertype", res.data.status.usertype)
+                }else if(res.data.status.usertype === 'admin'){
                      window.location ='/administrator/dashboard'
-                      localStorage.setItem("usertype", res.data.usertype)
+                      localStorage.setItem("usertype", res.data.status.usertype)
+                }else{
+                  this.incorrect =  res.data.status2
                 }
             })
             .catch(err=>{
