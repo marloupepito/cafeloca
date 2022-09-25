@@ -11,6 +11,9 @@ import AdminIndex from './../Homepage/admin/Index.vue'
 import AdminUsersTable from './../Homepage/admin/UsersTable.vue'
 import AdminCafeView from './../Homepage/admin/CafeView.vue'
 import Logout from './../Homepage/admin/Logout.vue'
+import Dashboard from './../Homepage/admin/Dashboard.vue'
+
+
 import Logout2 from './../Homepage/branch/Logout.vue'
 import Homepage from './../Homepage/Homepage.vue'
 
@@ -31,8 +34,10 @@ const routes = [
       ]
    },
    
-    localStorage.getItem("usertype")==='admin'? { path: '/administrator/dashboard', component: AdminIndex, name:'admin',
+    localStorage.getItem("usertype")==='admin'? { 
+      path: '/administrator/dashboard', component: AdminIndex, name:'admin',
       children:[
+             { path:'/administrator/dashboard', component:Dashboard, name:'dashboard' },
            { path:'/administrator/accounts', component:AdminUsersTable, name:'admin2' },
            { path:'/administrator/accounts/:id', component:AdminCafeView, name:'admin3' },
            { path:'/administrator/logout', component:Logout, name:'logout' },

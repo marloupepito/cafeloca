@@ -28,9 +28,12 @@
                 v-for="(m, index) in markers"
                 :position="{ lat: parseFloat(m.lat), lng: parseFloat(m.lng) }"
             >
-				<a @click="visit(m.store_name,m.id)">
+				<a v-if="userId === undefined" @click="visit(m.store_name,m.id)">
                         {{ m.store_name }}
                         </a>
+                    <div v-else>
+                    {{ m.store_name }}
+                    </div>
             </GmapInfoWindow>
 
 

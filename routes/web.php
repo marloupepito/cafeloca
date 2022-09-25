@@ -48,10 +48,12 @@ Route::post('/get_all_users','UsersController@get_all_users');
 Route::post('/logout','UsersController@logout');
 Route::post('/otp_submit','UsersController@otp_submit');
 Route::post('/add_user','UsersController@add_user');
-
+Route::post('/get_user_id','UsersController@get_user_id');
+Route::post('/approve_user','UsersController@approve_user');
 
 Route::post('/post_product','ProductController@post_product');
 Route::post('/get_branch_post','ProductController@get_branch_post');
+Route::post('/get_all_post','ProductController@get_all_post');
 
 
 

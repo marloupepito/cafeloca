@@ -65,14 +65,14 @@
 
         <v-icon>mdi-pencil</v-icon>
       </v-btn>
-      <v-btn
+     <!--  <v-btn
         fab
         dark
         small
         color="indigo"
       >
         <v-icon>mdi-plus</v-icon>
-      </v-btn>
+      </v-btn> -->
       <v-btn
         fab
         dark
@@ -255,7 +255,7 @@
       if (!this.editBio) {
         this.bioIcon = 'mdi-pencil'
         
-        alert("salvo com sucesso!");
+        alert("Save Successfully");
       }
     },
     onButtonClick() {

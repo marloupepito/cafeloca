@@ -93,4 +93,28 @@ class UsersController extends Controller
         ]);
      }
     }
+    public function get_user_id(Request $request){
+          $request->validate([
+            'id'=>['required'],
+            ]);
+
+          $user= User::where('id', $request->id)->first();
+         return response()->json([
+            'status' => $user
+        ]);
+    }
+
+    public function approve_user(Request $request){
+          $request->validate([
+            'id'=>['required'],
+            'status'=>['required'],
+            ]);
+
+         
+         User::where('id', $request->id)
+        ->update(['status' => $request->status]);
+         return response()->json([
+            'status' => 'success'
+        ]);
+    }
 }

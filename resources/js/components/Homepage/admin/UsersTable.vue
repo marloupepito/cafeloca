@@ -29,7 +29,16 @@
       :headers="headers"
       :items="rows"
       :search="search"
-    ></v-data-table>
+    >
+       <template v-slot:item.status="{ item }">
+          <v-chip
+            :color="item.status === 'pending'?'warning':item.status ==='Approved'?'success':'error'"
+            dark
+          >
+            {{ item.status }}
+          </v-chip>
+        </template>
+    </v-data-table>
     </v-sheet>
   </div>
 </template>
@@ -40,7 +49,7 @@ import axios from 'axios'
   export default {
     methods:{
         handleRowClick(e){
-          this.$router.push({ path:'/administrator/accounts/'+e.store_name.replace(/ /g,'-') })
+          this.$router.push({ path:'/administrator/accounts/'+e.store_name.replace(/ /g,'-')+'?'+e.id })
         }
       },
     mounted(e){
@@ -72,9 +81,9 @@ import axios from 'axios'
           },
           { text: 'Email', value: 'email' },
           { text: 'Mobile', value: 'mobile' },
-          { text: 'Address', value: 'address' },
+          { text: 'Phone', value: 'phone' },
+          { text: 'Address', value: 'store_location' },
           { text: 'Status', value: 'status' },
-          { text: 'Iron (%)', value: 'iron' },
         ],
         rows: [],
       }

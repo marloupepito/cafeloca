@@ -64,4 +64,17 @@ class ProductController extends Controller
                 ]);  
 
     }
+
+    public function get_all_post(Request $request){
+         $request->validate([
+            'limit'=>['required'],
+        ]);
+
+             $product = Product::limit($request->limit)->get();
+                return response()->json([
+                    'status' =>$product
+                ]); 
+    }
+
+
 }

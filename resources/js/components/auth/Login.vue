@@ -102,9 +102,15 @@
             })
             .then(res=>{    
                 if(res.data.status.usertype === 'cafe'){
-                  window.location ='/my_account/profile'
-                  localStorage.setItem("active", 3)
-                  localStorage.setItem("usertype", res.data.status.usertype)
+                  console.log(res.data.status.status === 'pending')
+                  if(res.data.status.status === 'pending'){
+                      this.incorrect = 'Your application is already pending!'
+                    }else{
+                     window.location ='/my_account/profile'
+                     localStorage.setItem("active", 3)
+                     localStorage.setItem("usertype", res.data.status.usertype)
+                    }
+                
                 }else if(res.data.status.usertype === 'admin'){
                      window.location ='/administrator/dashboard'
                       localStorage.setItem("usertype", res.data.status.usertype)
