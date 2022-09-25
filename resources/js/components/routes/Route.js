@@ -49,7 +49,7 @@ const routes = [
     }:{ path: '/my_account', component: AdminIndex, name:'admin',
       children:[
           { path:'/my_account/profile', component:Profile, name:'profile' },
-           { path:'/my_account/my_location', component:MyLocation, name:'MyLocation' },
+           { path:'/my_account/my_location', component:Map, name:'MyLocation' },
            { path:'/my_account/menu', component:Menu, name:'Menu' },
            { path:'/my_account/timeline', component:Timeline, name:'Timeline' },
             { path:'/my_account/logout', component:Logout2, name:'logout2' },

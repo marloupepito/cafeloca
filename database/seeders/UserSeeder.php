@@ -25,6 +25,10 @@ class UserSeeder extends Seeder
 
          DB::table('users')->insert([
             'store_name' => 'Mabuni Coffee',
+            'store_location'  => 'Ylagan St.',
+            'mobile'  => '09176196962',
+            'phone'  => '+934-345-33',
+            'about'  => "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
             'email' => 'mabuni@gmail.com',
             'password' => Hash::make('admin'),
             'lat' => 10.4939926,
@@ -35,6 +39,10 @@ class UserSeeder extends Seeder
 
         DB::table('users')->insert([
             'store_name' => 'Titings Coffee',
+            'store_location'  => 'Broce St.',
+            'mobile'  => '09305151163',
+            'phone'  => '+934-345-33',
+            'about'  => "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
             'email' => 'titing@gmail.com',
             'password' => Hash::make('admin'),
             'lat' => 10.4809679,
@@ -45,6 +53,10 @@ class UserSeeder extends Seeder
 
         DB::table('users')->insert([
             'store_name' => 'Megs Coffee',
+            'store_location'  => 'Endrina St.',
+            'mobile'  => '09208858123',
+            'phone'  => '+934-345-33',
+            'about'  => "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
             'email' => 'megs@gmail.com',
             'password' => Hash::make('admin'),
             'lat' => 10.4834963,

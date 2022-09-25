@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\http\Controllers\UsersController;
+use App\http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use App\Mail\Registration;
 use Illuminate\Support\Facades\Mail;
@@ -47,4 +48,11 @@ Route::post('/get_all_users','UsersController@get_all_users');
 Route::post('/logout','UsersController@logout');
 Route::post('/otp_submit','UsersController@otp_submit');
 Route::post('/add_user','UsersController@add_user');
+
+
+Route::post('/post_product','ProductController@post_product');
+Route::post('/get_branch_post','ProductController@get_branch_post');
+
+
+
 

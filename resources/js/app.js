@@ -12,7 +12,7 @@ import * as VueGoogleMaps from "vue2-google-maps";
 import VueInsProgressBar from 'vue-ins-progress-bar'
 import Vue from 'vue'
 
-
+Vue.use(Vuetify);
 
 
 Vue.use(VueInsProgressBar, {
@@ -51,10 +51,10 @@ Vue.component('root-app', require('./components/Index.vue').default);
  const opts = {
     icons: {
         iconfont: 'md',  // 'mdi' || 'mdiSvg' || 'md' || 'fa' || 'fa4'
-         iconfont: 'mdiSvg',
-         iconfont: 'mdi',
-         iconfont: 'fa',
-         iconfont: 'fa4',
+         // iconfont: 'mdiSvg',
+         // iconfont: 'mdi',
+         // iconfont: 'fa',
+         // iconfont: 'fa4',
       },
       theme: {
         dark: false,

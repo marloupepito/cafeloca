@@ -5,7 +5,7 @@
     max-width="500"
   >
     <v-bottom-navigation
-    :value="2"
+    :value="3"
       absolute
       hide-on-scroll
       horizontal

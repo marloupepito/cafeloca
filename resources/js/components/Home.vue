@@ -33,7 +33,7 @@ export default {
 
     methods:{
         searchMap(){
-            this.$router.push({path:'/search'})
+            this.$router.push({path:'/users'})
         }
     }
 }

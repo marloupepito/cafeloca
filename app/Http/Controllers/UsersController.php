@@ -15,6 +15,8 @@ class UsersController extends Controller
         ]);
 
         if(Auth::attempt($request->only('email','password'))){
+
+            $request->session()->put('id', Auth::user()->id);
             return response()->json([
                 'status' => Auth::user(),
                 'status2' => 'success'
@@ -32,13 +34,25 @@ class UsersController extends Controller
         
     }
     public function get_all_users(Request $request){
-        $users = User::where('usertype', '=' ,'cafe')
-        ->get();
-        return response()->json([
-            'status' => $users
-        ]);
+      
+        if($request->session()->get('id') !== null){
+            $users = User::where([['usertype', '=' ,'cafe'],['id','<>',$request->session()->get('id')]])
+            ->get();
+            return response()->json([
+                'status' => $users,
+                'id' => $request->session()->get('id')
+            ]);
+        }else{
+             $users = User::where('usertype', '=' ,'cafe')
+            ->get();
+            return response()->json([
+                'status' => $users,
+            ]);
+        }
+
     }
-    public function logout(){
+    public function logout(Request $request){
+        $request->session()->invalidate();
       Auth::logout();
     }
 

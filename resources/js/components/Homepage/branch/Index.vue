@@ -81,18 +81,22 @@ export default {
 	 	methods:{
 	     timeline(){
         this.$router.push({path:'/my_account/timeline'})
+        .catch(err=>{})
       localStorage.setItem("active", 0)
         },
       menu(){
          this.$router.push({path:'/my_account/menu'})
+         .catch(err=>{})
       localStorage.setItem("active", 1)
         },
       myLocation(){
          this.$router.push({path:'/my_account/my_location'})
+         .catch(err=>{})
       localStorage.setItem("active", 2)
         },
       profile(){
          this.$router.push({path:'/my_account/profile'})
+         .catch(err=>{})
       localStorage.setItem("active", 3)
       }
 		},

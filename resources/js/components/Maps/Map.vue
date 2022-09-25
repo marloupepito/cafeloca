@@ -1,15 +1,28 @@
 <template>
     <div>
         <GmapMap
+        ref="mapRef"
            style="height:92vh"
             :center="{ lat: 10.4833584, lng: 123.3998655 }"
             :zoom="14"
+            :streetViewControl="true"
         >
             <GmapMarker
+            ref="myMarker"
+            v-model="distance"
+            v-if="userId !== undefined"
+                :draggable="true"
+                :clickable="true"
+                @dragend="changeLocation"
+                :position="{ lat: parseFloat(userData.lat), lng: parseFloat(userData.lng) }"
+               
+            />
+          <GmapMarker
+          v-else
                 :position="{ lat: parseFloat(MyLocation.lat), lng: parseFloat(MyLocation.lng) }"
                
             />
-
+           
             <GmapInfoWindow
                 :key="index"
                 v-for="(m, index) in markers"
@@ -19,6 +32,8 @@
                         {{ m.store_name }}
                         </a>
             </GmapInfoWindow>
+
+
         </GmapMap>
     </div>
 </template>
@@ -28,14 +43,10 @@
 //  :draggable="true"
 
 import Swal from 'sweetalert2'
-import { gmapApi } from "vue2-google-maps";
 export default {
-    computed: {
-        google: gmapApi,
-    },
-
     data() {
         return {
+            usertype:localStorage.getItem("usertype") === 'cafe'?'cafe':localStorage.getItem("usertype") === 'cafe'?'admin':false,
         	 items: [
         {
           color: '#952175',
@@ -59,17 +70,28 @@ export default {
                 lat: 0,
                 lng: 0,
             },
+            distance:'',
             markers: [],
             dialog: false,
 	        notifications: false,
 	        sound: true,
 	        widgets: false,
-	        timerCount: 1
+	        timerCount: 1,
+            userData:[],
+            userId:''
 	        };
 
     },
     methods: {
-
+        changeLocation(e){
+            const lat = e.latLng.lat()
+            const lng = e.latLng.lng()
+            if(window.confirm('You want to change your location?')){
+                alert('yes')
+            }else{
+                alert('no')
+            }
+        },
 
     	visit(branch_name,id){
                  this.$router.push({path:'/search/'+branch_name.replace(/ /g,'-')})
@@ -87,7 +109,11 @@ export default {
         },
     },
     mounted: function () {
-      
+        axios.get('/user')
+        .then(res=>{
+            this.userData = res.data
+        })
+        .catch(err=>{})
         if (navigator.geolocation) {
             const meter = navigator.geolocation.getCurrentPosition((position) => {
                 this.MyLocation.lat = position.coords.latitude;
@@ -97,6 +123,8 @@ export default {
              axios.post("/get_all_users")
             .then((res) => {
                 this.markers = res.data.status;
+                this.userId =  res.data.id
+                console.log(res.data.id)
             })
             .catch((err) => {});
         }
