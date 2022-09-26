@@ -2,6 +2,7 @@
 import Map from './../Maps/Map.vue'
 import Home from './../Home.vue'
 import NewsFeed from './../Homepage/NewsFeed.vue'
+import ShowProduct from './../Homepage/ShowProduct.vue'
 import Show from './../Homepage/pages/Show.vue'
 import Users from './../Homepage/pages/Users.vue'
 import Login from './../auth/Login.vue'
@@ -31,6 +32,7 @@ const routes = [
         { path: '/search/:id', component: Show},
         { path: '/users', component: Login },
         { path: '/news_feed', component: NewsFeed },
+        { path: '/news_feed/:id', component: ShowProduct },
       ]
    },
    

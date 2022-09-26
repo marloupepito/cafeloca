@@ -14,14 +14,14 @@
         >
         <br />
           <v-card
-          class="elevation-16"
+          class="elevation-5"
             color="white"
             dark
           >
             <div class="row" style="color:brown !important">
             <div class="col-md-5 col-5" style="padding:0px">
  				<v-avatar
-                class="ma-3"
+                class="m-3"
                 size="125"
                 tile
               >
@@ -37,7 +37,8 @@
                 ></v-card-title>
 
                 <v-card-subtitle v-text="item.about"  style="padding-top:5px;padding-bottom:5px !important" ></v-card-subtitle>
-        <v-rating
+                <center>
+<v-rating
           v-model="rating"
           color="yellow darken-3"
           background-color="grey darken-1"
@@ -46,15 +47,16 @@
           hover
           medium
         ></v-rating>
+                </center>
 
-		     
                 <v-card-actions >
+
                  <v-btn
-                    class="ml-2"
                     outlined
                     rounded
                     small
                      style="color:brown !important"
+                     @click="clickToVisit(item.branchname,item.branchid)"
                   >
                     CLICK TO VISIT
                   </v-btn>
@@ -87,6 +89,9 @@ export default {
     	}
     },
     methods:{
+      clickToVisit(e,id){
+        this.$router.push({path:'/news_feed/'+id})
+        },
 	    	seeMore(e){
 	    		this.loading=true
 	    		this.limit=this.limit+e
@@ -94,8 +99,10 @@ export default {
     			limit:this.limit
 		    		})
 		    	.then(res=>{
+
 		    		this.loading=false
 		    		this.dataPost = res.data.status
+
 		    	})
 	    	}
     	},
@@ -104,6 +111,7 @@ export default {
     			limit:5
     		})
     	.then(res=>{
+        
     		this.dataPost = res.data.status
     	})
     	.catch(err=>{

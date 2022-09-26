@@ -1,17 +1,17 @@
 <template>
   	<div>
 	   <Carousel />
-	   <ProductList />
+	   <SearchCoffee />
 	</div>
 </template>
 
 <script>
 import Carousel from './../Carousel.vue'
-import ProductList from './../ProductList.vue'
+import SearchCoffee from './../SearchCoffee.vue'
 export default {
 		components:{
 			Carousel,
-			ProductList
+			SearchCoffee
 		},
 		methods:{
 		},

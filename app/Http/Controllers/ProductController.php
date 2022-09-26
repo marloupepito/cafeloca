@@ -12,6 +12,8 @@ class ProductController extends Controller
             'productName'=>['required'],
             'about'=>['required'],
             'count'=>['required'],
+            'storeName'=>['required'],
+            'price'=>['required'],
         ]);
         $id =$request->session()->get('id');
          $path = 'images/post/';
@@ -21,7 +23,9 @@ class ProductController extends Controller
             $imageName = $aaa->getClientOriginalName();
              Product::create([
                 'branchid' => $id,
+                'price' => $request->price,
                 'productname' => $request->productName,
+                'branchname' => $request->storeName,
                 'images' => $imageName,
                 'about' => $request->about,
             ]);
@@ -70,11 +74,26 @@ class ProductController extends Controller
             'limit'=>['required'],
         ]);
 
-             $product = Product::limit($request->limit)->get();
+             $product = Product::limit($request->limit)
+             ->get()
+             ->unique('branchid');
                 return response()->json([
                     'status' =>$product
                 ]); 
     }
+    public function get_every_product_post(Request $request){
 
+             $request->validate([
+                'productid'=>['required'],
+            ]);
+             $product= Product::where('branchid',$request->productid)->first();
+             $image= ProductImage::where('branchid',$request->productid)->get();
+
+            return response()->json([
+                'status' =>$product,
+                'images' =>$image
+            ]); 
+
+        }
 
 }

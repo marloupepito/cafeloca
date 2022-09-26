@@ -97,7 +97,7 @@ export default {
         },
 
     	visit(branch_name,id){
-                 this.$router.push({path:'/search/'+branch_name.replace(/ /g,'-')})
+                 this.$router.push({path:'/search/'+branch_name.replace(/ /g,'-')+'?'+id})
                 
                 localStorage.setItem("id",id)
     		},

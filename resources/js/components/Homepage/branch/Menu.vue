@@ -44,9 +44,17 @@
 
 <v-text-field
       v-model="productName"
-      :counter="10"
       :rules="productNameRules"
       label="Product Name"
+      required
+      solo
+    ></v-text-field>
+
+    <v-text-field
+    type="number"
+      v-model="productPrice"
+      :rules="productPriceRules"
+      label="Product Price"
       required
       solo
     ></v-text-field>
@@ -59,7 +67,7 @@
           label="About"
         ></v-textarea>
 
-<div class=" align-self-end" style="margin-top:100px">
+<div class=" align-self-end">
   <v-btn block :loading="loading" color="brown" @click="validate">
     <b style="color:white">POST</b>
   </v-btn>
@@ -112,6 +120,10 @@ import axios from 'axios'
       productNameRules: [
         v => !!v || 'Product name is required',
       ],
+      productPrice: '',
+      productPriceRules: [
+        v => !!v || 'Product name is required',
+      ],
       about: '',
       aboutRules: [
         v => !!v || 'About is required',
@@ -129,6 +141,8 @@ import axios from 'axios'
         fd.append("images",this.image[0])
         fd.append("productName",this.productName)
         fd.append("about",this.about)
+        fd.append("price",this.productPrice)
+        fd.append("storeName",localStorage.getItem("storeName"))
         fd.append("count",this.image.length)
         for(var i=0; i < this.image.length; i++){
 			fd.append("images"+i,this.image[i])

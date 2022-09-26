@@ -108,6 +108,7 @@
                     }else{
                      window.location ='/my_account/profile'
                      localStorage.setItem("active", 3)
+                     localStorage.setItem("storeName", res.data.status.store_name)
                      localStorage.setItem("usertype", res.data.status.usertype)
                     }
                 

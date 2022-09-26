@@ -54,6 +54,7 @@ Route::post('/approve_user','UsersController@approve_user');
 Route::post('/post_product','ProductController@post_product');
 Route::post('/get_branch_post','ProductController@get_branch_post');
 Route::post('/get_all_post','ProductController@get_all_post');
+Route::post('/get_every_product_post','ProductController@get_every_product_post');
 
 
 

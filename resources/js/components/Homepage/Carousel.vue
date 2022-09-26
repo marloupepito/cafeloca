@@ -38,16 +38,9 @@
           <v-img src="https://cdn.vuetifyjs.com/images/john.png"></v-img>
         </v-list-item-avatar>
         <v-list-item-content>
-          <v-list-item-title>John Leider</v-list-item-title>
-          <v-list-item-subtitle>Author</v-list-item-subtitle>
+          <v-list-item-title>{{userData.store_name}}</v-list-item-title>
+          <v-list-item-subtitle>{{userData.store_location}}</v-list-item-subtitle>
         </v-list-item-content>
-        <v-list-item-action>
-          <v-switch
-            v-model="cycle"
-            label="Cycle Slides"
-            inset
-          ></v-switch>
-        </v-list-item-action>
       </v-list-item>
     </v-list>
   </div>
@@ -56,6 +49,7 @@
 export default {
     data(){
     	return{
+        userData:[],
     		 colors: [
           'green',
           'secondary',
@@ -72,7 +66,18 @@ export default {
           'Fifth',
         ],
     	}
-    }
+    },
+    mounted(){
+      const id = window.location.search.substring(1)
+
+      axios.post('/get_user_id',{
+      id:id
+      })
+      .then(res=>{
+        this.userData =res.data.status
+        console.log(res.data.status)
+        })
+      }
 }
 </script>
 <style lang="">
