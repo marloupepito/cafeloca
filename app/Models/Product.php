@@ -13,9 +13,11 @@ class Product extends Model
         'branchid',
         'price',
         'branchname',
+        'rate',
         'productname',
         'about',
-        'images'
+        'images',
+        'menu'
     ];
      
 }

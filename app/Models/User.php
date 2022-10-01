@@ -21,6 +21,7 @@ class User extends Authenticatable
         'store_name',
         'store_location',
         'profile',
+        'cover',
         'mobile',
         'phone',
         'about',

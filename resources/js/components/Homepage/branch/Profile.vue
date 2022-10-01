@@ -9,28 +9,55 @@
     width="w-100"
     >
           <v-card max-width="450px" class="mx-auto bg" elevation="2">
-            <v-img class="" height="200px" src="http://unblast.com/wp-content/uploads/2021/09/Real-Estate-Agent-Illustration.jpg" gradient="150deg, rgb(185 224 255 / 58%) 0%, rgb(243 220 246 / 52%) 35%, rgb(223 255 242 / 74%) 74%">
-            </v-img>
+            <v-carousel
+            :continuous="false"
+            :cycle="cycle"
+            :show-arrows="true"
+            hide-delimiter-background
+            delimiter-icon="mdi-minus"
+            height="150"
+            >
+            <center v-if="loading2 === true">
+              <v-progress-circular
+                indeterminate
+                color="red"
+              ></v-progress-circular>
+            </center>
+                <v-carousel-item
+                v-if="loading2 === false"
+                    v-for="(covers, i) in cover"
+                    :key="i"
+                    :src="'/images/post/'+covers.cover"
+                  >
+                  
+                  </v-carousel-item>
+                </v-carousel>
             <v-row justify="center">
               <v-col align-self="start" class="d-flex justify-center align-center pa-0" cols="12">
-                <v-avatar class="profile avatar-center-heigth avatar-shadow" color="brown" size="164">
+                <v-avatar  v-if="loading === false" class="profile avatar-center-heigth avatar-shadow" color="brown" size="164">
                  
-                  <input ref="uploader" class="d-none" type="file" accept="image/*" :change="onFileChanged">
-                  <v-img src="https://cdn.vuetifyjs.com/images/profiles/marcus.jpg"></v-img>
+                  <input ref="uploader" class="d-none" type="file" accept="image/*" @change="onFileChanged">
+                  <v-img :src="Profile === null?'https://cdn.vuetifyjs.com/images/profiles/marcus.jpg':'/images/post/'+Profile"></v-img>
 
                 </v-avatar>
+
+                 <v-progress-circular
+                    indeterminate
+                    color="red"
+                    v-if="loading === true"
+                  ></v-progress-circular>
               </v-col>
             </v-row>
                 <v-list-item color="#0000" class="profile-text-name ma-4 pt-16">
                   <v-list-item-content>
                     <v-list-item-title class="text-h6">
-                     {{userData.store_name}}
+                     {{branchName}}
                     </v-list-item-title>
                     <v-list-item-subtitle>{{userData.store_location}}</v-list-item-subtitle>
                   </v-list-item-content>
                   <v-list-item-action>
                   
-
+ <input ref="uploader" class="d-none" type="file" multiple accept="image/*" @change="onFileChangedCover">
 <v-speed-dial
       v-model="fab"
       :top="false"
@@ -59,20 +86,13 @@
         fab
         dark
         small
-        color="green"
+        color="blue"
         v-on:click="saveBio" 
       >
 
         <v-icon>mdi-pencil</v-icon>
       </v-btn>
-     <!--  <v-btn
-        fab
-        dark
-        small
-        color="indigo"
-      >
-        <v-icon>mdi-plus</v-icon>
-      </v-btn> -->
+     
       <v-btn
         fab
         dark
@@ -81,6 +101,16 @@
         @click="onButtonClick" 
       >
         <v-icon>mdi-camera</v-icon>
+      </v-btn>
+
+       <v-btn
+        fab
+        dark
+        small
+        color="green"
+        @click="changeCoverPhoto" 
+      >
+        <v-icon>mdi-plus-box-multiple</v-icon>
       </v-btn>
     </v-speed-dial>
 
@@ -166,17 +196,34 @@
           this.branchName =this.userData.store_name      
           this.Mobile =this.userData.mobile  
           this.Phone =this.userData.phone
-          this.Email =this.userData.email     
+          this.Email =this.userData.email  
+          this.Profile =this.userData.profile
           })
+
+          axios.post('/get_coffee_cover')
+          .then(res=>{
+            this.cover = res.data.status
+            })
       },
     data () {
       return {
+         colors: [
+          'green',
+          'secondary',
+          'yellow darken-4',
+          'red lighten-2',
+          'orange darken-1',
+        ],
+        cycle: false,
+        loading:false,
+        loading2:false,
+        Profile:'',
         rating:3,
         userData:[],
         bottom:'',
         fab:'',
         branchName:'',
-         Phone: '00 00000-0000',
+         Phone: '',
          Mobile: '',
          Email: '',
       editBio: false,
@@ -191,9 +238,11 @@
         "4day": "4 Days"
       },
       selectedEvent: {},
+      selectedFile:[],
       selectedElement: null,
       selectedOpen: false,
       events: [],
+      cover:[],
       colors: [
         "blue",
         "indigo",
@@ -249,16 +298,34 @@
     		this.$router.push({path:'/my_account/logout'})
     	},
 
-       saveBio() {
+      saveBio() {
       this.editBio = !this.editBio;
       this.bioIcon = 'mdi-content-save'
-      if (!this.editBio) {
-        this.bioIcon = 'mdi-pencil'
+
+      if (!this.editBio ) {
         
+        axios.post('/edit_profile',{
+           branchName:this.branchName,
+           Phone: this.Phone,
+           Mobile: this.Mobile,
+           Bio: this.Bio,
+          })
+        .then(res=>{
+          this.bioIcon = 'mdi-pencil'
+          this.Bio =res.data.status.about
+          this.branchName =res.data.status.store_name      
+          this.Mobile =res.data.status.mobile  
+          this.Phone =res.data.status.phone
+
         alert("Save Successfully");
+          })
+        .catch(err=>{
+          this.bioIcon = 'mdi-content-save'
+           alert("Saving Error!");
+          })
       }
     },
-    onButtonClick() {
+    onButtonClick(e) {
       this.isSelecting = true;
       window.addEventListener(
         "focus",
@@ -269,12 +336,54 @@
       );
 
       this.$refs.uploader.click();
-    },
-    onFileChanged(e) {
-      this.selectedFile = e.target.files[0];
 
-      // do something
     },
+
+     changeCoverPhoto(e) {
+      this.isSelecting = true;
+      window.addEventListener(
+        "focus",
+        () => {
+          this.isSelecting = false;
+        },
+        { once: true }
+      );
+
+      this.$refs.uploader.click();
+
+    },
+    
+    onFileChanged(e) {
+        this.loading = true
+      const fd =new FormData()
+        fd.append("profile",e.target.files[0])
+      axios.post('/upload_profile',fd)
+      .then(res=>{
+        this.Profile = res.data.status.profile
+          this.loading = false
+        })
+      .catch(err=>{
+
+        })
+    },
+
+     onFileChangedCover(e) {
+      this.loading2=true
+        const fd =new FormData()
+        fd.append("count",parseInt(e.target.files.length))
+        for(var i=0; i < (e.target.files.length); i++){
+          fd.append("cover"+i,e.target.files[i])
+        }
+         axios.post('/add_cover_photo', fd)
+          .then(res=>{
+            this.loading2=false
+            this.cover = res.data.status
+          })
+          .catch(err=>{
+
+          })
+    },
+
     viewDay({ date }) {
       this.focus = date;
       this.type = "day";

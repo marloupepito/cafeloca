@@ -1,22 +1,23 @@
 <template>
   	<div>
 	   <Carousel />
-	   <SearchCoffee />
+		<ProfileTabs/>
 	</div>
 </template>
 
 <script>
 import Carousel from './../Carousel.vue'
 import SearchCoffee from './../SearchCoffee.vue'
+import ProfileTabs from './../ProfileTabs.vue'
 export default {
 		components:{
 			Carousel,
-			SearchCoffee
+			SearchCoffee,
+			ProfileTabs
 		},
 		methods:{
 		},
 		mounted(){
-			console.log(window.location.pathname)
 		}
 
 }

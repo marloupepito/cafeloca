@@ -58,7 +58,7 @@
                               block
                               @click="validate"
                             >
-                              Sign In
+                             <b class="text-white" style="color:white"> Sign In</b>
                             </v-btn>
                             <br />
                             <center class=" text-brown">

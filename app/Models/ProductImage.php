@@ -13,4 +13,5 @@ class ProductImage extends Model
         'foreign',
         'branchid',
         'images',
-    ];}
+    ];
+ }

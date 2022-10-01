@@ -16,7 +16,6 @@
      <v-btn
         color="white"
         text
-
         @click="backToHome"
       >
 

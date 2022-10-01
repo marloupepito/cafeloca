@@ -117,4 +117,62 @@ class UsersController extends Controller
             'status' => 'success'
         ]);
     }
+     public function edit_profile(Request $request){
+        $id =$request->session()->get('id');
+         $request->validate([
+            'branchName'=>['required'],
+            'Phone'=>['required'],
+            'Mobile'=>['required'],
+            'Bio'=>['required'],
+            ]);
+
+         User::where('id', $id)
+            ->update([
+            'store_name' => $request->branchName,
+            'Phone' => $request->Phone,
+            'Mobile' => $request->Mobile,
+            'about' => $request->Bio,
+          ]);
+         $user= User::findOrFail($id);
+          
+            return response()->json([
+            'status' => $user
+        ]);
+     }
+    
+     public function upload_profile(Request $request){
+        $id =$request->session()->get('id');
+
+            $path = 'images/post/';
+        if ($request->hasFile('profile')) {
+            $aaa = $request->file('profile');
+            $imageName = $aaa->getClientOriginalName();
+             $aaa->move($path, $imageName);
+             User::where('id', $id)
+            ->update([
+                'profile' => $imageName,
+              ]);
+                $user= User::findOrFail($id);
+             return response()->json([
+            'status' => $user
+        ]);
+        }else{
+              return response()->json([
+            'status' => 'error'
+             ]);
+        }
+
+     }
+
+     public function change_location_lng_lat(Request $request){
+
+        $id =$request->session()->get('id');
+        User::where('id', $id)
+            ->update([
+                'lat' => $request->lat,
+                'lng' => $request->lng,
+              ]);
+     }
+
+    
 }

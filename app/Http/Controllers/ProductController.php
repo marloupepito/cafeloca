@@ -28,6 +28,7 @@ class ProductController extends Controller
                 'branchname' => $request->storeName,
                 'images' => $imageName,
                 'about' => $request->about,
+                'menu' => $request->menu,
             ]);
           
             $first = Product::orderByDesc('id')
@@ -86,12 +87,27 @@ class ProductController extends Controller
              $request->validate([
                 'productid'=>['required'],
             ]);
-             $product= Product::where('branchid',$request->productid)->first();
-             $image= ProductImage::where('branchid',$request->productid)->get();
+             $product= Product::where('id',$request->productid)->first();
+             $image= ProductImage::where('foreign',$request->productid)->get();
 
             return response()->json([
                 'status' =>$product,
                 'images' =>$image
+            ]); 
+
+        }
+
+
+         public function get_menu(Request $request){
+
+             $request->validate([
+                'menu'=>['required'],
+                'id' => ['required']
+            ]);
+             $product= Product::where([['branchid',$request->id],['menu', 'LIKE', '%' . $request->menu . '%']])->get();
+
+            return response()->json([
+                'status' =>$product,
             ]); 
 
         }

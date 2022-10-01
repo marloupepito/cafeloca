@@ -1,0 +1,71 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\StarRate;
+use App\Models\Product;
+class StarRateController extends Controller
+{
+    public function get_star_rating(Request $request){
+        $request->validate([
+            'userid'=>['required'],
+            'postid'=>['required'],
+        ]);
+        $macAddr = substr(exec('getmac'),0,17);
+
+        $rate = StarRate::where([['postid','=',$request->postid],['userid','=',$request->userid],['mac_address','=',$macAddr],['who','=','post']])->get();
+             
+            $sumRow = StarRate::where([['postid','=',$request->postid],['userid','=',$request->userid],['who','=','post']])->get()->sum('rate');
+
+
+            $countRow = count($rate);
+
+
+             if($countRow === 0){
+                return response()->json([
+                    'status' => 'not exist'
+                ]);
+             }else{
+                    return response()->json([
+                     'status' => 'done',
+                     'rate' => $sumRow / $countRow,
+                  ]);
+             }
+    }
+
+     public function submit_post_rating(Request $request){
+
+         $request->validate([
+            'userid'=>['required'],
+            'rate'=>['required'],
+            'postid'=>['required'],
+        ]);
+        $macAddr = substr(exec('getmac'),0,17);
+
+
+         $rate = new StarRate;
+        $rate->userid = $request->userid;
+        $rate->postid = $request->postid;
+        $rate->rate = $request->rate;
+        $rate->mac_address = $macAddr;
+        $rate->who = 'post';
+        $rate->save();
+
+
+        $aaa = StarRate::where([['postid','=',$request->postid],['userid','=',$request->userid],['mac_address','=',$macAddr],['who','=','post']])->get();
+
+        $sumRow = StarRate::where([['postid','=',$request->postid],['userid','=',$request->userid],['who','=','post']])->get()->sum('rate');
+
+            $countRow = count($aaa);
+
+            Product::where('id', $request->postid)
+          ->update(['rate' => $sumRow / $countRow]);
+
+
+             return response()->json([
+                'status' => 'success',
+                'rate' => $sumRow / $countRow,
+            ]);
+    }
+}

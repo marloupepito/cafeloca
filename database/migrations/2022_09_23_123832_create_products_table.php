@@ -19,8 +19,10 @@ class CreateProductsTable extends Migration
             $table->string('price')->nullable();
             $table->string('branchname')->nullable();
             $table->string('productname')->nullable();
-             $table->string('images')->nullable();
+            $table->string('images')->nullable();
+            $table->float('rate')->nullable();
             $table->string('about')->nullable();
+            $table->string('menu')->nullable();
             $table->timestamps();
         });
          Schema::create('product_image', function (Blueprint $table) {

@@ -23,13 +23,26 @@ import Profile from './../Homepage/branch/Profile.vue'
 import Menu from './../Homepage/branch/Menu.vue'
 import MyLocation from './../Homepage/branch/MyLocation.vue'
 import Timeline from './../Homepage/branch/Timeline.vue'
+import Coffee from './../Homepage/branch/Coffee.vue'
+import Bread from './../Homepage/branch/Bread.vue'
+import Snack from './../Homepage/branch/Snack.vue'
+import Delicacy from './../Homepage/branch/Delicacy.vue'
 const routes = [
   { path: '/', component: Home },
   { path: '/register', component: Register },
   { path: '/search', component: Homepage,
       children:[
         { path: '/search', component: Map},
-        { path: '/search/:id', component: Show},
+        { path: '/search/:id', component: Show,
+          children:[
+             { path:'/search/:id',component: Coffee },
+            { path:'/search/:id/coffee',component: Coffee },
+            { path:'/search/:id/bread',component: Bread },
+            { path:'/search/:id/snack',component: Snack },
+            { path:'/search/:id/delicacy',component: Delicacy },
+            
+          ]
+        },
         { path: '/users', component: Login },
         { path: '/news_feed', component: NewsFeed },
         { path: '/news_feed/:id', component: ShowProduct },
@@ -39,7 +52,7 @@ const routes = [
     localStorage.getItem("usertype")==='admin'? { 
       path: '/administrator/dashboard', component: AdminIndex, name:'admin',
       children:[
-             { path:'/administrator/dashboard', component:Dashboard, name:'dashboard' },
+           { path:'/administrator/dashboard', component:Dashboard, name:'dashboard' },
            { path:'/administrator/accounts', component:AdminUsersTable, name:'admin2' },
            { path:'/administrator/accounts/:id', component:AdminCafeView, name:'admin3' },
            { path:'/administrator/logout', component:Logout, name:'logout' },

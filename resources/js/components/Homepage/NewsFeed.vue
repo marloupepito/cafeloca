@@ -14,13 +14,13 @@
         >
         <br />
           <v-card
-          class="elevation-5"
+          class="elevation-5 container"
             color="white"
             dark
           >
             <div class="row" style="color:brown !important">
             <div class="col-md-5 col-5" style="padding:0px">
- 				<v-avatar
+ 		     		<v-avatar
                 class="m-3"
                 size="125"
                 tile
@@ -30,22 +30,21 @@
             </div>
              <div class="col-md-7 col-7"  style="padding:0px">
              		 <div>
-                <v-card-title
-                 style="padding:5px"
-                  class="text-h5"
-                  v-text="item.productname"
-                ></v-card-title>
-
-                <v-card-subtitle v-text="item.about"  style="padding-top:5px;padding-bottom:5px !important" ></v-card-subtitle>
-                <center>
-<v-rating
-          v-model="rating"
+                <center class="h3 m-0 mt-2">
+                  {{item.productname}}
+                </center>
+                  <div class="my-4 text-subtitle-1">
+                    {{item.about}}
+                  </div>
+               <center>
+      <v-rating
+          v-model="item.rate"
           color="yellow darken-3"
           background-color="grey darken-1"
           empty-icon="$ratingFull"
           half-increments
-          hover
           medium
+          readonly 
         ></v-rating>
                 </center>
 
@@ -55,10 +54,11 @@
                     outlined
                     rounded
                     small
+                    width="100%"
                      style="color:brown !important"
-                     @click="clickToVisit(item.branchname,item.branchid)"
+                     @click="clickToVisit(item.branchname,item.id)"
                   >
-                    CLICK TO VISIT
+                    SHOW MORE
                   </v-btn>
                 </v-card-actions>
               </div>
@@ -107,6 +107,8 @@ export default {
 	    	}
     	},
     mounted(){
+     
+        
     	axios.post('/get_all_post',{
     			limit:5
     		})
@@ -122,7 +124,7 @@ export default {
 </script>
 
 <style>
-button.v-icon.notranslate.v-icon--link.material-icons.theme--dark.yellow--text.text--darken-3{
+button.v-icon.notranslate.v-icon--link.material-icons.theme--dark.yellow--text.text--darken-3,button.v-icon.notranslate.v-icon--link.material-icons.theme--dark.grey--text.text--darken-1{
 	padding:0px !important;
 	text-align:center !important;
 }

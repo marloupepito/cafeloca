@@ -1,6 +1,5 @@
 <template>
 	<div class="container" solo>
-		<br /><br />
 		 <v-form
 		 method="post"
 		 enctype="multipart/form-data"
@@ -8,6 +7,18 @@
 	    v-model="valid"
 	    lazy-validation
 	  >
+     <v-select
+            :items="items"
+            chips
+            label="Menu"
+            color="brown"
+            multiple
+            outlined
+            dense
+            v-model="menu"
+            :rules="menuRules"
+          ></v-select>
+
 		<v-file-input
 
 	    v-model="image"
@@ -105,6 +116,7 @@
 import axios from 'axios'
   export default {
     data: () => ({
+      items: ['Coffee', 'Bread', 'Delicacy', 'Snack'],
     	notiError:'',
     	snackbar: false,
     	text: "",
@@ -115,6 +127,10 @@ import axios from 'axios'
       imageRules: [
         v => !!v || 'Image is required',
         v => v.length <= 5 || 'Name must be less than 5 image'
+      ],
+      menu: [],
+      menuRules: [
+        v => !!v || 'Menu is required',
       ],
       productName: '',
       productNameRules: [
@@ -144,6 +160,7 @@ import axios from 'axios'
         fd.append("price",this.productPrice)
         fd.append("storeName",localStorage.getItem("storeName"))
         fd.append("count",this.image.length)
+        fd.append("menu",this.menu)
         for(var i=0; i < this.image.length; i++){
 			fd.append("images"+i,this.image[i])
 			console.log(this.image[i])

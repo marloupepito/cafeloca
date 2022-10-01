@@ -12,34 +12,35 @@
       height="150"
     >
       <v-carousel-item
-        v-for="(slide, i) in slides"
-        :key="i"
+        v-for="(covers, i) in cover"
+                    :key="i"
+                    :src="'/images/post/'+covers.cover"
       >
-        <v-sheet
-          :color="colors[i]"
-          height="100%"
-          tile
-        >
-          <v-row
-            class="fill-height"
-            align="center"
-            justify="center"
-          >
-            <div class="text-h2">
-              {{ slide }} Slide
-            </div>
-          </v-row>
-        </v-sheet>
+        
       </v-carousel-item>
     </v-carousel>
     <v-list two-line>
       <v-list-item>
         <v-list-item-avatar>
-          <v-img src="https://cdn.vuetifyjs.com/images/john.png"></v-img>
+          <v-img :src="'/images/post/'+userData.profile"></v-img>
+        
         </v-list-item-avatar>
         <v-list-item-content>
           <v-list-item-title>{{userData.store_name}}</v-list-item-title>
-          <v-list-item-subtitle>{{userData.store_location}}</v-list-item-subtitle>
+          <div class="row">
+            <div class="col-md-8 col-8">
+                <v-list-item-subtitle>{{userData.store_location}}</v-list-item-subtitle>
+            </div>
+            <div class="col-md-4 col-4" style="padding-left:0px;padding-right:0px">
+               <v-list-item-subtitle>
+                 <v-icon
+                >
+                  mdi-run
+                </v-icon>{{distance}}m
+               </v-list-item-subtitle>
+            </div>
+          </div>
+        
         </v-list-item-content>
       </v-list-item>
     </v-list>
@@ -49,6 +50,8 @@
 export default {
     data(){
     	return{
+        cover:[],
+        distance:'',
         userData:[],
     		 colors: [
           'green',
@@ -68,14 +71,25 @@ export default {
     	}
     },
     mounted(){
-      const id = window.location.search.substring(1)
-
+      const id = window.location.search.substring(3)
+      axios.post('/get_coffee_cover2',{
+        id:id
+        })
+          .then(res=>{
+            this.cover = res.data.status
+            })
       axios.post('/get_user_id',{
       id:id
       })
       .then(res=>{
         this.userData =res.data.status
-        console.log(res.data.status)
+             if (navigator.geolocation) {
+                  navigator.geolocation.getCurrentPosition((position) => {
+                      var distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(position.coords.latitude, position.coords.longitude), new google.maps.LatLng(parseFloat(res.data.status.lat), parseFloat(res.data.status.lng)));
+                       this.distance =distance
+                       console.log(distance)
+                  });
+              }
         })
       }
 }

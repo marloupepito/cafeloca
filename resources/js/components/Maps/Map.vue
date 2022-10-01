@@ -90,26 +90,34 @@ export default {
             const lat = e.latLng.lat()
             const lng = e.latLng.lng()
             if(window.confirm('You want to change your location?')){
-                alert('yes')
+               axios.post('/change_location_lng_lat',{
+                lng:lng,
+                lat:lat
+                })
+               .then(res=>{
+
+                })
+               .catch(err=>{
+                alert('Error set Location!')
+                })
             }else{
-                alert('no')
             }
         },
 
     	visit(branch_name,id){
-                 this.$router.push({path:'/search/'+branch_name.replace(/ /g,'-')+'?'+id})
+                 this.$router.push({path:'/search/'+branch_name.replace(/ /g,'-')+'?0='+id})
                 
                 localStorage.setItem("id",id)
     		},
-        visitStore(name, id, ll) {
+        //visitStore(name, id, ll) {
            
-              if (navigator.geolocation) {
-                  navigator.geolocation.getCurrentPosition((position) => {
-                      var distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(position.coords.latitude, position.coords.longitude), new google.maps.LatLng(parseFloat(ll[0]), parseFloat(ll[1])));
-                        console.log(distance)
-                  });
-              }
-        },
+          //    if (navigator.geolocation) {
+            //      navigator.geolocation.getCurrentPosition((position) => {
+              //        var distance = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(position.coords.latitude, position.coords.longitude), new google.maps.LatLng(parseFloat(ll[0]), parseFloat(ll[1])));
+         //               console.log(distance)
+         //         });
+            //  }
+        //},
     },
     mounted: function () {
         axios.get('/user')

@@ -20,6 +20,10 @@
             h3.text-3xl.text-white{
                 background-image: url(images/logo.png) !important;
             }
+            div.v-card__title.text-h5{
+                font-size: 20px !important;
+                font-weight: bold;
+            }
         </style>
     </head>
     <body>
@@ -27,5 +31,12 @@
             <root-app></root-app>
         </div>
     </body>
-    
+    <script src="https://maps.googleapis.com/maps/api/js?v=3&sensor=false&libraries=geometry"></script>
+
+<!--  AIzaSyBzlLYISGjL_ovJwAehh6ydhB56fCCpPQw -->
+<!--  <script async
+    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places&callback=initMap">
+</script> -->
+ <!--    <script async defer src="https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyBRc7rdVFdc09OCpYfODfFFtDn3D_Kvz1o" -->
+</script>
 </html>

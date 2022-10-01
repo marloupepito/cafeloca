@@ -47,11 +47,11 @@
                       </v-row>
                 </v-card-actions>
               </div>
-
+             
               
             </div>
           </v-card>
-        </v-col>
+        </v-col> <br /><br /><br />
       </div>
 
 </template>
