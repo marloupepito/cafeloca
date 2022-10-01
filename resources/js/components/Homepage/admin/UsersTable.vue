@@ -32,7 +32,7 @@
     >
        <template v-slot:item.status="{ item }">
           <v-chip
-            :color="item.status === 'pending'?'warning':item.status ==='Approved'?'success':'error'"
+            :color="item.status === 'Pending'?'warning':item.status ==='Approved'?'success':'error'"
             dark
           >
             {{ item.status }}

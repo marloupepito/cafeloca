@@ -61,7 +61,7 @@
         fab
         dark
         small
-        color="green"
+        color="primary"
         v-on:click="saveBio" 
       >
 
@@ -79,7 +79,7 @@
         fab
         dark
         small
-        color="red"
+        color="yellow"
         @click="onButtonClick" 
       >
         <v-icon>mdi-camera</v-icon>
@@ -89,10 +89,22 @@
         fab
         dark
         small
-        color="primary"
+        color="success"
         @click="onApproved" 
+        v-if="userData.status === 'Pending' || userData.status === 'Block'"
       >
         <v-icon>mdi-account-check</v-icon>
+      </v-btn>
+
+       <v-btn
+        fab
+        dark
+        small
+        color="red"
+        @click="onBlock" 
+        v-if="userData.status === 'Approved'"
+      >
+        <v-icon>mdi-account-cancel</v-icon>
       </v-btn>
     </v-speed-dial>
 
@@ -144,27 +156,60 @@
 					
 			        </div>
 			        <div class="col-md-6 col-12">
-			        <GmapMap
-				           style="height:80vh"
-				            :center="{ lat: parseFloat(userData.lat), lng: parseFloat(userData.lng) }"
-				            :zoom="16"
-				        >
-				            <GmapMarker
-				                :position="{ lat: parseFloat(userData.lat), lng: parseFloat(userData.lng) }"
-				               
-				            />
-
-				          <!--   <GmapInfoWindow
-				                :key="index"
-				                v-for="(m, index) in markers"
-				                :position="{ lat: parseFloat(m.lat), lng: parseFloat(m.lng) }"
-				            >
-											<a @click="visit(m.store_name,m.id)">
-				                        {{ m.store_name }}
-				                        </a>
-				            </GmapInfoWindow> -->
-				        </GmapMap>
+          <v-card max-width="450px" class="mx-auto bg" elevation="2">
+              <v-simple-table>
+                <template v-slot:default>
+                  <thead>
+                    <tr>
+                      <th class="text-left">
+                        Filename
+                      </th>
+                      <th class="text-left">
+                       
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr
+                      v-for="item in documents"
+                      :key="item.name"
+                    >
+                      <td>{{ item.documents }}</td>
+                      <td><v-btn color="brown" @click="showDocuments(item.documents)" small style="color:white">SHOW</v-btn></td>
+                    </tr>
+                  </tbody>
+                </template>
+              </v-simple-table>
+          </v-card>
+			       
 			        </div>
+
+
+              <div class="col-md-12">
+                <GmapMap
+                   style="height:80vh"
+                    :center="{ lat: parseFloat(userData.lat), lng: parseFloat(userData.lng) }"
+                    :zoom="16"
+                >
+                    <GmapMarker
+                        :position="{ lat: parseFloat(userData.lat), lng: parseFloat(userData.lng) }"
+                       
+                    />
+
+                  <!--   <GmapInfoWindow
+                        :key="index"
+                        v-for="(m, index) in markers"
+                        :position="{ lat: parseFloat(m.lat), lng: parseFloat(m.lng) }"
+                    >
+                      <a @click="visit(m.store_name,m.id)">
+                                {{ m.store_name }}
+                                </a>
+                    </GmapInfoWindow> -->
+                </GmapMap>
+              </div>
+
+
+
 		        </div>
 	</div>
 </template>
@@ -184,6 +229,7 @@ export default {
 			})
 		.then(res=>{
 			this.id=id
+      this.documents = res.data.documents
 			this.userData =res.data.status
           this.Bio =this.userData.about
           this.branchName =this.userData.store_name      
@@ -210,6 +256,7 @@ export default {
 		},
 data () {
       return {
+         documents: [],
       		id:'',
       	  itemss: [],
       	   rating:3,
@@ -234,12 +281,36 @@ data () {
       }
   },
   methods:{
+    showDocuments(filname){
+      window.open('/images/file/'+filname, '_blank')
+      },
+      onBlock(){
+        const id =this.id
+            axios.post('/approve_user',{
+              id:id,
+              status:'Block'
+              })
+
+              axios.post('/get_user_id',{
+                id:id
+                })
+              .then(res=>{
+                this.userData =res.data.status
+              })
+        },
   	onApproved(){
   				const id =this.id
   				axios.post('/approve_user',{
   					id:id,
   					status:'Approved'
   					})
+
+            axios.post('/get_user_id',{
+                id:id
+                })
+              .then(res=>{
+                this.userData =res.data.status
+              })
   		},
   	  saveBio() {
       this.editBio = !this.editBio;

@@ -72,7 +72,7 @@ class UsersController extends Controller
                 'year' => date('Y'),
                 'lat' => '10.4833584',
                 'lng' => '123.3998655',
-                'status' => 'pending'
+                'status' => 'Pending'
             ]);
              $first = User::orderByDesc('id')
             ->first()
@@ -119,10 +119,14 @@ class UsersController extends Controller
             'id'=>['required'],
             ]);
 
-          $user= User::where('id', $request->id)->first();
+        $user= User::where('id', $request->id)->first();
+        $docu= documents::where('userid', $request->id)->get();
          return response()->json([
-            'status' => $user
+            'status' => $user,
+            'documents' => $docu
         ]);
+
+
     }
 
     public function approve_user(Request $request){
@@ -131,12 +135,21 @@ class UsersController extends Controller
             'status'=>['required'],
             ]);
 
+          if($request->status === 'Approved'){
+            User::where('id', $request->id)
+            ->update(['status' => $request->status]);
+             return response()->json([
+                'status' => 'success'
+            ]);
+          }else if($request->status === 'Block'){
+            User::where('id', $request->id)
+            ->update(['status' => $request->status]);
+             return response()->json([
+                'status' => 'success'
+            ]);
+          }
          
-         User::where('id', $request->id)
-        ->update(['status' => $request->status]);
-         return response()->json([
-            'status' => 'success'
-        ]);
+        
     }
      public function edit_profile(Request $request){
         $id =$request->session()->get('id');

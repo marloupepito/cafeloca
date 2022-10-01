@@ -52,10 +52,10 @@
 
   
 
-    <v-container class="fill-height m-0 mw-100">
-      <div class="w-100 col-md-12">
+    <v-container class="fill-height m-0"  style="padding:0px !important">
+      <v-card class="w-100 col-md-12 overflow-y-auto" max-height="100vh" min-height="100vh">
         <router-view></router-view>
-      </div>
+      </v-card>
     </v-container>
   </v-card>
 

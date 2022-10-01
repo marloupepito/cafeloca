@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
             'lat' => 10.4939926,
             'lng' => 123.4053125,
             'usertype' => 'admin',
+            'status' => 'Approved',
             'year' => date('Y')
         ]);
 
@@ -34,6 +35,7 @@ class UserSeeder extends Seeder
             'lat' => 10.4939926,
             'lng' => 123.4053125,
             'usertype' => 'cafe',
+            'status' => 'Approved',
             'year' => date('Y')
         ]);
 
@@ -48,6 +50,7 @@ class UserSeeder extends Seeder
             'lat' => 10.4809679,
             'lng' => 123.4157364,
             'usertype' => 'cafe',
+            'status' => 'Approved',
             'year' => date('Y')
         ]);
 
@@ -62,6 +65,7 @@ class UserSeeder extends Seeder
             'lat' => 10.4834963,
             'lng' => 123.4106342,
             'usertype' => 'cafe',
+            'status' => 'Approved',
             'year' => date('Y')
         ]);
     }
