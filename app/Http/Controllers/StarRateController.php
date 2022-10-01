@@ -43,29 +43,56 @@ class StarRateController extends Controller
         ]);
         $macAddr = substr(exec('getmac'),0,17);
 
-
-         $rate = new StarRate;
-        $rate->userid = $request->userid;
-        $rate->postid = $request->postid;
-        $rate->rate = $request->rate;
-        $rate->mac_address = $macAddr;
-        $rate->who = 'post';
-        $rate->save();
+        $verify = StarRate::where([['postid','=',$request->postid],['userid','=',$request->userid],['mac_address','=',$macAddr],['who','=','post']])->get();
 
 
-        $aaa = StarRate::where([['postid','=',$request->postid],['userid','=',$request->userid],['mac_address','=',$macAddr],['who','=','post']])->get();
+              if(count($verify) === 0){
+                    $rate = new StarRate;
+                    $rate->userid = $request->userid;
+                    $rate->postid = $request->postid;
+                    $rate->rate = $request->rate;
+                    $rate->mac_address = $macAddr;
+                    $rate->who = 'post';
+                    $rate->save();
 
-        $sumRow = StarRate::where([['postid','=',$request->postid],['userid','=',$request->userid],['who','=','post']])->get()->sum('rate');
 
-            $countRow = count($aaa);
+                   $aaa = StarRate::where([['postid','=',$request->postid],['userid','=',$request->userid],['mac_address','=',$macAddr],['who','=','post']])->get();
 
-            Product::where('id', $request->postid)
-          ->update(['rate' => $sumRow / $countRow]);
+                    $sumRow = StarRate::where([['postid','=',$request->postid],['userid','=',$request->userid],['who','=','post']])->get()->sum('rate');
+
+                        $countRow = count($aaa); 
+
+                        Product::where('id', $request->postid)
+                      ->update(['rate' => $sumRow / $countRow]);
 
 
-             return response()->json([
-                'status' => 'success',
-                'rate' => $sumRow / $countRow,
-            ]);
+                         return response()->json([
+                            'status' => 'success',
+                            'rate' => $sumRow / $countRow,
+                        ]);
+              }else{
+
+                    StarRate::where([['postid','=',$request->postid],['userid','=',$request->userid],['mac_address','=',$macAddr],['who','=','post']])
+                     ->update(['rate' => $request->rate]);
+
+
+                      $aaa = StarRate::where([['postid','=',$request->postid],['userid','=',$request->userid],['mac_address','=',$macAddr],['who','=','post']])->get();
+
+                    $sumRow = StarRate::where([['postid','=',$request->postid],['userid','=',$request->userid],['who','=','post']])->get()->sum('rate');
+
+                        $countRow = count($aaa); 
+                         Product::where('id', $request->postid)
+                      ->update(['rate' => $sumRow / $countRow]);
+
+                      return response()->json([
+                            'status' => 'success',
+                            'rate' => $sumRow / $countRow,
+                        ]);
+
+              }
+       
+
+
+
     }
 }

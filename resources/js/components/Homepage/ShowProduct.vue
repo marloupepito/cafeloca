@@ -96,6 +96,7 @@
         align="center"
         class="mx-0"
       >
+      <a @click="updateRate">
         <v-rating
           :value="rating"
           color="amber"
@@ -103,8 +104,9 @@
           half-increments
           readonly
           size="14"
+          
         ></v-rating>
-
+        </a>
         <div class="grey--text ms-4">
           {{rating}} Star
         </div>
@@ -171,14 +173,15 @@ import axios from 'axios'
                 if(result.data.status === 'done'){
                   this.rate = false
                   this.rating = result.data.rate
-                }else{
-                this.rate=true
                 }
               })
 
         })
       },
     methods: {
+      updateRate(){
+        this.rate=true
+        },
       submitRate(){
             const rating =this.rating
           axios.post('/submit_post_rating',{
@@ -188,7 +191,8 @@ import axios from 'axios'
             })
           .then(res=>{
              this.rate = false
-             this.rating = result.data.rate
+             console.log(res.data.status)
+            // this.rating = result.data.rate
             })
 
         },

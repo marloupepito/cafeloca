@@ -91,7 +91,7 @@
     <v-stepper-content step="3">
       <v-card
         class="mb-12"
-        height="200px"
+        height="300px"
       >
 <br /><br />
 <v-form
@@ -99,6 +99,16 @@
     v-model="valid2"
     lazy-validation
   >
+   <v-file-input
+   v-model="documents"
+   :rules="documentsRules"
+      small-chips
+      multiple
+      required
+      label="Proof Documents"
+    ></v-file-input>
+
+
     <v-text-field
       v-model="appName"
       :rules="appNameRules"
@@ -141,6 +151,8 @@
       return {
       	appName:'',
       	appNameRules:[ v => !!v || 'Store name is required',],
+        documents:[],
+        documentsRules:[ v => !!v || 'Documents is required',],
       	show1: false,
       	password: '',
       	rules: {
@@ -193,26 +205,36 @@
       validate () {
       	this.loading =true
         this.$refs.form.validate()
-       	axios.post('/sendotp',{
-       		email:this.email
-       		})
-       	.then(res=>{
-       		this.loading =false
-       		this.e6 = 2
-       		})
-       	.catch(err=>{
-			this.loading =false
-       		})
+        if(this.$refs.form.validate()){
+          axios.post('/sendotp',{
+          email:this.email
+          })
+        .then(res=>{
+          this.loading =false
+          this.e6 = 2
+          })
+        .catch(err=>{
+            this.loading =false
+          })
+          }else{
+            this.loading = false
+          }
+       	
       },
       validate2 () {
       	this.loading =true
         this.$refs.form2.validate()
+
+        const fd =new FormData()
+        fd.append("email",this.email)
+        fd.append("password",this.password)
+        fd.append("storename",this.appName)
+        fd.append("count",this.documents.length)
+          for(var i=0; i < this.documents.length; i++){
+            fd.append("documents"+i,this.documents[i])
+          }
        	if(this.$refs.form2.validate() === true){
-       		axios.post('/add_user',{
-       			email:this.email,
-       			password:this.password,
-       			storename:this.appName
-       			})
+       		axios.post('/add_user',fd)
        		.then(res=>{
        			if(res.data.status === 'success'){
         		 this.snackbarColor = 'success' 
@@ -221,19 +243,24 @@
         	 	this.loading =false
         	 	this.$router.push({path:'/'})
        				}else{
- 				this.snackbarColor = 'error' 
+ 				 this.snackbarColor = 'error' 
         		 this.snackbar = true
         		 this.loading =false
         	 	this.text = `Store Name is exist!`
        				}
        		})
        		.catch(err=>{
-				this.snackbarColor = 'error' 
+			     	this.snackbarColor = 'error' 
         		 this.snackbar = true
         		 this.loading =false
         	 	this.text = `You can't proceed the registration, mail is exist!`
        		})
-       	}
+       	}else{
+              this.snackbarColor = 'error' 
+             this.snackbar = true
+             this.loading =false
+            this.text = `All Requiments is required!`
+        }
       },
       reset () {
         this.$refs.form.reset()

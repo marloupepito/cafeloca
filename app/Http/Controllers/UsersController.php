@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\Documents;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Hash;
@@ -59,15 +60,35 @@ class UsersController extends Controller
     public function add_user(Request $request){
      
      $users = User::where('store_name', '=' , $request->storename)->get();
+        $path = 'images/file/';
+
      if(count($users) === 0){
-        User::create([
-            'store_name' => $request->storename,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'usertype' => 'cafe',
-            'year' => date('Y'),
-            'status' => 'pending'
-        ]);
+        if ($request->hasFile('documents0')) {
+             User::create([
+                'store_name' => $request->storename,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'usertype' => 'cafe',
+                'year' => date('Y'),
+                'lat' => '10.4833584',
+                'lng' => '123.3998655',
+                'status' => 'pending'
+            ]);
+             $first = User::orderByDesc('id')
+            ->first()
+            ->fresh();
+            
+            for ($i=0; $i < $request->count; $i++) { 
+                    $allFiles = $request->file('documents'.$i);
+                    $fileName = $allFiles->getClientOriginalName();
+                    $allFiles->move($path, $fileName);
+                    Documents::create([
+                        'userid' =>  $first->id,
+                        'documents' => $fileName,
+                    ]);
+            }
+        }
+       
 
         return response()->json([
             'status' => 'success'

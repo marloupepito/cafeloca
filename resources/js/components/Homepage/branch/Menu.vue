@@ -9,7 +9,7 @@
 	  >
      <v-select
             :items="items"
-            chips
+            small-chips
             label="Menu"
             color="brown"
             multiple
@@ -162,9 +162,8 @@ import axios from 'axios'
         fd.append("count",this.image.length)
         fd.append("menu",this.menu)
         for(var i=0; i < this.image.length; i++){
-			fd.append("images"+i,this.image[i])
-			console.log(this.image[i])
-		}
+    			fd.append("images"+i,this.image[i])
+    		}
    		axios.post('/post_product', fd)
         	.then(res=>{
         		this.loading=false

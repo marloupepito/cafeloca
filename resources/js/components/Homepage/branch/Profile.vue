@@ -57,7 +57,7 @@
                   </v-list-item-content>
                   <v-list-item-action>
                   
- <input ref="uploader" class="d-none" type="file" multiple accept="image/*" @change="onFileChangedCover">
+ <input ref="uploader2" class="d-none" type="file" multiple accept="image/*" @change="onFileChangedCover">
 <v-speed-dial
       v-model="fab"
       :top="false"
@@ -349,7 +349,7 @@
         { once: true }
       );
 
-      this.$refs.uploader.click();
+      this.$refs.uploader2.click();
 
     },
     
