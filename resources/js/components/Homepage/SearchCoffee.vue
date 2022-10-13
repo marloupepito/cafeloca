@@ -1,57 +1,75 @@
 <template lang="">
   
 <div>
-
-        <v-col
-          v-for="(item, i) in items"
-          :key="i"
-          cols="12"
+  <div class="row m-2 mt-5">
+    <div class="col-10 p-0">
+      <v-autocomplete
+           :items="items2"
+            small-chips
+            label="Search Menu"
+            color="brown"
+            outlined
+            dense
+            class="p-1"
+            v-model="values"
+          ></v-autocomplete>
+    </div>
+    <div class="col-2 p-0">
+         <v-btn
+         depressed
+         medium
+          color="brown"
+          style="height:60%"
+          class=" m-0 text-white"
+          @click="submitSearch"
         >
-          <v-card
-            :color="item.color"
-            dark
-          >
-            <div class="d-flex flex-no-wrap">
-            <v-avatar
-                class="ma-3"
-                size="125"
-                tile
-              >
-                <v-img :src="item.src"></v-img>
-              </v-avatar>
-              <div>
-                <v-card-title
-                  class="text-h5"
-                  v-text="item.title"
-                ></v-card-title>
+          <center><v-icon>fas fa-search</v-icon></center>
+        </v-btn>
+    </div>
+  </div>
+        </v-col>
 
-                <v-card-subtitle v-text="item.artist"></v-card-subtitle>
+<v-container fluid>
+ <v-row dense>
+        <v-col
+          v-for="card in cards"
+          :key="card.id"
+          cols="6"
+        >
+        <a @click="clickToVisit(card.branchid,card.branchname)">
+          <v-card>
+            <v-img
+              :src="'/images/post/'+card.images"
+              class="white--text align-end"
+              gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+              height="200px"
+            >
+              <v-card-title v-text="card.productname"></v-card-title>
+            </v-img>
 
-                <v-card-actions>
-                  <v-row
-                        align="center"
-                        class="mx-0"
-                      >
-                        <v-rating
-                        v-model="star"
-                          color="amber"
-                          dense
-                          half-increments
-                          readonly
-                          size="14"
-                        ></v-rating>
+            <v-card-actions>
+              <v-spacer></v-spacer>
 
-                        <div class="grey--text ms-4">
-                          4.5 (413)
-                        </div>
-                      </v-row>
-                </v-card-actions>
-              </div>
-             
-              
-            </div>
+              <b>{{card.menu}}</b>
+
+              <v-btn icon>
+                <v-icon color="brown">mdi-bookmark</v-icon>
+              </v-btn>
+
+            </v-card-actions>
           </v-card>
-        </v-col> <br /><br /><br />
+          </a>
+        </v-col>
+      </v-row>
+      <br /><br /><center v-if="cards.length >= 5 && loading === false"><u><a href="#" @click="seeMore(5)">SEE MORE</a></u></center>
+           <v-progress-linear
+           :class="loading === false?'d-none':''"
+          indeterminate
+          color="brown"
+        ></v-progress-linear>
+</v-container>
+
+         <br />
       </div>
 
 </template>
@@ -59,35 +77,52 @@
 export default {
     data(){
     	return{
+         items2: ['Coffee', 'Bread', 'Delicacy', 'Snack'],
+        values:[],
         star:5,
-        userData:[],
-    		  items: [
-        {
-          color: 'brown',
-          src: 'https://cdn.vuetifyjs.com/images/cards/cooking.png',
-          title: 'Supermodel',
-          artist: 'Foster the People',
-        },
-        {
-          color: 'brown',
-          src: 'https://cdn.vuetifyjs.com/images/cards/cooking.png',
-          title: 'Halcyon Days',
-          artist: 'Ellie Goulding',
-        },
-      ],
+        cards: [],
+        limit:5,
+        loading:false
     	}
     },
-    mounted(){
-      const id = window.location.search.substring(1)
+    methods:{
+      submitSearch(){
+        axios.post('/get_search_menu',{
+          menu:this.values
+          })
+        .then(res=>{
+         this.cards = res.data.status1
+       //  console.log(res.data.status2)
+       //  console.log(res.data.status3)
+       //  console.log(res.data.status4)
+        
+          })
+      },
+       clickToVisit(id,branchname){
+        this.$router.push({path:'/search/'+branchname+'?0='+id})
+        },
+        seeMore(e){
+          this.loading=true
+          this.limit=this.limit+e
+          axios.post('/get_all_post',{
+          limit:this.limit
+            })
+          .then(res=>{
 
-      axios.post('/get_user_id',{
-      id:id
+            this.loading=false
+             this.cards = res.data.status
+
+          })
+        }
+    },
+    mounted(){
+     axios.post('/get_all_post',{
+      limit:5
       })
-      .then(res=>{
-        this.userData =res.data.status
-       // console.log(res.data.status)
-        })
-      }
+     .then(res=>{
+       this.cards = res.data.status
+      })
+     }
 }
 </script>
 <style lang="">

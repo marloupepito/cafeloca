@@ -14,7 +14,7 @@
           <v-img src="https://randomuser.me/api/portraits/men/85.jpg"></v-img>
         </v-list-item-avatar>
 
-        <v-list-item-title>John Leider</v-list-item-title>
+        <v-list-item-title>{{name}}</v-list-item-title>
 
         <v-btn
           icon
@@ -87,13 +87,14 @@ import Branch from './../branch/Index.vue'
           { title: 'Logout', icon: 'mdi-logout', path:'/administrator/logout' },
         ],
         mini: false,
-       
+        name:''
       }
     },
     mounted(){
       axios.get('/user')
       .then(res=>{
         this.usertype = res.data.usertype
+        this.name = res.data.store_name
         localStorage.setItem("usertype", res.data.usertype);
         })
       .catch(err=>{

@@ -25,9 +25,8 @@
 				          Account Approved
 				        </div>
 				        <v-list-item-title class="text-h5 mb-1">
-				          Headline 5
+				          Total {{count1}}
 				        </v-list-item-title>
-				        <v-list-item-subtitle>Greyhound divisely hello coldly fonwderfully</v-list-item-subtitle>
 				      </v-list-item-content>
 
 				      <v-list-item-avatar
@@ -37,15 +36,6 @@
 				      ></v-list-item-avatar>
 				    </v-list-item>
 
-				    <v-card-actions>
-				      <v-btn
-				        outlined
-				        rounded
-				        text
-				      >
-				        Button
-				      </v-btn>
-				    </v-card-actions>
 				  </v-card>
 
 	    		</div>
@@ -64,9 +54,8 @@
 				          Account Pending
 				        </div>
 				        <v-list-item-title class="text-h5 mb-1">
-				          Headline 5
+				          Total {{count2}}
 				        </v-list-item-title>
-				        <v-list-item-subtitle>Greyhound divisely hello coldly fonwderfully</v-list-item-subtitle>
 				      </v-list-item-content>
 
 				      <v-list-item-avatar
@@ -76,15 +65,6 @@
 				      ></v-list-item-avatar>
 				    </v-list-item>
 
-				    <v-card-actions>
-				      <v-btn
-				        outlined
-				        rounded
-				        text
-				      >
-				        Button
-				      </v-btn>
-				    </v-card-actions>
 				  </v-card>
 
 	    		</div>
@@ -107,9 +87,8 @@
 				          Account Blocked
 				        </div>
 				        <v-list-item-title class="text-h5 mb-1">
-				          Headline 5
+				         Total {{count3}}
 				        </v-list-item-title>
-				        <v-list-item-subtitle>Greyhound divisely hello coldly fonwderfully</v-list-item-subtitle>
 				      </v-list-item-content>
 
 				      <v-list-item-avatar
@@ -119,24 +98,21 @@
 				      ></v-list-item-avatar>
 				    </v-list-item>
 
-				    <v-card-actions>
-				      <v-btn
-				        outlined
-				        rounded
-				        text
-				      >
-				        Button
-				      </v-btn>
-				    </v-card-actions>
 				  </v-card>
 
 	    		</div>
+
 	    </div>
+	    <UsersTable />
 	</div>
 </template>
 
 <script>
+import UsersTable from './UsersTable'
 export default {
+	components:{
+			UsersTable
+		},
  data () {
       return {
       	 itemss: [
@@ -150,7 +126,18 @@ export default {
           href: '#',
         },
       ],
+      count1:'',
+      count2:'',
+      count3:'',
       }
+  },
+  mounted(){
+  	axios.post('/get_counted_user')
+  	.then(res=>{
+  		this.count1 =res.data.status1
+  		this.count2 =res.data.status2
+  		this.count3 =res.data.status3
+  		})
   }
 }
 </script>

@@ -191,7 +191,6 @@ import axios from 'axios'
             })
           .then(res=>{
              this.rate = false
-             console.log(res.data.status)
             // this.rating = result.data.rate
             })
 

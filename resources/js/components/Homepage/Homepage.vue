@@ -25,6 +25,7 @@
       <v-btn
         color="white"
         text
+        @click="searchMap"
       >
 <!--         <span>Back</span>
  -->
@@ -83,7 +84,11 @@ export default {
 			gotoMap(){
 				this.$router.push({path:'/search'})
 				.catch(err=>{})
-			}
+			},
+      searchMap(){
+        this.$router.push({path:'/search_product'})
+        .catch(err=>{})
+      }
 		},
 		mounted(){
 			console.log(window.location.pathname)

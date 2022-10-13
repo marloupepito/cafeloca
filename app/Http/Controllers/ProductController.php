@@ -111,5 +111,52 @@ class ProductController extends Controller
             ]); 
 
         }
+         public function get_search_menu(Request $request){
+
+             $request->validate([
+                'menu'=>['required'],
+            ]);
+             $product1= Product::where('menu', 'LIKE', '%' . $request->menu . '%')->get();
+                return response()->json([
+                'status1' =>$product1,
+                 ]); 
+            
+             // if(count($request->menu) === 1){
+             //    $product1= Product::where('menu', 'LIKE', '%' . $request->menu[0] . '%')->get();
+             //    return response()->json([
+             //    'status1' =>$request->menu[0],
+             //     ]); 
+             // }else if(count($request->menu) === 2){
+             //    $product1= Product::where('menu', 'LIKE', '%' . $request->menu[0] . '%')->get();
+             //     $product2= Product::where('menu', 'LIKE', '%' . $request->menu[1] . '%')->get();
+             //    return response()->json([
+             //    'status1' =>$product1,
+             //    'status2' =>$product2,
+             //     ]); 
+             // }else if(count($request->menu) === 3){
+             //    $product1= Product::where('menu', 'LIKE', '%' . $request->menu[0] . '%')->get();
+             //     $product2= Product::where('menu', 'LIKE', '%' . $request->menu[1] . '%')->get();
+             //     $product3= Product::where('menu', 'LIKE', '%' . $request->menu[2] . '%')->get();
+             //    return response()->json([
+             //    'status1' =>$product1,
+             //    'status2' =>$product2,
+             //    'status3' =>$product3,
+             //     ]); 
+             // }else if(count($request->menu) === 4){
+             //     $product1= Product::where('menu', 'LIKE', '%' . $request->menu[0] . '%')->get();
+             //     $product2= Product::where('menu', 'LIKE', '%' . $request->menu[1] . '%')->get();
+             //     $product3= Product::where('menu', 'LIKE', '%' . $request->menu[2] . '%')->get();
+             //     $product4= Product::where('menu', 'LIKE', '%' . $request->menu[3] . '%')->get();
+             //    return response()->json([
+             //    'status1' =>$product1,
+             //    'status2' =>$product2,
+             //    'status3' =>$product3,
+             //    'status4' =>$product4,
+             //     ]); 
+             // }
+            
+
+        }
+
 
 }

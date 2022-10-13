@@ -208,5 +208,19 @@ class UsersController extends Controller
               ]);
      }
 
+
+     public function get_counted_user(Request $request){
+
+        $id =$request->session()->get('id');
+        $count1= User::where('status', 'Approved')->get();
+        $count2= User::where('status', 'Pending')->get();
+        $count3= User::where('status', 'Block')->get();
+             return response()->json([
+            'status1' => count($count1),
+            'status2' => count($count2),
+            'status3' => count($count3),
+             ]);
+     }
+
     
 }

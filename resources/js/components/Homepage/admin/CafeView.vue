@@ -43,7 +43,7 @@
       :transition="'slide-y-reverse-transition'"
     >
       <template v-slot:activator>
-        <v-btn
+         <v-btn
           v-model="fab"
           color="brown"
           dark
@@ -57,7 +57,7 @@
           </v-icon>
         </v-btn>
       </template>
-      <v-btn
+     <!-- <v-btn
         fab
         dark
         small
@@ -66,7 +66,7 @@
       >
 
         <v-icon>mdi-pencil</v-icon>
-      </v-btn>
+      </v-btn>-->
      <!--  <v-btn
         fab
         dark
@@ -75,7 +75,7 @@
       >
         <v-icon>mdi-plus</v-icon>
       </v-btn> -->
-      <v-btn
+      <!-- <v-btn
         fab
         dark
         small
@@ -83,7 +83,7 @@
         @click="onButtonClick" 
       >
         <v-icon>mdi-camera</v-icon>
-      </v-btn>
+      </v-btn> -->
 
       <v-btn
         fab

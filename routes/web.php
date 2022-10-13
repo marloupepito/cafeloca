@@ -55,13 +55,14 @@ Route::post('/approve_user','UsersController@approve_user');
 Route::post('/edit_profile','UsersController@edit_profile');
 Route::post('/upload_profile','UsersController@upload_profile');
 Route::post('/change_location_lng_lat','UsersController@change_location_lng_lat');
-
+Route::post('/get_counted_user','UsersController@get_counted_user');
 
 Route::post('/post_product','ProductController@post_product');
 Route::post('/get_branch_post','ProductController@get_branch_post');
 Route::post('/get_all_post','ProductController@get_all_post');
 Route::post('/get_every_product_post','ProductController@get_every_product_post');
 Route::post('/get_menu','ProductController@get_menu');
+Route::post('/get_search_menu','ProductController@get_search_menu');
 
 
 Route::post('/add_cover_photo','CoverPhotoController@add_cover_photo');
