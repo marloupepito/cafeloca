@@ -1,6 +1,6 @@
 
 import Map from './../Maps/Map.vue'
-import Home from './../Home.vue'
+import Parallax from './../Homepage/components/Parallax.vue'
 import NewsFeed from './../Homepage/NewsFeed.vue'
 import SearchCoffee from './../Homepage/SearchCoffee.vue'
 import ShowProduct from './../Homepage/ShowProduct.vue'
@@ -19,7 +19,7 @@ import Dashboard from './../Homepage/admin/Dashboard.vue'
 import Logout2 from './../Homepage/branch/Logout.vue'
 import Homepage from './../Homepage/Homepage.vue'
 
-
+import BranchLayout from './../branch/page.vue'
 import Profile from './../Homepage/branch/Profile.vue'
 import Menu from './../Homepage/branch/Menu.vue'
 import MyLocation from './../Homepage/branch/MyLocation.vue'
@@ -29,7 +29,7 @@ import Bread from './../Homepage/branch/Bread.vue'
 import Snack from './../Homepage/branch/Snack.vue'
 import Delicacy from './../Homepage/branch/Delicacy.vue'
 const routes = [
-  { path: '/', component: Home },
+  { path: '/', component: Parallax },
   { path: '/register', component: Register },
   { path: '/search', component: Homepage,
       children:[
@@ -68,7 +68,7 @@ const routes = [
           return next({ path: '/users'})
         })
       } 
-    }:{ path: '/my_account', component: AdminIndex, name:'admin',
+    }:{ path: '/my_account', component: BranchLayout, name:'admin',
       children:[
           { path:'/my_account/profile', component:Profile, name:'profile' },
            { path:'/my_account/my_location', component:Map, name:'MyLocation' },

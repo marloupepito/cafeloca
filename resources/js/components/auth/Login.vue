@@ -1,5 +1,5 @@
 <template lang="">
-    <div class="container">
+    <div class="container col-md-4">
         <div id="app" style="padding-top:40px;">
             <div class="row">
               <div class="col-md-8 col-8">

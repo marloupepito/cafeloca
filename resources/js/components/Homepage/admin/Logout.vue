@@ -8,11 +8,11 @@
   export default {
   mounted(){
   	axios.post('/logout')
-			.then(res=>{
-				window.location='/users'
-				sessionStorage.clear()
-			})
-  }
+					.then(res=>{
+						window.location='/users'
+						sessionStorage.clear()
+					})
+		  }
   	}
 	
 </script>

@@ -20,12 +20,12 @@
 
 <br /><br /><br /><br /><br />
 
-      <v-row dense>
+      <div class="row">
     
-        <v-col
+        <div
           v-for="(item, i) in dataPost"
           :key="i"
-          cols="12"
+          class="col-md-4 col-12"
         >
         <br />
           <v-card
@@ -79,8 +79,8 @@
             
             </div>
           </v-card>
-        </v-col><br /><br />
-      </v-row><br /><br />
+        </div><br /><br />
+      </div><br /><br />
 
 
 

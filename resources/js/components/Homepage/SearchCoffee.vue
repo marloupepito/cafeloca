@@ -30,11 +30,11 @@
         </v-col>
 
 <v-container fluid>
- <v-row dense>
-        <v-col
+  <div class="row">
+        <div
+        class="col-md-3 col-6"
           v-for="card in cards"
           :key="card.id"
-          cols="6"
         >
         <a @click="clickToVisit(card.branchid,card.branchname)">
           <v-card>
@@ -59,8 +59,8 @@
             </v-card-actions>
           </v-card>
           </a>
-        </v-col>
-      </v-row>
+        </div>
+      </div>
       <br /><br /><center v-if="cards.length >= 5 && loading === false"><u><a href="#" @click="seeMore(5)">SEE MORE</a></u></center>
            <v-progress-linear
            :class="loading === false?'d-none':''"

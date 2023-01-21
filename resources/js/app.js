@@ -10,10 +10,12 @@ import routes from './components/routes/Route'
 import VueRouter from 'vue-router'
 import * as VueGoogleMaps from "vue2-google-maps";
 import VueInsProgressBar from 'vue-ins-progress-bar'
+
+import bottomNavigationVue from "bottom-navigation-vue";
 import Vue from 'vue'
 
 Vue.use(Vuetify);
-
+Vue.use(bottomNavigationVue);
 
 Vue.use(VueInsProgressBar, {
   position: 'fixed',

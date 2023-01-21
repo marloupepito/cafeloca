@@ -113,7 +113,6 @@ export default {
     			limit:5
     		})
     	.then(res=>{
-        
     		this.dataPost = res.data.status
     	})
     	.catch(err=>{

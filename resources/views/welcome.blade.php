@@ -9,7 +9,9 @@
       <link rel="shortcut icon" type="image/x-icon" href="images/logo.png" />
         <!-- Styles -->
         <script src="{{ asset('js/app.js') }}" defer></script>
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+        
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        
         <link href="assets/css/e-commerce/vendor.min.css" rel="stylesheet" />
         <link href="assets/css/e-commerce/app.min.css" rel="stylesheet" />
         <style>
@@ -23,6 +25,9 @@
             div.v-card__title.text-h5{
                 font-size: 20px !important;
                 font-weight: bold;
+            }
+            div.btn-title,.text-white{
+                color:white !important
             }
         </style>
     </head>

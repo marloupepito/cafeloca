@@ -30,6 +30,7 @@
         "vue-template-compiler": "^2.7.10"
     },
     "dependencies": {
+        "bottom-navigation-vue": "^2.5.2",
         "@fawmi/vue-google-maps": "^0.9.72",
         "macaddress": "^0.5.3",
         "sweetalert2": "^11.4.26",

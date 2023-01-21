@@ -1,14 +1,6 @@
 <template>
     <v-app>
-        <div v-if="auth === 'administrator' && load === true && usertype === 'admin'" class="col-md-12 p-0" style="padding:0px !important">
-           <vue-ins-progress-bar></vue-ins-progress-bar>
-           <router-view></router-view> 
-        </div>
-        <div v-else class="col-md-4 offset-md-4 p-0" style="padding:0px !important">
-           <vue-ins-progress-bar></vue-ins-progress-bar>
-           <router-view></router-view> 
-        </div>
-
+        <router-view></router-view>
      </v-app>
 </template>
 
