@@ -1,8 +1,5 @@
 <template>
-    <v-sheet
-        id="scrolling-techniques-7"
-        class="overflow-y-auto"
-        max-height="600"
+    <div
     >
         <v-container class="overflow-y-auto">
             <v-row dense>
@@ -68,7 +65,8 @@
                 color="brown"
             ></v-progress-linear>
         </v-container>
-    </v-sheet>
+        <br /><br />
+    </div>
 </template>
 
 <script>
