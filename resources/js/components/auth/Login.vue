@@ -33,7 +33,7 @@
                             <v-text-field
                               v-model="email"
                               :rules="emailRules"
-                              label="Email"
+                              label="Username"
                               required
                               v-on:keyup.enter="validate"
                             ></v-text-field>
@@ -91,21 +91,22 @@
     }),
 
     methods: {
-      validate () {
+      validate (e) {
+        e.preventDefault()
         this.incorrect = 'load'
         this.$refs.form.validate()
         if(this.$refs.form.validate() === true){
             axios.post('/user_login',{
-                email:this.email,
+                username:this.email,
                 password:this.password
             })
             .then(res=>{    
                 if(res.data.status.usertype === 'cafe'){
-                  console.log(res.data.status.status === 'pending')
-                  if(res.data.status.status === 'pending'){
+                  
+                  if(res.data.status.status === 'Pending'){
                       this.incorrect = 'Your application is already pending!'
                     }else{
-                     window.location ='/my_account/profile'
+                 window.location ='/my_account/profile'
                      localStorage.setItem("active", 3)
                      localStorage.setItem("storeName", res.data.status.store_name)
                      localStorage.setItem("usertype", res.data.status.usertype)

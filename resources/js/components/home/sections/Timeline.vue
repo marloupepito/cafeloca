@@ -83,7 +83,7 @@ export default {
     },
     methods: {
         clickToVisit(e, id) {
-            this.$router.push({ path: "/news_feed/" + id });
+            this.$router.push({ path: "/visit/timeline/" + id });
         },
         seeMore(e) {
             this.loading = true;

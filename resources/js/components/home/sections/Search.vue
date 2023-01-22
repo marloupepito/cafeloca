@@ -67,6 +67,7 @@
               indeterminate
               color="brown"
             ></v-progress-linear>
+            <br /><br />
     </v-container>
     
              <br />
@@ -99,7 +100,7 @@
               })
           },
            clickToVisit(id,branchname){
-            this.$router.push({path:'/search/'+branchname+'?0='+id})
+            this.$router.push({path:'/visit/coffee/'+branchname.replace(/ /g,'-')+'?0='+id})
             },
             seeMore(e){
               this.loading=true

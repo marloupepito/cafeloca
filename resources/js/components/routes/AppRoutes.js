@@ -36,6 +36,12 @@ import Map from './../Maps/Map.vue'
  import Login from './../auth/Login.vue'
  import Logout from './../administrator/sections/components/Logout.vue'
 import Register from './../auth/Register.vue'
+import Coffee from './../home/sections/Coffee.vue'
+import Bread from './../home/sections/Bread.vue'
+import Snack from './../home/sections/Snack.vue'
+import Delicacy from './../home/sections/Delicacy.vue'
+import ShowProduct from './../home/sections/ShowProduct.vue'
+import Show from './../home/sections/pages/Show.vue'
 
  import Administrator from './../administrator/Page.vue'
  import Dashboard from './../administrator/sections/Dashboard.vue'
@@ -57,6 +63,17 @@ const routes = [
         {path:'/visit/search_map', component:Map},
         {path:'/visit/auth', component:Login},
         {path:'/visit/register', component: Register },
+        { path:'/visit/timeline/:id', component: ShowProduct },
+        { path:'/visit/coffee/:id',component: Show,
+            children:[
+              { path:'/visit/coffee/:id',component: Coffee },
+               { path:'/visit/coffee/:id/coffee',component: Coffee },
+                { path:'/visit/coffee/:id/bread',component: Bread },
+                { path:'/visit/coffee/:id/snack',component: Snack },
+                { path:'/visit/coffee/:id/delicacy',component: Delicacy },
+            ]
+        },
+
     ]
   },
   { path: '/administrator', component: Administrator,

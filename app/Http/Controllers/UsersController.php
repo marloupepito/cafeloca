@@ -11,11 +11,11 @@ class UsersController extends Controller
 {
     public function user_login(Request $request){
         $request->validate([
-            'email'=>['required'],
+            'username'=>['required'],
             'password'=>['required'],
         ]);
 
-        if(Auth::attempt($request->only('email','password'))){
+        if(Auth::attempt($request->only('username','password'))){
 
             $request->session()->put('id', Auth::user()->id);
             return response()->json([
@@ -24,13 +24,13 @@ class UsersController extends Controller
             ]);
         }else{
             return response()->json([
-                'status' => 'Incorrect email or password!',
-                'status2' => 'Incorrect email or password!'
+                'status' => 'Incorrect username or password!',
+                'status2' => 'Incorrect username or password!'
             ]);
         }
         throw ValidationException::withMessages([
-            'status' => 'Incorrect email or password!',
-            'status2' => 'Incorrect email or password!',
+            'status' => 'Incorrect username or password!',
+            'status2' => 'Incorrect username or password!',
         ]);
         
     }
@@ -38,6 +38,7 @@ class UsersController extends Controller
       
         if($request->session()->get('id') !== null){
             $users = User::where([['usertype', '=' ,'cafe'],['id','<>',$request->session()->get('id')]])
+            ->orderByDesc('id')
             ->get();
             return response()->json([
                 'status' => $users,
@@ -67,6 +68,8 @@ class UsersController extends Controller
              User::create([
                 'store_name' => $request->storename,
                 'email' => $request->email,
+                'owner' => $request->owner,
+                'username' => $request->username,
                 'password' => Hash::make($request->password),
                 'usertype' => 'cafe',
                 'year' => date('Y'),
