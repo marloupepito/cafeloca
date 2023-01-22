@@ -40,7 +40,7 @@ Route::get('/', function () {
 
 Route::post('/sendotp', function (Request $request) {
     $otp = rand(100000,999999);
-    session(['otp' => $otp]);
+    $request->session()->put('otp', $otp);
     Mail::to($request->email)->send(new Registration());
     return view('email.Registration');
 });

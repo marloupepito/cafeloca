@@ -29,6 +29,11 @@
             div.btn-title,.text-white{
                 color:white !important
             }
+            @media only screen and (max-width: 600px) {
+                .hideMobile {
+                    display: none !important;
+                }
+                }
         </style>
     </head>
     <body>

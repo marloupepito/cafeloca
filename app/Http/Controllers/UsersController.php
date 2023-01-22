@@ -103,14 +103,14 @@ class UsersController extends Controller
 
     }
     public function otp_submit(Request $request){
-     if(session('otp') === $request->otp){
+     if($request->session()->get('otp') === $request->otp){
         return response()->json([
             'status' => true
         ]);
      }else{
         return response()->json([
             'status' => false,
-            'otp' =>session('otp')
+            'otp' =>$request->session()->get('otp')
         ]);
      }
     }

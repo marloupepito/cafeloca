@@ -1,5 +1,5 @@
 <template lang="">
-    <div class="container col-md-4">
+    <div class="container col-md-9">
         <div id="app" style="padding-top:40px;">
             <div class="row">
               <div class="col-md-8 col-8">
@@ -62,7 +62,7 @@
                             </v-btn>
                             <br />
                             <center class=" text-brown">
-                              Not registered?   <router-link to="/register">
+                              Not registered?   <router-link to="/visit/register">
                                     <u>Create an account!?</u>
                                   </router-link>
                             </center>
@@ -87,7 +87,6 @@
       email: '',
       emailRules: [
         v => !!v || 'E-mail is required',
-        v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
       ],
     }),
 

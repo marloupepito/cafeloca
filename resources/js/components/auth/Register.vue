@@ -13,7 +13,7 @@
     </v-stepper-step>
 
     <v-stepper-content step="1">
-      <v-card
+      <div
         class="mb-12 align-center text-center"
         height="200px"
       >
@@ -32,7 +32,7 @@
 
     ></v-text-field>
   </v-form>
-      </v-card>
+      </div>
       <v-btn
       class="text-white"
         color="brown"
@@ -51,7 +51,7 @@
     </v-stepper-step>
 
     <v-stepper-content step="2">
-      <v-card
+      <div
         class="mb-12"
         height="200px"
       ><br /><br />
@@ -77,7 +77,7 @@
     >
       {{ text }}
     </v-snackbar>
-      </v-card>
+      </div>
  
     </v-stepper-content>
 
@@ -89,7 +89,7 @@
     </v-stepper-step>
 
     <v-stepper-content step="3">
-      <v-card
+      <div
         class="mb-12"
         height="300px"
       >
@@ -130,7 +130,7 @@
 
 
   </v-form>
-      </v-card>
+      </div>
       <v-btn
       class="text-white"
         color="brown"
@@ -139,6 +139,7 @@
       >
         Continue
       </v-btn>
+      <br /> <br />
     </v-stepper-content>
 
     
@@ -182,7 +183,7 @@
         	otp:parseInt(rsp)
         	})
         .then(res=>{
- 			console.log(res.data.otp)
+ 			console.log('waa',res.data.otp)
  			if(res.data.status === true){
  				this.loading = false
         	 this.snackbarColor = 'success' 
@@ -202,7 +203,8 @@
         		})
 
       },
-      validate () {
+      validate (e) {
+        e.preventDefault()
       	this.loading =true
         this.$refs.form.validate()
         if(this.$refs.form.validate()){

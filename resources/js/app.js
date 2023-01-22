@@ -6,7 +6,7 @@
 
 require('./bootstrap');
 import Vuetify from './src/plugins/vuetify'
-import routes from './components/routes/Route'
+import routes from './components/routes/AppRoutes'
 import VueRouter from 'vue-router'
 import * as VueGoogleMaps from "vue2-google-maps";
 import VueInsProgressBar from 'vue-ins-progress-bar'

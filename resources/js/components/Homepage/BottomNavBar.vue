@@ -16,7 +16,7 @@
          options: [
            {
              id: 1,
-             icon: "text-white fas fa-house",
+             icon: "text-white fas fa-home",
              title: "News Feed",
              path:"/news_feed"
            },

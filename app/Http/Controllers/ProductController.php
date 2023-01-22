@@ -62,6 +62,7 @@ class ProductController extends Controller
 
             $product = Product::where('branchid', $id)
             ->orderByDesc('id')
+            ->limit($request->limit)
             ->get();
 
              return response()->json([
