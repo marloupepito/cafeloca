@@ -59,9 +59,9 @@
                           </v-btn>
                         </v-card-actions> 
                       </v-card>
-             </div><br /><br />
+             </div><br />
             <center v-if="dataPost.length >= 5 && loading === false">
-                <u><a href="#" @click="seeMore(5)">SEE MORE</a></u>
+                <u><v-btn href="#"  color="brown" class="text-white" @click="seeMore(5)">SEE MORE</v-btn></u>
             </center>
             <v-progress-linear
                 :class="loading === false ? 'd-none' : ''"

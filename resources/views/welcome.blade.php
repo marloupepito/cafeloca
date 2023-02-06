@@ -21,9 +21,10 @@
             }
             .v-application.v-application--is-ltr.theme--light{
                 background-image:url(/images/home.jpg) !important;
-                 background-position: center;
+                 background-position: buttom;
                   background-repeat: no-repeat;
                   background-size: cover;
+                  background-attachment: fixed;
             }
             h3.text-3xl.text-white{
                 background-image: url(images/logo.png) !important;
