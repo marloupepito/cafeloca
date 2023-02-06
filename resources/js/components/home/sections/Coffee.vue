@@ -1,58 +1,50 @@
 <template lang="">
   
 <div>
-
-        <v-col
-          v-for="(item, i) in userData"
-          :key="i"
-          cols="12"
-        >
-          <v-card
-            color="brown"
-            dark
-            @click="ShowProduct(item.id)"
-          >
-            <div class="d-flex flex-no-wrap">
-            <v-avatar
-                class="ma-3"
-                size="125"
-                tile
-              >
-                <v-img :src="'/images/post/'+item.images"></v-img>
-              </v-avatar>
-              <div>
-                <v-card-title
-                  class="text-h5"
-                  v-text="item.productname"
-                ></v-card-title>
-
-                <v-card-subtitle v-text="item.about"></v-card-subtitle>
-
-                <v-card-actions>
-                  <v-row
-                        align="center"
-                        class="mx-0"
+             <v-card
+                        class="mx-auto w-100 m-3 mb-4"
+                        outlined
+                        v-for="(item, i) in userData" :key="i"
                       >
-                        <v-rating
+                        <v-list-item three-line>
+                          <v-list-item-content>
+                            <div class="text-overline mb-4">
+                             {{ item.menu}}
+                            </div>
+                            <v-list-item-title class="text-h5 mb-1">
+                              {{ item.productname }}
+                            </v-list-item-title>
+                            <v-list-item-subtitle>{{ item.about }}</v-list-item-subtitle>
+                          </v-list-item-content>
+
+                          <v-list-item-avatar
+                            tile
+                            size="80"
+                            color="grey"
+                          >
+                          <v-img
+                                style="width: 100%;"
+                                :src="'/images/post/' + item.images"
+                            />
+                          </v-list-item-avatar>
+                        </v-list-item>
+                          <div class="grey--text ms-4">
+                         ₱ {{item.price}}
+                        </div>
+                        <center>
+
+                                       <v-rating
                         v-model="item.rate"
                           color="amber"
                           dense
                           half-increments
                           readonly
-                          size="14"
+                          size="20"
                         ></v-rating>
-
-                        <div class="grey--text ms-4">
-                         ₱ {{item.price}}
-                        </div>
-                      </v-row>
-                </v-card-actions>
-              </div>
-             
-              
-            </div>
-          </v-card>
-        </v-col> <br /><br /><br />
+                                    </center>
+                                    <br />
+                   
+                  </v-card> <br /><br /><br />
       </div>
 
 </template>
