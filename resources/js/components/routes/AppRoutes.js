@@ -33,7 +33,9 @@ import Homepage from './../home/Page.vue'
 import Timeline from './../home/sections/Timeline.vue'
 import Search from './../home/sections/Search.vue'
 import Map from './../Maps/Map.vue'
+import Map2 from './../Maps/Map2.vue'
  import Login from './../auth/Login.vue'
+ import Forget from './../auth/Forget.vue'
  import Logout from './../administrator/sections/components/Logout.vue'
 import Register from './../auth/Register.vue'
 import Coffee from './../home/sections/Coffee.vue'
@@ -62,11 +64,12 @@ const routes = [
         {path:'/visit/search', component:Search},
         {path:'/visit/search_map', component:Map},
         {path:'/visit/auth', component:Login},
+        {path:'/visit/forget', component:Forget},
         {path:'/visit/register', component: Register },
         { path:'/visit/timeline/:id', component: ShowProduct },
         { path:'/visit/coffee/:id',component: Show,
             children:[
-              { path:'/visit/coffee/:id',component: Coffee },
+              { path:'/visit/coffee/:id',component: Map2 },
                { path:'/visit/coffee/:id/coffee',component: Coffee },
                 { path:'/visit/coffee/:id/bread',component: Bread },
                 { path:'/visit/coffee/:id/snack',component: Snack },

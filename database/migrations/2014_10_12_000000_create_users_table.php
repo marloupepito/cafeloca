@@ -31,6 +31,7 @@ class CreateUsersTable extends Migration
             $table->string('usertype')->nullable();
             $table->string('year')->nullable();
             $table->string('status')->nullable();
+            $table->string('landmark')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

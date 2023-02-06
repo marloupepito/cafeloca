@@ -9,6 +9,11 @@
       show-arrows
     >
       <v-tabs-slider color="yellow"></v-tabs-slider>
+       <v-tab
+      @click="map"
+      >
+      Map
+      </v-tab>
       <v-tab
       @click="coffee"
       >
@@ -54,6 +59,10 @@ export default {
 
        },
     methods:{
+       map(){
+          this.$router.push({path:'/visit/coffee/'+this.cafeName, query:this.searchId })
+          .catch(err=>{})
+        },
         coffee(){
           this.$router.push({path:'/visit/coffee/'+this.cafeName+'/coffee', query:this.searchId })
           .catch(err=>{})

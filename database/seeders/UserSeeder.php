@@ -36,6 +36,11 @@ class UserSeeder extends Seeder
                 'Guadalupe, San Carlos City, Negros Occidental','Eco - Translink Hwy, San Carlos City, Negros Occidental','F9VV+3F3, Eco - Translink Hwy, San Carlos City, Negros Occidental',
                 'FCM9+2J San Carlos City, Negros Occidental'
             ];
+
+            $lat=['10.48922','10.49251','10.49252','10.48928','10.49827','10.44939','10.45081','10.49377','10.49263','10.48262'];
+
+            $lng=['123.41097','123.39150','123.39316','123.40024','123.34098','123.36352','123.36406','123.38447','123.39368','123.41913'];
+
         for ($i=0; $i < count($cafe) ; $i++) { 
             DB::table('users')->insert([
                 'store_name' => $cafe[$i],
@@ -47,8 +52,8 @@ class UserSeeder extends Seeder
                 'email' => 'sample'.$i.'@gmail.com',
                 'username' => 'coffee'.$i,
                 'password' => Hash::make('admin'),
-                'lat' => 10.4939926,
-                'lng' => 123.4053125,
+                'lat' => $lat[$i],
+                'lng' => $lng[$i],
                 'usertype' => 'cafe',
                 'status' => 'Approved',
                 'year' => date('Y')

@@ -17,8 +17,14 @@
         <style>
             body {
                 font-family: 'Nunito', sans-serif;
-            }
 
+            }
+            .v-application.v-application--is-ltr.theme--light{
+                background-image:url(/images/home.jpg) !important;
+                 background-position: center;
+                  background-repeat: no-repeat;
+                  background-size: cover;
+            }
             h3.text-3xl.text-white{
                 background-image: url(images/logo.png) !important;
             }

@@ -109,7 +109,7 @@
                 block
                 style="color: white !important"
             >
-                <b>VISIT</b>
+                <b>VIEW SHOP</b>
             </v-btn>
         </v-card-actions>
         <br /><br /><br />

@@ -9,6 +9,29 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 class UsersController extends Controller
 {
+
+    
+     public function change_password(Request $request){
+        User::where('email', '=' ,$request->email)
+        ->update([
+            'password' =>Hash::make($request->password)
+        ]);
+     }
+    public function get_email(Request $request){
+        $users = User::where('email', '=' ,$request->email)->get();
+
+        if(count($users) !== 0){
+            return response()->json([
+                'status' => 'success'
+            ]);
+        }else{
+            return response()->json([
+                'status' => 'not exist'
+            ]);
+        }
+
+
+    }
     public function user_login(Request $request){
         $request->validate([
             'username'=>['required'],

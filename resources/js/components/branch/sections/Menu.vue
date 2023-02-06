@@ -1,5 +1,5 @@
 <template>
-	<div class="container" solo>
+	<div class="container" solo style="background-color:white;height:100vh">
 		 <v-form
 		 method="post"
 		 enctype="multipart/form-data"

@@ -1,0 +1,206 @@
+<template>
+    <v-stepper v-model="e6" vertical color="brown"  style="height:100vh">
+        <v-stepper-step :complete="e6 > 1" step="1">
+            Email Address
+        </v-stepper-step>
+
+        <v-stepper-content step="1">
+            <div class="mb-12 align-center text-center" height="200px">
+                <br />
+                <br />
+                <div class="text-danger" style="color:red">{{warning}}</div>
+                <v-form ref="form" v-model="valid" lazy-validation>
+                    <v-text-field
+                        v-model="email"
+                        :rules="emailRules"
+                        label="E-mail"
+                        required
+                    ></v-text-field>
+                </v-form>
+            </div>
+            <v-btn
+                class="text-white"
+                color="brown"
+                @click="validate"
+                :loading="loading"
+            >
+                Continue
+            </v-btn>
+        </v-stepper-content>
+
+        <v-stepper-step :complete="e6 > 2" step="2">
+            OTP Request
+        </v-stepper-step>
+
+        <v-stepper-content step="2">
+            <div class="mb-12" height="200px">
+                <br /><br />
+                <div class="ma-auto position-relative" style="max-width: 300px">
+                    <v-otp-input
+                        v-model="otp"
+                        :disabled="loading"
+                        @finish="onFinish"
+                    ></v-otp-input>
+                    <v-overlay absolute :value="loading">
+                        <v-progress-circular
+                            indeterminate
+                            color="primary"
+                        ></v-progress-circular>
+                    </v-overlay>
+                </div>
+                <div class="text--caption">Type or copy/paste.</div>
+
+                <v-snackbar
+                    v-model="snackbar"
+                    :color="snackbarColor"
+                    :timeout="2000"
+                >
+                    {{ text }}
+                </v-snackbar>
+            </div>
+        </v-stepper-content>
+
+        <v-stepper-step :complete="e6 > 3" step="3">
+            New Password
+        </v-stepper-step>
+
+        <v-stepper-content step="3">
+            <div class="mb-12" height="300px">
+                <br /><br />
+                <v-form ref="form2" v-model="valid2" lazy-validation>
+                
+                    <v-text-field
+                        v-model="password"
+                        :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                        :rules="[rules.required, rules.min]"
+                        :type="show1 ? 'text' : 'password'"
+                        name="input-10-1"
+                        label="Enter new password!"
+                        hint="At least 8 characters"
+                        counter
+                        @click:append="show1 = !show1"
+                    ></v-text-field>
+                </v-form>
+            </div>
+            <v-btn
+                class="text-white"
+                color="brown"
+                :loading="loading"
+                @click="validate2"
+            >
+                Continue
+            </v-btn>
+            <br />
+            <br />
+        </v-stepper-content>
+    </v-stepper>
+</template>
+
+<script>
+export default {
+    data() {
+        return {
+        	warning:'',
+            appName: "",
+            show1: false,
+            password: "",
+            rules: {
+                required: (value) => !!value || "Required.",
+                min: (v) => v.length >= 8 || "Min 8 characters",
+            },
+            snackbar: false,
+            snackbarColor: "default",
+            otp: "",
+            text: "",
+            loading: false,
+            valid: "",
+            valid2: "",
+            e6: 1,
+            email: "",
+            emailRules: [
+                (v) => !!v || "E-mail is required",
+                (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+            ],
+        };
+    },
+    methods: {
+        onFinish(rsp) {
+            this.loading = true;
+            axios
+                .post("/otp_submit", {
+                    otp: parseInt(rsp),
+                })
+                .then((res) => {
+                    if (res.data.status === true) {
+                        this.loading = false;
+                        this.snackbarColor = "success";
+                        this.snackbar = true;
+                        this.text = `OTP success`;
+                        this.e6 = 3;
+                    } else {
+                        this.loading = false;
+                        this.snackbarColor = "error";
+                        this.snackbar = true;
+                        this.text = `OTP incorrect`;
+                    }
+                })
+                .catch((err) => {});
+        },
+        validate(e) {
+            e.preventDefault();
+            this.$refs.form.validate();
+            this.loading = true;
+            axios.post('/get_email',{
+        	email:this.email
+        	})
+        	.then(res=>{
+        		if(res.data.status ==='success'){
+        			 axios
+                    .post("/sendotp2", {
+                        email: this.email,
+                    })
+                    .then((res) => {
+                        this.loading = false;
+                        this.e6 = 2;
+                    })
+                    .catch((err) => {
+                        this.loading = false;
+                    });
+    			}else{
+    				this.warning = 'Incorrect Email'
+    				this.loading = false;
+    			}
+        	})
+       
+        },
+        validate2() {
+            this.loading = true;
+            this.$refs.form2.validate();
+            axios.post('/change_password',{
+                email:this.email,
+                password:this.password
+                })
+                .then(res=>{
+                    this.snackbarColor = "success";
+                    this.snackbar = true;
+                    this.text = `Change Password Successfully`;
+                    alert('Success!')
+                    this.$router.push({path:'/visit/auth'})
+                })
+
+        },
+        reset() {
+            this.$refs.form.reset();
+        },
+        resetValidation() {
+            this.$refs.form.resetValidation();
+        },
+    },
+};
+</script>
+
+<style>
+span.v-stepper__step__step.primary {
+    background-color: brown !important;
+}
+</style>

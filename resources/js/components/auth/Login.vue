@@ -1,5 +1,5 @@
 <template lang="">
-    <div class="container col-md-9">
+    <div class="container col-md-9" style="background-color:white;height:110vh">
         <div id="app" style="padding-top:40px;">
             <div class="row">
               <div class="col-md-8 col-8">
@@ -18,7 +18,7 @@
                     ></v-progress-linear>
                       </div>
                     <div v-else class="text-danger">{{incorrect}}</div>
-                </center>
+                </center><br />
               </div>
             </div>
             <div class="login login-v2 fw-bold" >
@@ -35,6 +35,7 @@
                               :rules="emailRules"
                               label="Username"
                               required
+                              outlined
                               v-on:keyup.enter="validate"
                             ></v-text-field>
 
@@ -44,10 +45,11 @@
                               :rules="passwordRules"
                               label="Password"
                               required
+                              outlined
                               v-on:keyup.enter="validate"
                             ></v-text-field>
 
-                              <a class="float-right">
+                              <a @click="gotoForget" class="float-right">
                                     <u class="text-dark">Forget Password?</u>
                                   </a>
                                    <br /> <br />
@@ -91,6 +93,9 @@
     }),
 
     methods: {
+      gotoForget(){
+        this.$router.push({path:'/visit/forget'})
+        },
       validate (e) {
         e.preventDefault()
         this.incorrect = 'load'

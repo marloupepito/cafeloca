@@ -34,6 +34,7 @@ class User extends Authenticatable
         'usertype',
         'year',
         'status',
+        'landmark'
     ];
 
     /**

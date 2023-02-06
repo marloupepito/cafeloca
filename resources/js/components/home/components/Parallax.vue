@@ -1,6 +1,6 @@
 <template>
     <div
-    style="height:100vh; background-size: cover; background-image: url('/images/cafe.jpg');background-position: center;"
+    style="height:100vh; background-size: cover; background-image: url('/images/back.jpg');background-position: center;"
      
     >
       <v-row
@@ -20,8 +20,9 @@
             <v-btn
           class="  mb-3 text-white font-weight-"
           @click="searchMap"
-          color="brown"
+          color="white"
           large
+          outlined
         >
           Start Visit
         </v-btn>

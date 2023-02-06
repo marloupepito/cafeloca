@@ -24,6 +24,7 @@
             />
            
             <GmapInfoWindow
+               v-if="userId === undefined"
                 :key="index"
                 v-for="(m, index) in markers"
                 :position="{ lat: parseFloat(m.lat), lng: parseFloat(m.lng) }"
@@ -105,7 +106,7 @@ export default {
         },
 
     	visit(branch_name,id){
-                 this.$router.push({path:'/search/'+branch_name.replace(/ /g,'-')+'?0='+id})
+                 this.$router.push({path:'/visit/coffee/'+branch_name.replace(/ /g,'-')+'?0='+id})
                 
                 localStorage.setItem("id",id)
     		},
@@ -135,7 +136,7 @@ export default {
             .then((res) => {
                 this.markers = res.data.status;
                 this.userId =  res.data.id
-                console.log(res.data.id)
+                console.log('ddddd',res.data.status)
             })
             .catch((err) => {});
         }

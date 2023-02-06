@@ -7,6 +7,7 @@ use App\http\Controllers\CoverPhotoController;
 use App\http\Controllers\StarRateController;
 use Illuminate\Http\Request;
 use App\Mail\Registration;
+use App\Mail\ForgetPassword;
 use Illuminate\Support\Facades\Mail;
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,14 @@ Route::post('/sendotp', function (Request $request) {
     return view('email.Registration');
 });
 
+Route::post('/sendotp2', function (Request $request) {
+    $otp = rand(100000,999999);
+    $request->session()->put('otp', $otp);
+    Mail::to($request->email)->send(new ForgetPassword());
+    return view('email.ForgetPassword');
+});
+
+
 Route::post('/user_login','UsersController@user_login');
 Route::post('/get_all_users','UsersController@get_all_users');
 Route::post('/logout','UsersController@logout');
@@ -56,6 +65,10 @@ Route::post('/edit_profile','UsersController@edit_profile');
 Route::post('/upload_profile','UsersController@upload_profile');
 Route::post('/change_location_lng_lat','UsersController@change_location_lng_lat');
 Route::post('/get_counted_user','UsersController@get_counted_user');
+Route::post('/get_email','UsersController@get_email');
+Route::post('/change_password','UsersController@change_password');
+
+
 
 Route::post('/post_product','ProductController@post_product');
 Route::post('/get_branch_post','ProductController@get_branch_post');

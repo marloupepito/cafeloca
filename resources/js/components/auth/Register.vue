@@ -1,5 +1,5 @@
 <template>
-    <v-stepper v-model="e6" vertical color="brown">
+    <v-stepper v-model="e6" vertical color="brown"  style="height:100vh">
         <v-stepper-step :complete="e6 > 1" step="1">
             Email Address
         </v-stepper-step>
@@ -67,6 +67,7 @@
             <div class="mb-12" height="300px">
                 <br /><br />
                 <v-form ref="form2" v-model="valid2" lazy-validation>
+                <p>Upload prof of document.</p>
                     <v-file-input
                         v-model="documents"
                         :rules="documentsRules"
