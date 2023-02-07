@@ -1,5 +1,23 @@
 <template>
   <v-sheet elevation="6">
+   <div class="row">
+      <div class="col-md-3 col-3">
+       <v-btn color="brown" @click="backTO" style="margin:8px !important" outlined>BACK</v-btn>  
+      </div>
+      <div class="col-md-9 col-9 ">
+        <center>
+        <v-rating
+        color="yellow darken-3"
+          half-increments
+          hover
+          length="5"
+          size="20"
+          :value="rate"
+        ></v-rating>
+        </center>
+      </div>
+   </div>
+
     <v-tabs
     centered
       background-color="brown"
@@ -47,7 +65,9 @@ export default {
    data(){
       return{
         cafeName:'',
-        searchId:''
+        searchId:'',
+        productid:'',
+        rate:''
       }
     },
     components:{
@@ -55,10 +75,18 @@ export default {
     mounted(){
        this.cafeName = window.location.pathname.split('/')[3]
        this.searchId =window.location.search.substring(3);
-       console.log(this.searchId)
-
+       this.productid = localStorage.getItem("productid");
+       axios.post('/get_branch_rating',{
+        branchid:this.searchId
+        })
+        .then(res=>{
+          this.rate = res.data.status
+          })
        },
     methods:{
+      backTO(){
+        this.$router.push({path:'/visit/timeline/'+this.productid})
+        },
        map(){
           this.$router.push({path:'/visit/coffee/'+this.cafeName, query:this.searchId })
           .catch(err=>{})

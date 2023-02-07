@@ -1,7 +1,8 @@
 <template lang="">
   
 <div>
-             <v-card
+
+                  <v-card
                         class="mx-auto w-100 m-3 mb-4"
                         outlined
                         v-for="(item, i) in userData" :key="i"
@@ -32,7 +33,7 @@
                          ₱ {{item.price}}
                         </div>
                         <center>
-
+            <a @click="updateRate">
                                        <v-rating
                         v-model="item.rate"
                           color="amber"
@@ -41,20 +42,55 @@
                           readonly
                           size="20"
                         ></v-rating>
+            </a>
+                        <v-dialog v-model="rate" width="500" persistent>
+            <v-card>
+                <v-card-title class="text-h5 grey lighten-2">
+                    PLEASE RATE!
+                </v-card-title>
+
+                <v-card-text>
+                    <center>
+                    <v-rating
+                        v-model="rating"
+                        color="yellow darken-3"
+                        background-color="grey darken-1"
+                        empty-icon="$ratingFull"
+                        half-increments
+                        hover
+                        large
+                    ></v-rating>
+                    </center>
+                </v-card-text>
+
+                <v-divider></v-divider>
+
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="primary" text @click="submitRate(item.id)">
+                        SUBMIT
+                    </v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
                                     </center>
                                     <br />
                    
-                  </v-card> <br /><br /><br />
+                  </v-card>
+<br /><br /><br />
       </div>
 
 </template>
 <script>
 export default {
     data(){
-    	return{
+      return{
+        rate:false,
         star:5,
+        userid:'',
+        postid:'',
         userData:[],
-    		  items: [
+          items: [
         {
           color: 'brown',
           src: 'https://cdn.vuetifyjs.com/images/cards/cooking.png',
@@ -68,16 +104,33 @@ export default {
           artist: 'Ellie Goulding',
         },
       ],
-    	}
+      }
     },
-    methods:{
-      ShowProduct(id){
-        this.$router.push({path:'/visit/timeline/'+id})
+      methods:{
+         submitRate(productid) {
+            const rating = this.rating;
+            axios
+                .post("/submit_post_rating", {
+                    rate: rating,
+                    userid: this.userid,
+                    postid: productid,
+                })
+                .then((res) => {
+                    this.rate = false;
+
+                    // this.rating = result.data.rate
+                });
+        },
+        updateRate() {
+            this.rate = true;
+        },
+        ShowProduct(id){
+          this.$router.push({path:'/visit/timeline/'+id})
       }
     },
     mounted(){
       const id = window.location.search.substring(3)
-
+      this.userid = window.location.search.substring(3)
         axios.post('/get_menu',{
           menu:'Coffee',
           id:id
@@ -89,6 +142,6 @@ export default {
       }
 }
 </script>
-<style>
+<style lang="">
     
 </style>

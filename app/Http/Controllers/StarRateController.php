@@ -7,16 +7,23 @@ use App\Models\StarRate;
 use App\Models\Product;
 class StarRateController extends Controller
 {
+     public function get_branch_rating(Request $request){
+        $sumRow = StarRate::where('userid','=',$request->branchid)->get()->sum('rate');
+        $count =  StarRate::where('userid','=',$request->branchid)->get();
+        return response()->json([
+                    'status' => $sumRow/count($count)
+                ]);
+     }
     public function get_star_rating(Request $request){
         $request->validate([
-            'userid'=>['required'],
-            'postid'=>['required'],
+            'branchid'=>['required'],
+            'productid'=>['required'],
         ]);
         $macAddr = substr(exec('getmac'),0,17);
 
-        $rate = StarRate::where([['postid','=',$request->postid],['userid','=',$request->userid],['mac_address','=',$macAddr],['who','=','post']])->get();
+        $rate = StarRate::where([['postid','=',$request->productid],['userid','=',$request->branchid],['mac_address','=',$macAddr],['who','=','post']])->get();
              
-            $sumRow = StarRate::where([['postid','=',$request->postid],['userid','=',$request->userid],['who','=','post']])->get()->sum('rate');
+            $sumRow = StarRate::where([['postid','=',$request->productid],['userid','=',$request->branchid],['who','=','post']])->get()->sum('rate');
 
 
             $countRow = count($rate);
@@ -43,7 +50,7 @@ class StarRateController extends Controller
         ]);
         $macAddr = substr(exec('getmac'),0,17);
 
-        $verify = StarRate::where([['postid','=',$request->postid],['userid','=',$request->userid],['mac_address','=',$macAddr],['who','=','post']])->get();
+        $verify = StarRate::where([['postid','=',$request->postid],['userid','=',$request->userid],['mac_address','=',$macAddr]])->get();
 
 
               if(count($verify) === 0){

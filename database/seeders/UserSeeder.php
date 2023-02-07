@@ -48,6 +48,7 @@ class UserSeeder extends Seeder
                 'store_location'  => $address[$i],
                 'mobile'  => '09176196962',
                 'phone'  => '+934-345-33',
+                'profile'  => 'logo.png',
                 'about'  => "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
                 'email' => 'sample'.$i.'@gmail.com',
                 'username' => 'coffee'.$i,
@@ -112,6 +113,12 @@ class UserSeeder extends Seeder
             
         }
        
+       for ($i=1; $i < 12; $i++) { 
+            DB::table('cover_photos')->insert([
+                'userid' => $i,
+                'cover' => 'background.jpg',
+            ]);
+       }
 
 
     }

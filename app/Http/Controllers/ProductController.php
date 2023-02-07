@@ -86,10 +86,10 @@ class ProductController extends Controller
     public function get_every_product_post(Request $request){
 
              $request->validate([
-                'productid'=>['required'],
+                'branchid'=>['required'],
             ]);
-             $product= Product::where('id',$request->productid)->first();
-             $image= ProductImage::where('foreign',$request->productid)->get();
+             $product= Product::where([['id',$request->id],['branchid',$request->branchid]])->first();
+             $image= ProductImage::where([['foreign',$request->id],['branchid',$request->branchid]])->get();
 
             return response()->json([
                 'status' =>$product,

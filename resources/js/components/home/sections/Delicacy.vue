@@ -33,7 +33,7 @@
                          ₱ {{item.price}}
                         </div>
                         <center>
-
+            <a @click="updateRate">
                                        <v-rating
                         v-model="item.rate"
                           color="amber"
@@ -42,6 +42,37 @@
                           readonly
                           size="20"
                         ></v-rating>
+            </a>
+                        <v-dialog v-model="rate" width="500" persistent>
+            <v-card>
+                <v-card-title class="text-h5 grey lighten-2">
+                    PLEASE RATE!
+                </v-card-title>
+
+                <v-card-text>
+                    <center>
+                    <v-rating
+                        v-model="rating"
+                        color="yellow darken-3"
+                        background-color="grey darken-1"
+                        empty-icon="$ratingFull"
+                        half-increments
+                        hover
+                        large
+                    ></v-rating>
+                    </center>
+                </v-card-text>
+
+                <v-divider></v-divider>
+
+                <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="primary" text @click="submitRate(item.id)">
+                        SUBMIT
+                    </v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
                                     </center>
                                     <br />
                    
@@ -54,7 +85,10 @@
 export default {
     data(){
     	return{
+        rate:false,
         star:5,
+        userid:'',
+        postid:'',
         userData:[],
     		  items: [
         {
@@ -73,13 +107,30 @@ export default {
     	}
     },
       methods:{
+         submitRate(productid) {
+            const rating = this.rating;
+            axios
+                .post("/submit_post_rating", {
+                    rate: rating,
+                    userid: this.userid,
+                    postid: productid,
+                })
+                .then((res) => {
+                    this.rate = false;
+
+                    // this.rating = result.data.rate
+                });
+        },
+        updateRate() {
+            this.rate = true;
+        },
         ShowProduct(id){
           this.$router.push({path:'/visit/timeline/'+id})
       }
     },
     mounted(){
       const id = window.location.search.substring(3)
-
+      this.userid = window.location.search.substring(3)
         axios.post('/get_menu',{
           menu:'Delicacy',
           id:id

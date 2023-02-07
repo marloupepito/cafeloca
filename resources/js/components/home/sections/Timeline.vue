@@ -50,7 +50,7 @@
                                             style="color: brown !important"
                                             @click="
                                                 clickToVisit(
-                                                    item.branchname,
+                                                    item.branchid,
                                                     item.id
                                                 )
                                             "
@@ -84,8 +84,8 @@ export default {
         };
     },
     methods: {
-        clickToVisit(e, id) {
-            this.$router.push({ path: "/visit/timeline/" + id });
+        clickToVisit(branchid, id) {
+            this.$router.push({ path: "/visit/timeline/" + branchid+'?'+id});
         },
         seeMore(e) {
             this.loading = true;

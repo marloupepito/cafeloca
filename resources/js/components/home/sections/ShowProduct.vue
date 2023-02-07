@@ -105,7 +105,7 @@
                 color="brown"
                 depressed
                 class="btn"
-                @click="clickToVisit(postData.branchid)"
+                @click="clickToVisit(postData.branchid,postData.id)"
                 block
                 style="color: white !important"
             >
@@ -133,18 +133,18 @@ export default {
     mounted() {
         axios
             .post("/get_every_product_post", {
-                productid: window.location.pathname.split("/")[3],
+                branchid: window.location.pathname.split("/")[3],
+                id:window.location.search.substring(1)
             })
             .then((res) => {
                 this.userid = window.location.pathname.split("/")[3];
                 this.postData = res.data.status;
                 this.imagesData = res.data.images;
                 this.postid = res.data.status.id;
-                console.log(res.data.status);
                 axios
                     .post("/get_star_rating", {
-                        userid: window.location.pathname.split("/")[3],
-                        postid: res.data.status.id,
+                        branchid: window.location.pathname.split("/")[3],
+                        productid:window.location.search.substring(1),
                     })
                     .then((result) => {
                         if (result.data.status === "done") {
@@ -168,10 +168,12 @@ export default {
                 })
                 .then((res) => {
                     this.rate = false;
+
                     // this.rating = result.data.rate
                 });
         },
-        clickToVisit(id) {
+        clickToVisit(id,id2) {
+            localStorage.setItem("productid",id2);
             this.$router.push({
                 path:
                     "/visit/coffee/" +

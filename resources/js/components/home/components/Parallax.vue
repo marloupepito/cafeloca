@@ -1,6 +1,6 @@
 <template>
     <div
-    style="height:100vh; background-size: cover; background-image: url('/images/back.jpg');background-position: center;"
+    style="height:100vh; background-size: cover; background-image: url('/images/home.jpg');background-position: buttom;"
      
     >
       <v-row
@@ -12,7 +12,7 @@
           cols="12"
         >
           <h1 
-        style="padding-top:100px" class="text-h4 text-white  mb-4">
+        style="padding-top:100px" class="text-h4 text-black  mb-4">
             <b>Cafe Location App</b>
           </h1>
           <h4 class="subheading" 
@@ -20,11 +20,11 @@
             <v-btn
           class="  mb-3 text-white font-weight-"
           @click="searchMap"
-          color="white"
+          color="black"
           large
           outlined
         >
-          Start Visit
+         <b> Start Visit</b>
         </v-btn>
           </h4>
         </v-col>

@@ -84,6 +84,7 @@ Route::post('/get_coffee_cover2','CoverPhotoController@get_coffee_cover2');
 
 Route::post('/get_star_rating','StarRateController@get_star_rating');
 Route::post('/submit_post_rating','StarRateController@submit_post_rating');
+Route::post('/get_branch_rating','StarRateController@get_branch_rating');
 
 
 

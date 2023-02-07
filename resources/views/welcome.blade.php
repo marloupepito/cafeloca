@@ -12,15 +12,16 @@
         
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
         
-        <link href="assets/css/e-commerce/vendor.min.css" rel="stylesheet" />
-        <link href="assets/css/e-commerce/app.min.css" rel="stylesheet" />
-        <style>
+       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+   
+
+       <style>
             body {
                 font-family: 'Nunito', sans-serif;
 
             }
             .v-application.v-application--is-ltr.theme--light{
-                background-image:url(/images/home.jpg) !important;
+                background-image:url(/images/back.jpg) !important;
                  background-position: buttom;
                   background-repeat: no-repeat;
                   background-size: cover;
