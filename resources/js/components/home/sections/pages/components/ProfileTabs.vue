@@ -67,6 +67,7 @@ export default {
         cafeName:'',
         searchId:'',
         productid:'',
+        branchid:'',
         rate:''
       }
     },
@@ -76,6 +77,7 @@ export default {
        this.cafeName = window.location.pathname.split('/')[3]
        this.searchId =window.location.search.substring(3);
        this.productid = localStorage.getItem("productid");
+       this.branchid = localStorage.getItem("branchid");
        axios.post('/get_branch_rating',{
         branchid:this.searchId
         })
@@ -85,7 +87,7 @@ export default {
        },
     methods:{
       backTO(){
-        this.$router.push({path:'/visit/timeline/'+this.productid})
+        this.$router.push({path:'/visit/timeline/'+this.branchid+'?'+this.productid})
         },
        map(){
           this.$router.push({path:'/visit/coffee/'+this.cafeName, query:this.searchId })

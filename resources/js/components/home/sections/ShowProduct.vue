@@ -173,6 +173,7 @@ export default {
                 });
         },
         clickToVisit(id,id2) {
+            localStorage.setItem("branchid",id);
             localStorage.setItem("productid",id2);
             this.$router.push({
                 path:
