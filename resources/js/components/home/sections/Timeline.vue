@@ -96,7 +96,7 @@ export default {
                 })
                 .then((res) => {
                     this.loading = false;
-                    this.dataPost = res.data.status;
+                    this.dataPost = Object.values(res.data.status);
                 });
         },
     },
@@ -106,7 +106,7 @@ export default {
                 limit: 5,
             })
             .then((res) => {
-                this.dataPost = res.data.status;
+                this.dataPost = Object.values(res.data.status);
             })
             .catch((err) => {});
     },
