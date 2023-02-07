@@ -77,7 +77,7 @@ class ProductController extends Controller
         ]);
 
              $product = Product::limit($request->limit)
-             ->orderByDesc('rate')
+             ->orderBy('rate', 'asc')
              ->get()
              ->unique('branchid');
                 return response()->json([
