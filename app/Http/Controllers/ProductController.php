@@ -113,15 +113,25 @@ class ProductController extends Controller
             ]); 
 
         }
+           public function get_search_menu2(Request $request){
+             $product= Product::where([['menu','=',$request->menu],['branchname','=',$request->branchname]])->get();
+                return response()->json([
+                'status1' =>$product,
+                 ]); 
+           }
          public function get_search_menu(Request $request){
 
-             $request->validate([
-                'menu'=>['required'],
-            ]);
-             $product1= Product::where('menu', 'LIKE', '%' . $request->menu . '%')->get();
+            //  $request->validate([
+            //     'menu'=>['required'],
+            // ]);
+              $product1= Product::all();
                 return response()->json([
                 'status1' =>$product1,
                  ]); 
+             // $product1= Product::where('menu', 'LIKE', '%' . $request->menu . '%')->get();
+             //    return response()->json([
+             //    'status1' =>$product1,
+             //     ]); 
             
              // if(count($request->menu) === 1){
              //    $product1= Product::where('menu', 'LIKE', '%' . $request->menu[0] . '%')->get();

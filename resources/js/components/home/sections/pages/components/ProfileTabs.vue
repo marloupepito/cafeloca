@@ -9,8 +9,9 @@
         <v-rating
         color="yellow darken-3"
           half-increments
-          hover
+          :clearable="true"
           length="5"
+           readonly
           size="20"
           :value="rate"
         ></v-rating>
@@ -22,12 +23,15 @@
     centered
       background-color="brown"
       dark
+      align-with-title
+      v-model="tabs"
       next-icon="mdi-arrow-right-bold-box-outline"
       prev-icon="mdi-arrow-left-bold-box-outline"
       show-arrows
     >
-      <v-tabs-slider color="yellow"></v-tabs-slider>
+      <v-tabs-slider color="brown"></v-tabs-slider>
        <v-tab
+
       @click="map"
       >
       Map
@@ -39,6 +43,7 @@
       </v-tab>
       
       <v-tab
+
       @click="bread"
       >
       Bread
@@ -70,7 +75,8 @@ export default {
         searchId:'',
         productid:'',
         branchid:'',
-        rate:''
+        rate:'',
+        tabs:''
       }
     },
     components:{
@@ -85,6 +91,7 @@ export default {
         })
         .then(res=>{
           this.rate = res.data.status
+          this.tabs=window.location.pathname.split('/')[4]
           })
        },
     methods:{

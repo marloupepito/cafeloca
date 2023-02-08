@@ -76,6 +76,7 @@ Route::post('/get_all_post','ProductController@get_all_post');
 Route::post('/get_every_product_post','ProductController@get_every_product_post');
 Route::post('/get_menu','ProductController@get_menu');
 Route::post('/get_search_menu','ProductController@get_search_menu');
+Route::post('/get_search_menu2','ProductController@get_search_menu2');
 
 
 Route::post('/add_cover_photo','CoverPhotoController@add_cover_photo');

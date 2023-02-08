@@ -28,10 +28,10 @@
         <v-list-item-content>
           <v-list-item-title>{{userData.store_name}}</v-list-item-title>
           <div class="row">
-            <div class="col-md-8 col-8">
+            <div class="col-md-8 col-8 pb-0">
                 <v-list-item-subtitle>{{userData.store_location}}</v-list-item-subtitle>
             </div>
-            <div class="col-md-4 col-4" style="padding-left:0px;padding-right:0px">
+            <div class="col-md-4 col-4 pb-0" style="padding-left:0px;padding-right:0px">
                <v-list-item-subtitle>
                  <v-icon
                 >
@@ -40,7 +40,7 @@
                </v-list-item-subtitle>
             </div>
           </div>
-        
+           <v-list-item-subtitle>{{userData.landmark}}</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
     </v-list>

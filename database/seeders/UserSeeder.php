@@ -57,6 +57,7 @@ class UserSeeder extends Seeder
                 'lng' => $lng[$i],
                 'usertype' => 'cafe',
                 'status' => 'Approved',
+                'landmark' => 'Atbang sa greenville balas samay dalan dapit',
                 'year' => date('Y')
             ]);
         }

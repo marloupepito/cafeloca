@@ -1,34 +1,68 @@
 <template lang="">
   
     <div>
-      <div class="row m-2 mt-5">
-        <div class="col-10 p-0">
+      <br />
+          <v-container fluid>
+      <div class="row">
+        <div class="col-12">
           <v-autocomplete
-               :items="items2"
-                small-chips
-                label="Search Menu"
-                color="brown"
-                outlined
-                dense
-                class="p-1"
-                v-model="values"
-              ></v-autocomplete>
-        </div>
-        <div class="col-2 p-0">
-             <v-btn
-             depressed
-             medium
-              color="brown"
-              style="height:60%"
-              class=" m-0 text-white"
-              @click="submitSearch"
-            >
-              <center><v-icon>fas fa-search</v-icon></center>
-            </v-btn>
-        </div>
+      v-model="model"
+      :items="items"
+      :loading="isLoading"
+      :search-input.sync="search"
+      chips
+      clearable
+      hide-details
+      hide-selected
+      item-text="menu"
+      item-value="branchname"
+      label="Search for a coin..."
+      solo
+    >
+      <template v-slot:no-data>
+        <v-list-item>
+          <v-list-item-title>
+            Search for your favorite
+            <strong>Cryptocurrency</strong>
+          </v-list-item-title>
+        </v-list-item>
+      </template>
+      <template v-slot:selection="{ attr, on, item, selected }">
+        <v-chip
+          v-bind="attr"
+          :input-value="selected"
+          color="blue-grey"
+          class="white--text"
+          v-on="on"
+        >
+          <v-icon left>
+           mdi-store-search-outline
+          </v-icon>
+          <span v-text="item.branchname+' - '+ item.menu"></span>
+        </v-chip>
+      </template>
+      <template v-slot:item="{ item }">
+        <v-list-item-avatar
+          color="indigo"
+          class="text-h5 font-weight-light white--text"
+         
+        >
+          {{ item.branchname.charAt(0) }}
+        </v-list-item-avatar>
+        <v-list-item-content  @click="valueProduct(item.branchname,item.menu)" >
+          <v-list-item-title v-text="item.branchname"></v-list-item-title>
+          <v-list-item-subtitle  v-text="item.menu"></v-list-item-subtitle>
+        </v-list-item-content>
+        <v-list-item-action>
+          <v-icon>mdi-store-search-outline</v-icon>
+        </v-list-item-action>
+      </template>
+    </v-autocomplete>
+ </div>
+       
       </div>
             </v-col>
-    
+    </v-container>
     <v-container fluid>
       <div class="row">
             <div
@@ -36,7 +70,7 @@
               v-for="card in cards"
               :key="card.id"
             >
-            <a @click="clickToVisit(card.branchid,card.branchname)">
+            <a @click="clickToVisit(card.branchid,card.branchname,card.menu)">
               <v-card>
                 <v-img
                   :src="'/images/post/'+card.images"
@@ -83,24 +117,53 @@
             star:5,
             cards: [],
             limit:5,
-            loading:false
+            loading:false,
+             isLoading: false,
+            items: [],
+            model: null,
+            search: null,
+            tab: null,
             }
         },
-        methods:{
-          submitSearch(){
-            axios.post('/get_search_menu',{
+
+        watch: {
+      model (val) {
+        if (val != null) this.tab = 0
+        else this.tab = null
+      },
+      search (val) {
+        // Items have already been loaded
+        if (this.items.length > 0) return
+
+        this.isLoading = true
+
+             axios.post('/get_search_menu',{
               menu:this.values
               })
             .then(res=>{
-             this.cards = res.data.status1
-           //  console.log(res.data.status2)
-           //  console.log(res.data.status3)
-           //  console.log(res.data.status4)
-            
+                this.items  = res.data.status1
+              this.isLoading = false
               })
+              .catch(err=>{
+                this.isLoading = false
+                })
           },
-           clickToVisit(id,branchname){
-            this.$router.push({path:'/visit/coffee/'+branchname.replace(/ /g,'-')+'?0='+id})
+        },
+        methods:{
+          valueProduct(branchname, menu){
+            console.log(branchname+menu)
+            axios.post('/get_search_menu2',{
+              branchname:branchname,
+              menu:menu
+              })
+            .then(res=>{
+              this.cards = res.data.status1
+              console.log(res.data.status1)
+              })
+            },
+         
+           clickToVisit(id,branchname,menu){
+            this.$router.push({path:'/visit/coffee/'+branchname.replace(/ /g,'-')+'/'+menu+'?0='+id})
             },
             seeMore(e){
               this.loading=true
