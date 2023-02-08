@@ -114,6 +114,7 @@ export default {
                     rate: rating,
                     userid: this.userid,
                     postid: productid,
+                    ip:localStorage.getItem("ip")
                 })
                 .then((res) => {
                     this.rate = false;

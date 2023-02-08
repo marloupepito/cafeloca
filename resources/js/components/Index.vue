@@ -19,11 +19,15 @@ export default {
             localStorage.setItem("user_id", res.data.id);
             this.load=true
             this.usertype = localStorage.getItem("usertype");
-            console.log(this.usertype)
+          
         })
         .catch(err=>{
             this.auth = false
         })
+
+        if(localStorage.getItem("ip") === null){
+          localStorage.setItem("ip",Math.random());
+        }
     },
     data() {
         return {

@@ -1,6 +1,6 @@
 <
 <template>
-    <v-card height="100vh">
+    <v-card height="120vh">
         <v-dialog v-model="rate" width="500" persistent>
             <v-card>
                 <v-card-title class="text-h5 grey lighten-2">
@@ -131,6 +131,9 @@ export default {
         postid: "",
     }),
     mounted() {
+
+
+
         axios
             .post("/get_every_product_post", {
                 branchid: window.location.pathname.split("/")[3],
@@ -145,6 +148,7 @@ export default {
                     .post("/get_star_rating", {
                         branchid: window.location.pathname.split("/")[3],
                         productid:window.location.search.substring(1),
+                        ip:localStorage.getItem("ip")
                     })
                     .then((result) => {
                         if (result.data.status === "done") {
@@ -165,6 +169,7 @@ export default {
                     rate: rating,
                     userid: this.userid,
                     postid: this.postid,
+                    ip:localStorage.getItem("ip")
                 })
                 .then((res) => {
                     this.rate = false;

@@ -19,9 +19,9 @@ class StarRateController extends Controller
             'branchid'=>['required'],
             'productid'=>['required'],
         ]);
-        $macAddr = substr(exec('getmac'),0,17);
+     //   $request->ip = substr(exec('getmac'),0,17);
 
-        $rate = StarRate::where([['postid','=',$request->productid],['userid','=',$request->branchid],['mac_address','=',$macAddr],['who','=','post']])->get();
+        $rate = StarRate::where([['postid','=',$request->productid],['userid','=',$request->branchid],['mac_address','=',$request->ip],['who','=','post']])->get();
              
             $sumRow = StarRate::where([['postid','=',$request->productid],['userid','=',$request->branchid],['who','=','post']])->get()->sum('rate');
 
@@ -48,9 +48,9 @@ class StarRateController extends Controller
             'rate'=>['required'],
             'postid'=>['required'],
         ]);
-        $macAddr = substr(exec('getmac'),0,17);
+       // $request->ip = substr(exec('getmac'),0,17);
 
-        $verify = StarRate::where([['postid','=',$request->postid],['userid','=',$request->userid],['mac_address','=',$macAddr]])->get();
+        $verify = StarRate::where([['postid','=',$request->postid],['userid','=',$request->userid],['mac_address','=',$request->ip]])->get();
 
 
               if(count($verify) === 0){
@@ -58,12 +58,12 @@ class StarRateController extends Controller
                     $rate->userid = $request->userid;
                     $rate->postid = $request->postid;
                     $rate->rate = $request->rate;
-                    $rate->mac_address = $macAddr;
+                    $rate->mac_address = $request->ip;
                     $rate->who = 'post';
                     $rate->save();
 
 
-                   $aaa = StarRate::where([['postid','=',$request->postid],['userid','=',$request->userid],['mac_address','=',$macAddr],['who','=','post']])->get();
+                   $aaa = StarRate::where([['postid','=',$request->postid],['userid','=',$request->userid],['mac_address','=',$request->ip],['who','=','post']])->get();
 
                     $sumRow = StarRate::where([['postid','=',$request->postid],['userid','=',$request->userid],['who','=','post']])->get()->sum('rate');
 
@@ -79,11 +79,11 @@ class StarRateController extends Controller
                         ]);
               }else{
 
-                    StarRate::where([['postid','=',$request->postid],['userid','=',$request->userid],['mac_address','=',$macAddr],['who','=','post']])
+                    StarRate::where([['postid','=',$request->postid],['userid','=',$request->userid],['mac_address','=',$request->ip],['who','=','post']])
                      ->update(['rate' => $request->rate]);
 
 
-                      $aaa = StarRate::where([['postid','=',$request->postid],['userid','=',$request->userid],['mac_address','=',$macAddr],['who','=','post']])->get();
+                      $aaa = StarRate::where([['postid','=',$request->postid],['userid','=',$request->userid],['mac_address','=',$request->ip],['who','=','post']])->get();
 
                     $sumRow = StarRate::where([['postid','=',$request->postid],['userid','=',$request->userid],['who','=','post']])->get()->sum('rate');
 

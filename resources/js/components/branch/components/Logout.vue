@@ -11,7 +11,7 @@
   	axios.post('/logout')
 					.then(res=>{
 						window.location='/visit/auth'
-						sessionStorage.clear()
+					//	sessionStorage.clear()
 					})
 		  }
   	}
