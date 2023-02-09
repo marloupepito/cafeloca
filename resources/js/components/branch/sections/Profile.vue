@@ -132,10 +132,11 @@
                 <v-col cols="12" class="text-center">
                   <v-list-item-content class="sutitles" style="padding-top:0px">
                      <v-rating
-                      v-model="rating"
+                      v-model="shopRate"
                       background-color="orange lighten-3"
                       color="orange"
                       large
+                      readonly
                     ></v-rating>
                   </v-list-item-content>
                 </v-col>
@@ -199,8 +200,17 @@
   <script>
     export default {
       mounted(){
+
+      
           axios.get('/user')
           .then(res=>{
+               axios.post('/get_branch_rating',{
+                branchid:res.data.id
+                })
+                .then(res=>{
+                  this.shopRate = res.data.status
+                  })
+               
             this.userData =res.data
             this.Bio =this.userData.about
             this.branchName =this.userData.store_name      
@@ -217,6 +227,7 @@
         },
       data () {
         return {
+          shopRate:0,
            colors: [
             'green',
             'secondary',
@@ -228,7 +239,7 @@
           loading:false,
           loading2:false,
           Profile:'',
-          rating:3,
+          rating:'',
           userData:[],
           bottom:'',
           fab:'',
