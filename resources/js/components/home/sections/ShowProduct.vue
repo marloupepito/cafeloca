@@ -144,18 +144,7 @@ export default {
                 this.postData = res.data.status;
                 this.imagesData = res.data.images;
                 this.postid = res.data.status.id;
-                axios
-                    .post("/get_star_rating", {
-                        branchid: window.location.pathname.split("/")[3],
-                        productid:window.location.search.substring(1),
-                        ip:localStorage.getItem("ip")
-                    })
-                    .then((result) => {
-                        if (result.data.status === "done") {
-                            this.rate = false;
-                            this.rating = result.data.rate;
-                        }
-                    });
+                this.rating =res.data.status.rate
             });
     },
     methods: {

@@ -47,7 +47,7 @@
                                             rounded
                                             small
                                             block
-                                            style="color: brown !important"
+                                            color="brown"
                                             @click="
                                                 clickToVisit(
                                                     item.branchid,
@@ -77,7 +77,7 @@
 export default {
     data() {
         return {
-            rating: 4.5,
+            rating: 0,
             dataPost: [],
             limit: 5,
             loading: false,
