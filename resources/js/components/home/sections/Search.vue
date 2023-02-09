@@ -16,14 +16,16 @@
       hide-selected
       item-text="menu"
       item-value="branchname"
-      label="Search for a coin..."
+      label="Search for a menu..."
       solo
+      spellcheck="false" 
+      :filter="customFilter"
     >
       <template v-slot:no-data>
         <v-list-item>
           <v-list-item-title>
             Search for your favorite
-            <strong>Cryptocurrency</strong>
+            <strong>menu</strong>
           </v-list-item-title>
         </v-list-item>
       </template>
@@ -51,7 +53,7 @@
         </v-list-item-avatar>
         <v-list-item-content  @click="valueProduct(item.branchname,item.menu)" >
           <v-list-item-title v-text="item.branchname"></v-list-item-title>
-          <v-list-item-subtitle  v-text="item.menu"></v-list-item-subtitle>
+          <v-list-item-subtitle >{{item.menu}} - {{item.productname}}</v-list-item-subtitle>
         </v-list-item-content>
         <v-list-item-action>
           <v-icon>mdi-store-search-outline</v-icon>
@@ -150,6 +152,14 @@
           },
         },
         methods:{
+            customFilter (item, queryText, itemText) {
+             const textOne = item.menu.toLowerCase()
+             const textTwo = item.branchname.toLowerCase()
+             const textThree = item.productname.toLowerCase()
+              const searchText = queryText.toLowerCase()
+              console.log(item.productname)
+              return textOne.indexOf(searchText) > -1  || textTwo.indexOf(searchText) > -1 || textThree.indexOf(searchText) > -1
+          },
           valueProduct(branchname, menu){
             console.log(branchname+menu)
             axios.post('/get_search_menu2',{
