@@ -1,4 +1,3 @@
-<
 <template>
     <v-card height="120vh">
         <v-dialog v-model="rate" width="500" persistent>
@@ -86,7 +85,7 @@
                         size="14"
                     ></v-rating>
                 </a>
-                <div class="grey--text ms-4">{{ rating }} Star</div>
+                <div class="grey--text ms-4">{{ rating }} Stars</div>
             </v-row>
 
             <div class="my-4 text-subtitle-1">

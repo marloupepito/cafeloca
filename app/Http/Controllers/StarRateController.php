@@ -63,9 +63,9 @@ class StarRateController extends Controller
                     $rate->save();
 
 
-                   $aaa = StarRate::where([['postid','=',$request->postid],['userid','=',$request->userid],['mac_address','=',$request->ip],['who','=','post']])->get();
+                   $aaa = StarRate::where('postid','=',$request->postid)->get();
 
-                    $sumRow = StarRate::where([['postid','=',$request->postid],['userid','=',$request->userid],['who','=','post']])->get()->sum('rate');
+                    $sumRow = StarRate::where('postid','=',$request->postid)->get()->sum('rate');
 
                         $countRow = count($aaa); 
 
@@ -83,9 +83,10 @@ class StarRateController extends Controller
                      ->update(['rate' => $request->rate]);
 
 
-                      $aaa = StarRate::where([['postid','=',$request->postid],['userid','=',$request->userid],['mac_address','=',$request->ip],['who','=','post']])->get();
+                     $aaa = StarRate::where('postid','=',$request->postid)->get();
 
-                    $sumRow = StarRate::where([['postid','=',$request->postid],['userid','=',$request->userid],['who','=','post']])->get()->sum('rate');
+                    $sumRow = StarRate::where('postid','=',$request->postid)->get()->sum('rate');
+
 
                         $countRow = count($aaa); 
                          Product::where('id', $request->postid)

@@ -43,6 +43,7 @@
                           size="20"
                         ></v-rating>
             </a>
+            <div class="grey--text ms-4">{{ item.rate }} Stars</div>
                         <v-dialog v-model="rate" width="500" persistent>
             <v-card>
                 <v-card-title class="text-h5 grey lighten-2">

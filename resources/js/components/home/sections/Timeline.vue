@@ -40,6 +40,7 @@
                                             medium
                                             readonly
                                         ></v-rating>
+                                          <div class="grey--text ms-4">{{ item.rate === null?0:item.rate }} Stars</div>
                                     </center>
                     <v-card-actions>
                           <v-btn

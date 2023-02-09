@@ -15,7 +15,9 @@
           size="20"
           :value="rate"
         ></v-rating>
+         <div class="grey--text ms-4">{{ rate }} Stars</div>
         </center>
+
       </div>
    </div>
 
