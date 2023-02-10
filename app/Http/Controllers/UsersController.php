@@ -60,7 +60,7 @@ class UsersController extends Controller
     public function get_all_users(Request $request){
       
         if($request->session()->get('id') !== null){
-            $users = User::where([['status', '=' ,$request->status],['usertype', '=' ,'cafe'],['id','<>',$request->session()->get('id')]])
+            $users = User::where([['status', '=' ,ucfirst($request->status)],['usertype', '=' ,'cafe'],['id','<>',$request->session()->get('id')]])
             ->orderByDesc('id')
             ->get();
             return response()->json([
@@ -247,10 +247,12 @@ class UsersController extends Controller
         $count1= User::where('status', 'Approved')->get();
         $count2= User::where('status', 'Pending')->get();
         $count3= User::where('status', 'Block')->get();
+        $count4= User::where('status', 'Unapproved')->get();
              return response()->json([
             'status1' => count($count1),
             'status2' => count($count2),
             'status3' => count($count3),
+            'status4' => count($count4),
              ]);
      }
 

@@ -101,7 +101,7 @@
             items: [
               {title:'Approved', icon: 'mdi-account-check-outline',path:'/administrator/approved'},
               {title:'Pending', icon: 'mdi-account-clock-outline',path:'/administrator/pending'},
-              {title:'Not Approved', icon: 'mdi-account-alert-outline',path:'/administrator/unapproved'},
+              {title:'Unapproved', icon: 'mdi-account-alert-outline',path:'/administrator/unapproved'},
               {title:'Block', icon: 'mdi-account-cancel-outline',path:'/administrator/block'},
             ],
          
