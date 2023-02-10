@@ -29,6 +29,7 @@ class ProductController extends Controller
                 'images' => $imageName,
                 'about' => $request->about,
                 'menu' => $request->menu,
+                'rate' => $request->rate,
             ]);
           
             $first = Product::orderByDesc('id')

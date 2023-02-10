@@ -104,6 +104,7 @@ class UserSeeder extends Seeder
                 'images' => $randomImage,
                 'about' => $randomAbout,
                 'menu' => $randomMenu,
+                'rate' => 0,
             ]);
 
             DB::table('product_image')->insert([

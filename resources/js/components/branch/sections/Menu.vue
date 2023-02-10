@@ -161,6 +161,7 @@ import axios from 'axios'
         fd.append("storeName",localStorage.getItem("storeName"))
         fd.append("count",this.image.length)
         fd.append("menu",this.menu)
+        fd.append("rate",0)
         for(var i=0; i < this.image.length; i++){
     			fd.append("images"+i,this.image[i])
     		}
