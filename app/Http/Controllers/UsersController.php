@@ -60,7 +60,7 @@ class UsersController extends Controller
     public function get_all_users(Request $request){
       
         if($request->session()->get('id') !== null){
-            $users = User::where([['status', '=' ,ucfirst($request->status)],['usertype', '=' ,'cafe'],['id','<>',$request->session()->get('id')]])
+            $users = User::where([['status', '=' ,$request->status],['usertype', '=' ,'cafe'],['id','<>',$request->session()->get('id')]])
             ->orderByDesc('id')
             ->get();
             return response()->json([

@@ -54,7 +54,7 @@
         },
       mounted(e){
         axios.post('/get_all_users',{
-          status:this.$route.path.split('/')[2]
+          status:'Pending'
           })
         .then(res=>{
           this.rows = res.data.status
