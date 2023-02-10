@@ -48,6 +48,10 @@ import Show from './../home/sections/pages/Show.vue'
  import Administrator from './../administrator/Page.vue'
  import Dashboard from './../administrator/sections/Dashboard.vue'
  import Accounts from './../administrator/sections/Accounts.vue'
+ import Approved from './../administrator/sections/Approved.vue'
+ import Blocked from './../administrator/sections/Blocked.vue'
+ import NotApproved from './../administrator/sections/NotApproved.vue'
+ import Pending from './../administrator/sections/Pending.vue'
  import Cafeshop from './../administrator/sections/Cafeshop.vue'
 
 
@@ -82,7 +86,10 @@ const routes = [
   { path: '/administrator', component: Administrator,
     children:[
      { path: '/administrator/dashboard', component: Dashboard },
-     { path: '/administrator/accounts', component: Accounts },
+     { path: '/administrator/approved', component: Approved },
+     { path: '/administrator/pending', component: Pending },
+     { path: '/administrator/unapproved', component: NotApproved },
+     { path: '/administrator/block', component: Blocked },
      { path: '/administrator/accounts/:id', component: Cafeshop },
      { path: '/administrator/logout', component: Logout },
     ]

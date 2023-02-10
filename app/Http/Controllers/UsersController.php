@@ -60,7 +60,7 @@ class UsersController extends Controller
     public function get_all_users(Request $request){
       
         if($request->session()->get('id') !== null){
-            $users = User::where([['usertype', '=' ,'cafe'],['id','<>',$request->session()->get('id')]])
+            $users = User::where([['status', '=' ,$request->status],['usertype', '=' ,'cafe'],['id','<>',$request->session()->get('id')]])
             ->orderByDesc('id')
             ->get();
             return response()->json([
@@ -173,6 +173,12 @@ class UsersController extends Controller
              return response()->json([
                 'status' => 'success'
             ]);
+          }else if($request->status === 'Unapproved'){
+                User::where('id', $request->id)
+                ->update(['status' => $request->status]);
+                 return response()->json([
+                    'status' => 'success'
+                ]);
           }
          
         

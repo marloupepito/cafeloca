@@ -8,6 +8,7 @@ use App\http\Controllers\StarRateController;
 use Illuminate\Http\Request;
 use App\Mail\Registration;
 use App\Mail\ForgetPassword;
+use App\Mail\NotApproved;
 use Illuminate\Support\Facades\Mail;
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +54,10 @@ Route::post('/sendotp2', function (Request $request) {
     return view('email.ForgetPassword');
 });
 
+Route::post('/notapproved', function (Request $request) {
+    Mail::to($request->email)->send(new NotApproved());
+    return view('email.NotApproved');
+});
 
 Route::post('/user_login','UsersController@user_login');
 Route::post('/get_all_users','UsersController@get_all_users');

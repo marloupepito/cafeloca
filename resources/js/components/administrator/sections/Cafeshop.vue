@@ -26,7 +26,8 @@
                 <v-list-item color="#0000" class="profile-text-name ma-4 pt-16">
                   <v-list-item-content>
                     <v-list-item-title class="text-h6">
-                     {{userData.store_name}}
+                     {{userData.store_name}} -  {{userData.status}}
+
                     </v-list-item-title>
                     <v-list-item-subtitle>{{userData.store_location}}</v-list-item-subtitle>
                   </v-list-item-content>
@@ -48,6 +49,7 @@
           color="brown"
           dark
           fab
+          :loading="loading"
         >
           <v-icon v-if="fab">
             mdi-close
@@ -85,16 +87,28 @@
         <v-icon>mdi-camera</v-icon>
       </v-btn> -->
 
+     
       <v-btn
         fab
         dark
         small
         color="success"
         @click="onApproved" 
-        v-if="userData.status === 'Pending' || userData.status === 'Block'"
+        v-if="userData.status === 'Unapproved' || userData.status === 'Pending' || userData.status === 'Block'"
       >
         <v-icon>mdi-account-check</v-icon>
       </v-btn>
+ <v-btn
+        fab
+        dark
+        small
+        color="warning"
+        @click="unApproved" 
+        v-if="userData.status === 'Pending' || userData.status === 'Block'"
+      >
+        <v-icon>mdi-account-cancel</v-icon>
+      </v-btn>
+
 
        <v-btn
         fab
@@ -256,6 +270,7 @@ export default {
 		},
 data () {
       return {
+        loading:false,
          documents: [],
       		id:'',
       	  itemss: [],
@@ -298,13 +313,50 @@ data () {
                 this.userData =res.data.status
               })
         },
+
+        unApproved(){
+          this.loading = true
+            const id =this.id
+              axios.post('/approve_user',{
+                id:id,
+                status:'Unapproved'
+                })
+
+                axios.post('/notapproved',{
+                  email:this.userData.email
+                  })
+                .then(res=>{
+                  this.$swal({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Unapproved',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+                   this.loading = false
+                  })
+                axios.post('/get_user_id',{
+                    id:id
+                    })
+                  .then(res=>{
+                    this.userData =res.data.status
+                  })
+          },
   	onApproved(){
   				const id =this.id
   				axios.post('/approve_user',{
   					id:id,
   					status:'Approved'
   					})
-
+            .then(res=>{
+               this.$swal({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Approved',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+              })
             axios.post('/get_user_id',{
                 id:id
                 })

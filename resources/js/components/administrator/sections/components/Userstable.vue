@@ -53,7 +53,9 @@
           }
         },
       mounted(e){
-        axios.post('/get_all_users')
+        axios.post('/get_all_users',{
+          status:this.$route.path.split('/')[2]
+          })
         .then(res=>{
           this.rows = res.data.status
           })

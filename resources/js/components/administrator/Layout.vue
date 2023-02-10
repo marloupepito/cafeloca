@@ -26,26 +26,50 @@
     
           <v-divider></v-divider>
     
-          <v-list dense>
-            <v-list-item-group
-            color="primary"
-          >
-            <v-list-item
-              v-for="item in items"
-              :key="item.title"
-              :to='item.path'
-              link
-            >
-              <v-list-item-icon>
-                <v-icon>{{ item.icon }}</v-icon>
-              </v-list-item-icon>
-    
-              <v-list-item-content>
-                <v-list-item-title>{{ item.title }}</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list-item-group>
-          </v-list>
+         <v-list dense>
+      <v-list-item to="/administrator/dashboard">
+        <v-list-item-icon>
+          <v-icon>mdi-monitor-dashboard</v-icon>
+        </v-list-item-icon>
+
+        <v-list-item-title>Home</v-list-item-title>
+      </v-list-item>
+
+      <v-list-group
+        :value="true"
+
+        prepend-icon="mdi-account-group-outline"
+      >
+        <template v-slot:activator>
+          <v-list-item-title>Accounts</v-list-item-title>
+        </template>
+
+        <v-list-item
+          v-for="(item, i) in items"
+          :key="i"
+          :to="item.path"
+          style="margin-left:10px"
+        >
+          <v-list-item-icon>
+            <v-icon v-text="item.icon"></v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title v-text="item.title"></v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+      </v-list-group>
+
+
+       <v-list-item to="/administrator/logout">
+        <v-list-item-icon>
+          <v-icon>mdi-logout</v-icon>
+        </v-list-item-icon>
+
+        <v-list-item-title>Logout</v-list-item-title>
+      </v-list-item>
+
+    </v-list>
         </v-navigation-drawer>
     
      
@@ -75,10 +99,12 @@
             usertype:'',
             drawer: true,
             items: [
-              { title: 'Dashboard', icon: 'mdi-monitor-dashboard', path:'/administrator/dashboard' },
-              { title: 'Accounts', icon: 'mdi-account-group-outline', path:'/administrator/accounts' },
-              { title: 'Logout', icon: 'mdi-logout', path:'/administrator/logout' },
+              {title:'Approved', icon: 'mdi-account-check-outline',path:'/administrator/approved'},
+              {title:'Pending', icon: 'mdi-account-clock-outline',path:'/administrator/pending'},
+              {title:'Not Approved', icon: 'mdi-account-alert-outline',path:'/administrator/unapproved'},
+              {title:'Block', icon: 'mdi-account-cancel-outline',path:'/administrator/block'},
             ],
+         
             mini: false,
             name:''
           }

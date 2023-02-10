@@ -12,11 +12,16 @@ import * as VueGoogleMaps from "vue2-google-maps";
 import VueInsProgressBar from 'vue-ins-progress-bar'
 
 import bottomNavigationVue from "bottom-navigation-vue";
-import Vue from 'vue'
 
+
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
+
+
+import Vue from 'vue'
 Vue.use(Vuetify);
 Vue.use(bottomNavigationVue);
-
+Vue.use(VueSweetalert2)
 Vue.use(VueInsProgressBar, {
   position: 'fixed',
   show: true,
