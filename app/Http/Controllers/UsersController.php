@@ -201,6 +201,7 @@ class UsersController extends Controller
             'Phone' => $request->Phone,
             'Mobile' => $request->Mobile,
             'about' => $request->Bio,
+            'landmark' => $request->Landmark,
           ]);
          $user= User::findOrFail($id);
           

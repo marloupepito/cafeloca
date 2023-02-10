@@ -156,12 +156,18 @@
                   <p v-if="!editBio" class="pl-6 pr-6 pt-0">
                     {{ Bio }}
                   </p>
+                  <p v-if="!editBio" class="pl-6 pr-6 pt-0">
+                    {{ Landmark }}
+                  </p>
             <v-spacer></v-spacer>
                   <v-text-field class="pa-6" style="padding-top:0px !important;padding-bottom: 0px !important;" v-model="Email" prepend-icon="mdi-email" label="Email" :disabled="true"></v-text-field>
   
                  
   
                   <v-textarea v-model="Bio" rows="2" v-if="editBio" label="Bio" class="pa-6" style="padding-top:0px !important;padding-bottom: 0px !important;" :disabled="!editBio"></v-textarea>
+                  <v-spacer></v-spacer>
+
+                    <v-textarea v-model="Landmark" rows="2" v-if="editBio" label="Landmark" class="pa-6" style="padding-top:0px !important;padding-bottom: 0px !important;" :disabled="!editBio"></v-textarea>
                   <v-spacer></v-spacer>
   
                 <v-text-field class="pa-6" style="padding-top:0px !important;padding-bottom: 0px !important;" v-model="branchName" prepend-icon="mdi-storefront" label="Coffee Shop" :disabled="!editBio"></v-text-field>
@@ -218,6 +224,8 @@
             this.Phone =this.userData.phone
             this.Email =this.userData.email  
             this.Profile =this.userData.profile
+            this.Landmark =this.userData.landmark
+
             })
   
             axios.post('/get_coffee_cover')
@@ -247,6 +255,8 @@
            Phone: '',
            Mobile: '',
            Email: '',
+           Landmark:'',
+           editLandmark:false,
         editBio: false,
         Bio: '',
         bioIcon: "mdi-pencil",
@@ -330,6 +340,7 @@
              Phone: this.Phone,
              Mobile: this.Mobile,
              Bio: this.Bio,
+             Landmark: this.Landmark,
             })
           .then(res=>{
             this.bioIcon = 'mdi-pencil'
