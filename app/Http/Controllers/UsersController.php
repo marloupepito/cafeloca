@@ -63,8 +63,11 @@ class UsersController extends Controller
             $users = User::where([['status', '=' ,$request->status],['usertype', '=' ,'cafe'],['id','<>',$request->session()->get('id')]])
             ->orderByDesc('id')
             ->get();
+
+            $all = User::all();
             return response()->json([
                 'status' => $users,
+                'all' => $all,
                 'id' => $request->session()->get('id')
             ]);
         }else{
@@ -248,6 +251,7 @@ class UsersController extends Controller
         $count2= User::where('status', 'Pending')->get();
         $count3= User::where('status', 'Block')->get();
         $count4= User::where('status', 'Unapproved')->get();
+         $count5= User::all();
              return response()->json([
             'status1' => count($count1),
             'status2' => count($count2),
