@@ -96,22 +96,22 @@ class UserSeeder extends Seeder
              $randomImage = $image[array_rand($image)];
              $randomAbout = $about[array_rand($about)];
 
-            DB::table('products')->insert([
-                'branchid' => $i+2,
-                'price' => 10,
-                'branchname' => $cafe[$i],
-                'productname' => $randomcofeList,
-                'images' => $randomImage,
-                'about' => $randomAbout,
-                'menu' => $randomMenu,
-                'rate' => 0,
-            ]);
+            // DB::table('products')->insert([
+            //     'branchid' => $i+2,
+            //     'price' => 10,
+            //     'branchname' => $cafe[$i],
+            //     'productname' => $randomcofeList,
+            //     'images' => $randomImage,
+            //     'about' => $randomAbout,
+            //     'menu' => $randomMenu,
+            //     'rate' => 0,
+            // ]);
 
-            DB::table('product_image')->insert([
-                'foreign' => $i+1,
-                'branchid' => $i+2,
-                'images' => $randomImage,
-            ]);
+            // DB::table('product_image')->insert([
+            //     'foreign' => $i+1,
+            //     'branchid' => $i+2,
+            //     'images' => $randomImage,
+            // ]);
             
         }
        
