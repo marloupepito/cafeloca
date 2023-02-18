@@ -119,7 +119,7 @@ export default {
                 })
                 .then((res) => {
                     this.rate = false;
-
+                    this.mount()
                     // this.rating = result.data.rate
                 });
         },
@@ -128,10 +128,9 @@ export default {
         },
         ShowProduct(id){
           this.$router.push({path:'/visit/timeline/'+id})
-      }
-    },
-    mounted(){
-      const id = window.location.search.substring(3)
+      },
+      mount(){
+        const id = window.location.search.substring(3)
       this.userid = window.location.search.substring(3)
         axios.post('/get_menu',{
           menu:'Coffee',
@@ -140,6 +139,10 @@ export default {
         .then(res=>{
           this.userData = res.data.status
           })
+      }
+    },
+    mounted(){
+      this.mount()
        
       }
 }

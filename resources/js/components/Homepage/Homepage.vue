@@ -8,6 +8,7 @@
     >
       <v-responsive height="auto">
       	 <router-view></router-view>
+
       </v-responsive>
     </v-responsive>
    <BottomNavBar />
