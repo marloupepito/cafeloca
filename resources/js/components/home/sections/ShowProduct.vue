@@ -1,6 +1,7 @@
 <template>
     <v-card height="120vh">
-        <v-dialog v-model="rate" width="500" persistent>
+        <!-- persistent -->
+        <v-dialog v-model="rate" width="500" >
             <v-card>
                 <v-card-title class="text-h5 grey lighten-2">
                     PLEASE RATE!
@@ -152,7 +153,16 @@ export default {
             });
             },
         updateRate() {
+
             this.rate = true;
+                axios.post('/get_user_rating',{
+                    userid: this.userid,
+                    postid: this.postid,
+                    ip:localStorage.getItem("ip")
+                })
+                 .then(res=>{
+                    this.rating = res.data.status.rate === null?0:parseInt(res.data.status.rate)
+                })
         },
         submitRate() {
             const rating = this.rating;

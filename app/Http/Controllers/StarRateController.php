@@ -7,6 +7,16 @@ use App\Models\StarRate;
 use App\Models\Product;
 class StarRateController extends Controller
 {
+    
+
+    public function get_user_rating(Request $request){
+         $rate = StarRate::where([['postid','=',$request->postid],['userid','=',$request->userid],['mac_address','=',$request->ip]])->first();
+
+           return response()->json([
+                    'status' =>$rate
+                ]);
+
+    }
      public function get_branch_rating(Request $request){
         $sumRow = StarRate::where('userid','=',$request->branchid)->get()->sum('rate');
         $count =  StarRate::where('userid','=',$request->branchid)->get();
