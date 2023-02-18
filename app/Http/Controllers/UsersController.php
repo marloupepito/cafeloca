@@ -198,8 +198,8 @@ class UsersController extends Controller
          User::where('id', $id)
             ->update([
             'store_name' => $request->branchName,
-            'Phone' => $request->Phone,
-            'Mobile' => $request->Mobile,
+            'phone' => $request->Phone,
+            'mobile' => $request->Mobile,
             'about' => $request->Bio,
             'landmark' => $request->Landmark,
           ]);

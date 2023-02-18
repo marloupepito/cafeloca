@@ -3,8 +3,7 @@
     <v-container >
     <router-view></router-view>
     </v-container>
-    <v-speed-dial
-
+   <!--  <v-speed-dial
          style="margin-right:55px"
        v-model="fab"
       :top="top"
@@ -21,7 +20,7 @@
           color="red"
           dark
           fab
-          @click="existApp"
+       
         >
           <v-icon>
             mdi-location-exit
@@ -29,7 +28,7 @@
         </v-btn>
       </template>
  
-    </v-speed-dial>
+    </v-speed-dial> -->
     <Navbar />
   </div>
 </template>
@@ -54,7 +53,8 @@ export default {
     }),
       methods:{
             existApp(){
-               window.close();
+               //window.close();
+               console.log(this.finishAffinity())
             }
         },
         watch: {

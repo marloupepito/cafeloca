@@ -6,10 +6,17 @@
             outlined
             v-for="(item, i) in dataPost" :key="i"
           >
+ 
             <v-list-item three-line>
+
               <v-list-item-content>
                 <div class="text-overline mb-4">
-                 {{ item.menu}}
+                       <v-btn
+      color="blue-grey"
+      icon="mdi-cloud-upload"
+      @click="deletePost(item.id)"
+     class="col-md-12 float-right mr-5"
+    ><small>Delete</small></v-btn> {{ item.menu}}
                 </div>
                 <v-list-item-title class="text-h5 mb-1">
                   {{ item.productname }}
@@ -71,6 +78,17 @@ export default {
         loading: false,
     }),
     methods:{
+        deletePost(id){
+            if(window.confirm("Do you really want to delete it?")){
+                 axios.post('/deletePost',{
+                id:id
+                })
+            .then(res=>{
+                this.seeMore()
+                })
+            }
+     },
+           
       seeMore(e) {
             this.loading = true;
             this.limit = this.limit + e;

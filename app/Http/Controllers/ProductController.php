@@ -8,6 +8,15 @@ use App\Models\ProductImage;
 use App\Models\StarRate;
 class ProductController extends Controller
 {
+
+    
+
+    public function deletePost(Request $request){
+
+        Product::where('id','=',$request->id)->delete();
+        ProductImage::where('foreign','=',$request->id)->delete();
+        
+    }
     public function post_product(Request $request){
          $request->validate([
             'productName'=>['required'],

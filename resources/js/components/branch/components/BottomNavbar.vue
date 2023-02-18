@@ -18,13 +18,13 @@
            {
              id: 1,
              icon: "text-white fas fa-home",
-             title: "News Feed",
+             title: "Timeline",
              path:"/my_account/timeline"
            },
            { 
              id: 2, 
-             icon: "text-white fas fa-search", 
-             title: "Search",
+             icon: "text-white fas fa-mug-hot", 
+             title: "Menu",
              path:"/my_account/menu",
            },
            {
