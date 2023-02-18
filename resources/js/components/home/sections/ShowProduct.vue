@@ -128,25 +128,29 @@ export default {
         imagesData: [],
         userid: "",
         postid: "",
+        ip:[]
     }),
     mounted() {
-
-
-
-        axios
+          this.mount()
+    },
+    methods: {
+        mount(){
+              axios
             .post("/get_every_product_post", {
                 branchid: window.location.pathname.split("/")[3],
-                id:window.location.search.substring(1)
+                id:window.location.search.substring(1),
+                ip:localStorage.getItem("ip")
             })
             .then((res) => {
+                this.ip = res.data.ip;
+                  
                 this.userid = window.location.pathname.split("/")[3];
                 this.postData = res.data.status;
                 this.imagesData = res.data.images;
                 this.postid = res.data.status.id;
-                this.rating =res.data.status.rate
+                this.rating =res.data.ip.length === 0?0:res.data.status.rate
             });
-    },
-    methods: {
+            },
         updateRate() {
             this.rate = true;
         },
@@ -161,8 +165,8 @@ export default {
                 })
                 .then((res) => {
                     this.rate = false;
-
                     // this.rating = result.data.rate
+                    this.mount()
                 });
         },
         clickToVisit(id,id2) {

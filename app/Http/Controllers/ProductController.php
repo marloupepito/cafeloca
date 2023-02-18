@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\ProductImage;
+use App\Models\StarRate;
 class ProductController extends Controller
 {
     public function post_product(Request $request){
@@ -92,10 +93,13 @@ class ProductController extends Controller
             ]);
              $product= Product::where([['id',$request->id],['branchid',$request->branchid]])->first();
              $image= ProductImage::where([['foreign',$request->id],['branchid',$request->branchid]])->get();
+             $mac= StarRate::where('mac_address','=',$request->ip)->get();
+
 
             return response()->json([
                 'status' =>$product,
-                'images' =>$image
+                'images' =>$image,
+                'ip' =>$mac
             ]); 
 
         }

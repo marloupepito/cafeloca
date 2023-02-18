@@ -77,8 +77,6 @@
           headers: [
             {
               text: 'Stores',
-              align: 'start',
-              filterable: false,
               value: 'store_name',
             },
             { text: 'Email', value: 'email' },

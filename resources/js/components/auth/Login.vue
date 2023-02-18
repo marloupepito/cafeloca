@@ -35,7 +35,6 @@
                               :rules="emailRules"
                               label="Username"
                               required
-                              outlined
                               v-on:keyup.enter="validate"
                             ></v-text-field>
 
@@ -45,7 +44,6 @@
                               :rules="passwordRules"
                               label="Password"
                               required
-                              outlined
                               v-on:keyup.enter="validate"
                             ></v-text-field>
 
@@ -88,7 +86,7 @@
       ],
       email: '',
       emailRules: [
-        v => !!v || 'E-mail is required',
+        v => !!v || 'Username is required',
       ],
     }),
 
@@ -128,6 +126,7 @@
             //    this.$refs.form.reset()
             })
         }else{
+          this.incorrect = null
              this.$refs.form.reset()
         }
       },

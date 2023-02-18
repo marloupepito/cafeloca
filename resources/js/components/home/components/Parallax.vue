@@ -1,6 +1,6 @@
 <template>
     <div
-    style="height:100vh; background-size: cover; background-image: url('/images/home.jpg');background-position: buttom;"
+    style="height:100vh; background-size: cover; background-image: url('/images/home.png');background-position: buttom;"
      
     >
       <v-row
@@ -13,10 +13,10 @@
         >
           <h1 
         style="padding-top:100px" class="text-h4 text-black  mb-4">
-            <b>Cafe Location App</b>
+            <!-- <b>Cafe Location App</b> -->
           </h1>
           <h4 class="subheading" 
-        style="padding-top:200px">
+        style="padding-top:150px">
             <v-btn
           class="  mb-3 text-white font-weight-"
           @click="searchMap"
