@@ -1,8 +1,9 @@
 <template>
-  <div id="create">
-    <v-container >
-    <router-view></router-view>
-    </v-container>
+  <div  id="create">
+    <div class="col-md-5 offset-md-4">
+      
+  <router-view></router-view>
+    </div>
    <!--  <v-speed-dial
          style="margin-right:55px"
        v-model="fab"
