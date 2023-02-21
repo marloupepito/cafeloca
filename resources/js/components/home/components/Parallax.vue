@@ -16,7 +16,7 @@
             <!-- <b>Cafe Location App</b> -->
           </h1>
           <h4 class="subheading" 
-        style="padding-top:220px">
+        style="padding-top:270px">
             <v-btn
           class="  mb-3 text-white font-weight-"
           @click="searchMap"

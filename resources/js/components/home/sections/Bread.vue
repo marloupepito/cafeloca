@@ -133,7 +133,7 @@ export default {
         const id = window.location.search.substring(3)
       this.userid = window.location.search.substring(3)
         axios.post('/get_menu',{
-          menu:'Coffee',
+          menu:'Bread',
           id:id
           })
         .then(res=>{
