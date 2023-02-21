@@ -1,6 +1,6 @@
 <template>
   <div  id="create">
-    <div class="col-md-5 offset-md-4">
+    <div class="col-md-5 offset-md-4 p-0">
       
   <router-view></router-view>
     </div>

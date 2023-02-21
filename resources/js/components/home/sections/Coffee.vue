@@ -138,6 +138,7 @@ export default {
           })
         .then(res=>{
           this.userData = res.data.status
+          console.log('waaa',id)
           })
       }
     },

@@ -180,6 +180,7 @@ export default {
                 });
         },
         clickToVisit(id,id2) {
+             localStorage.setItem("whereback",'showproduct');
             localStorage.setItem("branchid",id);
             localStorage.setItem("productid",id2);
             this.$router.push({

@@ -243,6 +243,7 @@ export default {
 			})
 		.then(res=>{
 			this.id=id
+     
       this.documents = res.data.documents
 			this.userData =res.data.status
           this.Bio =this.userData.about
@@ -349,6 +350,13 @@ data () {
   					status:'Approved'
   					})
             .then(res=>{
+
+               axios.post('/approved',{
+                  email:this.userData.email
+                  })
+                .then(res=>{
+                   this.loading = false
+                  })
                this.$swal({
                     position: 'top-end',
                     icon: 'success',

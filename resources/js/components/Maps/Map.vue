@@ -106,6 +106,7 @@ export default {
         },
 
     	visit(branch_name,id){
+            localStorage.setItem("whereback",'map');
                  this.$router.push({path:'/visit/coffee/'+branch_name.replace(/ /g,'-')+'?0='+id})
                 
                 localStorage.setItem("id",id)

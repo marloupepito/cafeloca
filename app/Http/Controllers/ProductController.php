@@ -120,7 +120,8 @@ class ProductController extends Controller
                 'menu'=>['required'],
                 'id' => ['required']
             ]);
-             $product= Product::where([['branchid',$request->id],['menu', 'LIKE', '%' . $request->menu . '%']])->get();
+            // $product= Product::where([['branchid',$request->id],['menu', 'LIKE', '%' . $request->menu . '%']])->get();
+                $product= Product::where([['branchid',$request->id],['menu','=',$request->menu]])->get();
 
             return response()->json([
                 'status' =>$product,

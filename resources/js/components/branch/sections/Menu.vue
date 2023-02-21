@@ -12,7 +12,6 @@
             small-chips
             label="Menu"
             color="brown"
-            multiple
             outlined
             dense
             v-model="menu"
@@ -116,7 +115,7 @@
 import axios from 'axios'
   export default {
     data: () => ({
-      items: ['Coffee', 'Bread', 'Delicacy', 'Snack'],
+      items: ['Coffee', 'Bread', 'Delicacy', 'Snack', 'Cocoa'],
     	notiError:'',
     	snackbar: false,
     	text: "",

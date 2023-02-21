@@ -42,6 +42,7 @@ import Coffee from './../home/sections/Coffee.vue'
 import Bread from './../home/sections/Bread.vue'
 import Snack from './../home/sections/Snack.vue'
 import Delicacy from './../home/sections/Delicacy.vue'
+import Cocoa from './../home/sections/Cocoa.vue'
 import ShowProduct from './../home/sections/ShowProduct.vue'
 import Show from './../home/sections/pages/Show.vue'
 
@@ -78,6 +79,7 @@ const routes = [
                 { path:'/visit/coffee/:id/bread',component: Bread },
                 { path:'/visit/coffee/:id/snack',component: Snack },
                 { path:'/visit/coffee/:id/delicacy',component: Delicacy },
+                { path:'/visit/coffee/:id/cocoa',component: Cocoa },
             ]
         },
 

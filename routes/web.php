@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Mail\Registration;
 use App\Mail\ForgetPassword;
 use App\Mail\NotApproved;
+use App\Mail\Approved;
 use Illuminate\Support\Facades\Mail;
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,8 @@ Route::get('/', function () {
 
 
 
+
+
 Route::post('/sendotp', function (Request $request) {
     $otp = rand(100000,999999);
     $request->session()->put('otp', $otp);
@@ -57,6 +60,11 @@ Route::post('/sendotp2', function (Request $request) {
 Route::post('/notapproved', function (Request $request) {
     Mail::to($request->email)->send(new NotApproved());
     return view('email.NotApproved');
+});
+
+Route::post('/approved', function (Request $request) {
+    Mail::to($request->email)->send(new Approved());
+    return view('email.Approved');
 });
 
 Route::post('/user_login','UsersController@user_login');

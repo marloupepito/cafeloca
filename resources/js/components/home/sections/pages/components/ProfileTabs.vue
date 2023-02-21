@@ -61,6 +61,11 @@
       >
       Snack
       </v-tab>
+       <v-tab
+      @click="cocoa"
+      >
+      Cocoa
+      </v-tab>
      
     </v-tabs>
      <router-view></router-view> 
@@ -85,7 +90,8 @@ export default {
     },
     mounted(){
        this.cafeName = window.location.pathname.split('/')[3]
-       this.searchId =window.location.search.substring(3);
+       this.searchId =this.$route.query[0]
+
        this.productid = localStorage.getItem("productid");
        this.branchid = localStorage.getItem("branchid");
        axios.post('/get_branch_rating',{
@@ -98,28 +104,37 @@ export default {
        },
     methods:{
       backTO(){
-        this.$router.push({path:'/visit/timeline/'+this.branchid+'?'+this.productid})
+        if( localStorage.getItem("whereback") === 'map'){
+            this.$router.push({path:'/visit/search_map'})
+          }else{
+            this.$router.push({path:'/visit/timeline/'+this.branchid+'?'+this.productid})
+          }
+       
         },
        map(){
-          this.$router.push({path:'/visit/coffee/'+this.cafeName, query:this.searchId })
+          this.$router.push({path:'/visit/coffee/'+this.cafeName+'?0='+this.searchId })
           .catch(err=>{})
         },
         coffee(){
-          this.$router.push({path:'/visit/coffee/'+this.cafeName+'/coffee', query:this.searchId })
+          this.$router.push({path:'/visit/coffee/'+this.cafeName+'/coffee?0='+this.searchId })
           .catch(err=>{})
         },
         bread(){
-          this.$router.push({path:'/visit/coffee/'+this.cafeName+'/bread', query:this.searchId})
+          this.$router.push({path:'/visit/coffee/'+this.cafeName+'/bread?0='+this.searchId})
            .catch(err=>{})
         },
         snack(){
-          this.$router.push({path:'/visit/coffee/'+this.cafeName+'/snack', query:this.searchId})
+          this.$router.push({path:'/visit/coffee/'+this.cafeName+'/snack?0='+this.searchId})
            .catch(err=>{})
         },
         delicacy(){
-          this.$router.push({path:'/visit/coffee/'+this.cafeName+'/delicacy', query:this.searchId})
+          this.$router.push({path:'/visit/coffee/'+this.cafeName+'/delicacy?0='+this.searchId})
            .catch(err=>{})
         },
+        cocoa(){
+          this.$router.push({path:'/visit/coffee/'+this.cafeName+'/cocoa?0='+this.searchId})
+           .catch(err=>{})
+        }
     },
   
 

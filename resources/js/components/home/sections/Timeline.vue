@@ -1,7 +1,22 @@
 <template>
     <div
     >
-        <v-container class="overflow-y-auto">
+
+   <v-container class="overflow-y-auto">
+     <div style="background-color:white;position:fixed; z-index:99;border-radius: 25px;">
+        <v-btn
+      outlined
+      class="p-3"
+      large
+      icon
+      to="/"
+      color="black"
+    >
+      <v-icon>mdi-home</v-icon>
+   
+ </v-btn>
+   </div>
+    </v-btn>
             <div dense>
                     <v-card
                         class="mx-auto w-100 m-3 mb-4"
