@@ -13,9 +13,9 @@
           length="5"
            readonly
           size="20"
-          :value="rate"
+          :value="rate.substring(0, 3)"
         ></v-rating>
-         <div class="grey--text ms-4">{{ rate }} Stars</div>
+         <div class="grey--text ms-4">{{ rate.substring(0, 3) }} Stars</div>
         </center>
 
       </div>
