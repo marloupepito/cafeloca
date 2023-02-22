@@ -97,10 +97,12 @@ Route::post('/add_cover_photo','CoverPhotoController@add_cover_photo');
 Route::post('/get_coffee_cover','CoverPhotoController@get_coffee_cover');
 Route::post('/get_coffee_cover2','CoverPhotoController@get_coffee_cover2');
 
+
 Route::post('/get_star_rating','StarRateController@get_star_rating');
 Route::post('/submit_post_rating','StarRateController@submit_post_rating');
 Route::post('/get_branch_rating','StarRateController@get_branch_rating');
 Route::post('/get_user_rating','StarRateController@get_user_rating');
+Route::post('/get_selected_product','StarRateController@get_selected_product');
 
 
 

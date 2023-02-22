@@ -9,6 +9,14 @@ class StarRateController extends Controller
 {
     
 
+
+ public function get_selected_product(Request $request){
+        $rate = Product::where('id',$request->id)->first();
+
+           return response()->json([
+                    'status' =>$rate
+                ]);
+ }
     public function get_user_rating(Request $request){
          $rate = StarRate::where([['postid','=',$request->postid],['userid','=',$request->userid],['mac_address','=',$request->ip]])->first();
 

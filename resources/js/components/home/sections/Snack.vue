@@ -33,7 +33,7 @@
                          ₱ {{item.price}}
                         </div>
                         <center>
-            <a @click="updateRate">
+            <a @click="updateRate(item.id)">
                                        <v-rating
                         v-model="item.rate"
                           color="amber"
@@ -44,7 +44,7 @@
                         ></v-rating>
             </a>
             <div class="grey--text ms-4">{{ item.rate }} Stars</div>
-                        <v-dialog v-model="rate" width="500" persistent>
+                        <v-dialog v-model="rate" width="500" >
             <v-card>
                 <v-card-title class="text-h5 grey lighten-2">
                     PLEASE RATE!
@@ -86,6 +86,7 @@
 export default {
     data(){
       return{
+        rating:'',
         rate:false,
         star:5,
         userid:'',
@@ -114,22 +115,29 @@ export default {
                 .post("/submit_post_rating", {
                     rate: rating,
                     userid: this.userid,
-                    postid: productid,
+                    postid: this.postid,
                     ip:localStorage.getItem("ip")
                 })
                 .then((res) => {
                     this.rate = false;
-                     this.mount()
+                    this.mount()
                     // this.rating = result.data.rate
                 });
         },
-        updateRate() {
-            this.rate = true;
+        updateRate(id) {
+            axios.post('/get_selected_product',{
+                    id: id,
+              })
+            .then(res=>{
+              this.rate = true;
+             this.postid = id
+                this.rating = res.data.status.rate
+              })
         },
         ShowProduct(id){
           this.$router.push({path:'/visit/timeline/'+id})
       },
-        mount(){
+      mount(){
         const id = window.location.search.substring(3)
       this.userid = window.location.search.substring(3)
         axios.post('/get_menu',{
@@ -138,6 +146,7 @@ export default {
           })
         .then(res=>{
           this.userData = res.data.status
+          console.log('waaa',id)
           })
       }
     },
