@@ -89,7 +89,7 @@ class ProductController extends Controller
 
              $product = Product::limit($request->limit)
              ->orderByDesc('rate')
-             ->get()
+             ->get();
                 return response()->json([
                     'status' =>$product
                 ]); 
