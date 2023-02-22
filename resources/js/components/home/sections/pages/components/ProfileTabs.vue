@@ -15,7 +15,7 @@
           size="20"
           :value="rate"
         ></v-rating>
-         <div class="grey--text ms-4">{{ rate.substring(0, 3) }} Stars</div>
+         <div class="grey--text ms-4">{{ rate }} Stars</div>
         </center>
 
       </div>
@@ -98,7 +98,8 @@ export default {
         branchid:this.searchId
         })
         .then(res=>{
-          this.rate = res.data.status
+          this.rate = res.data.status >= 3?res.data.status:res.data.status.substring(0,4)
+
           this.tabs=window.location.pathname.split('/')[4]
           })
        },
