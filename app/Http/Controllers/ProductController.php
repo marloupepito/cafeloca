@@ -90,7 +90,6 @@ class ProductController extends Controller
              $product = Product::limit($request->limit)
              ->orderByDesc('rate')
              ->get()
-             ->unique('branchid');
                 return response()->json([
                     'status' =>$product
                 ]); 
