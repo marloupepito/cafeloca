@@ -98,7 +98,7 @@ export default {
         branchid:this.searchId
         })
         .then(res=>{
-          this.rate = res.data.status >= 3?res.data.status:res.data.status.substring(0,4)
+          this.rate = res.data.status >= 3?item.rate:item.rate.substring(0,4)
 
           this.tabs=window.location.pathname.split('/')[4]
           })
