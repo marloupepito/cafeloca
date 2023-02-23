@@ -15,7 +15,7 @@
           size="20"
           :value="rate"
         ></v-rating>
-         <div class="grey--text ms-4">{{ String(rate).length <= 3?rate:rate.substring(0,4) }} Stars</div>
+         <div class="grey--text ms-4">{{ String(rate).substring(0,3)}} Stars</div>
         </center>
 
       </div>

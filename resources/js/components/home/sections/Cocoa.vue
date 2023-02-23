@@ -43,7 +43,7 @@
                           size="20"
                         ></v-rating>
             </a>
-            <div class="grey--text ms-4">{{ String(item.rate).length <= 3?item.rate:item.rate.substring(0,3) }} Stars</div>
+            <div class="grey--text ms-4">{{ String(item.rate).substring(0,3) }} Stars</div>
                         <v-dialog v-model="rate" width="500" >
             <v-card>
                 <v-card-title class="text-h5 grey lighten-2">
