@@ -20,7 +20,7 @@
           close
         </v-btn>
         <div class="py-3">
-          <img src="/images/info.jpg" width="66%" height="100%" />
+          <img src="/images/info.jpg" width="100%" height="100%" />
         </div>
       </v-sheet>
     </v-bottom-sheet>
