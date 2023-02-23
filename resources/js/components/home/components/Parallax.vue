@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-app>
   <div class="text-center">
     <v-bottom-sheet
       v-model="sheet"
@@ -20,7 +20,7 @@
           close
         </v-btn>
         <div class="py-3">
-          This is a bottom sheet using the persistent prop
+          <img src="/images/info.jpg" width="66%" height="100%" />
         </div>
       </v-sheet>
     </v-bottom-sheet>
@@ -39,7 +39,7 @@
         >
          
           <h4 class="subheading" 
-        style="padding-top:350px">
+        style="padding-top:50vh">
             <v-btn
           class="  mb-1 text-white font-weight-"
           @click="searchMap"
@@ -55,19 +55,23 @@
           class="text-center"
           cols="12"
         >
-   <v-btn
-          class="  mb-3 text-white font-weight-"
-          @click="sheet = true"
-          color="black"
-          large
-          outlined
+
+
+        <v-btn
+        class="text-white"
+         @click="sheet = true"
+          color="brown"
         >
-         <b>More Info</b>
+<v-icon dark>
+        mdi-information-variant
+      </v-icon>
         </v-btn>
+
+
         </v-col>
       </v-row>
     </div>
-    </div>
+    </v-app>
   </template>
 
 <script>
