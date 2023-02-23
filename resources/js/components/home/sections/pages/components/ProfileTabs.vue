@@ -15,7 +15,7 @@
           size="20"
           :value="rate"
         ></v-rating>
-         <div class="grey--text ms-4">{{ String(rate).substring(0,3)}} Stars</div>
+         <div class="grey--text ms-4">{{rate === null?0: String(rate).substring(0,3)}} Stars</div>
         </center>
 
       </div>
@@ -78,12 +78,12 @@
 export default {
    data(){
       return{
-        cafeName:'',
-        searchId:'',
-        productid:'',
-        branchid:'',
-        rate:'',
-        tabs:''
+        cafeName:null,
+        searchId:0,
+        productid:null,
+        branchid:null,
+        rate:null,
+        tabs:null
       }
     },
     components:{
