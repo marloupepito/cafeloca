@@ -80,6 +80,9 @@ Route::post('/change_location_lng_lat','UsersController@change_location_lng_lat'
 Route::post('/get_counted_user','UsersController@get_counted_user');
 Route::post('/get_email','UsersController@get_email');
 Route::post('/change_password','UsersController@change_password');
+Route::post('/delete_branch','UsersController@delete_branch');
+
+
 
 
 

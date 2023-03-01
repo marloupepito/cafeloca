@@ -23,19 +23,36 @@
           hide-details
         ></v-text-field>
       </v-card-title>
+       <!-- @click:row="handleRowClick" -->
       <v-data-table
-      @click:row="handleRowClick"
+    
       :items-per-page="7"
         :headers="headers"
         :items="rows"
         :search="search"
       >
+          <template v-slot:item.store_name="{ item }">
+         <a href="#" @click="handleRowClick(item.store_name,item.id)">
+         {{item.store_name}}
+         </a>
+         </template>
          <template v-slot:item.status="{ item }">
+       
             <v-chip
               :color="item.status === 'Pending'?'warning':item.status ==='Approved'?'success':'error'"
               dark
             >
               {{ item.status }}
+            </v-chip>
+          </template>
+
+          <template v-slot:item.id="{ item }">
+       
+            <v-chip
+              color="error"
+              dark
+            >
+              <a @click="deleteData(item.id)">Delete</a>
             </v-chip>
           </template>
       </v-data-table>
@@ -48,17 +65,33 @@
   import axios from 'axios'
     export default {
       methods:{
-          handleRowClick(e){
-            this.$router.push({ path:'/administrator/accounts/'+e.store_name.replace(/ /g,'-')+'?'+e.id })
-          }
-        },
-      mounted(e){
-        axios.post('/get_all_users',{
+        deleteData(id){
+          if(window.confirm('Do you really want to delete?')){
+              axios.post('/delete_branch',{
+                id:id
+                })
+                .then(res=>{
+                  this.mount()
+                  })
+                .catch(err=>{
+
+                  })
+            }
+          },
+          handleRowClick(e,id){
+            this.$router.push({ path:'/administrator/accounts/'+e.replace(/ /g,'-')+'?'+id })
+          },
+          mount(){
+              axios.post('/get_all_users',{
           status:'Approved'
           })
         .then(res=>{
           this.rows = res.data.status
           })
+          }
+        },
+      mounted(e){
+      this.mount()
         },
       data () {
         return {
@@ -86,6 +119,7 @@
             { text: 'Phone', value: 'phone' },
             { text: 'Address', value: 'store_location' },
             { text: 'Status', value: 'status' },
+            { text: 'delete', value: 'id' },
           ],
           rows: [],
         }

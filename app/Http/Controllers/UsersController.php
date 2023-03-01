@@ -11,6 +11,11 @@ class UsersController extends Controller
 {
 
     
+    
+
+    public function delete_branch(Request $request){
+           User::where('id', '=' ,$request->id)->delete();
+    }
      public function change_password(Request $request){
         User::where('email', '=' ,$request->email)
         ->update([

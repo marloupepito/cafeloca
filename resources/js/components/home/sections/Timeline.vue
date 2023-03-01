@@ -16,7 +16,6 @@
    
  </v-btn>
    </div>
-    </v-btn>
             <div dense>
                     <v-card
                         class="mx-auto w-100 m-3 mb-4"
