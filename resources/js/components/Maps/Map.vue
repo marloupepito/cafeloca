@@ -24,7 +24,7 @@
             />
            
             <GmapInfoWindow
-               v-if="userId === undefined"
+               v-if="userId === undefined && m.status !== 'Block'"
                 :key="index"
                 v-for="(m, index) in markers"
                 :position="{ lat: parseFloat(m.lat), lng: parseFloat(m.lng) }"
