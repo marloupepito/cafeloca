@@ -22,8 +22,10 @@
 				      <v-list-item-avatar
 				        tile
 				        size="80"
-				        color="grey"
-				      ></v-list-item-avatar>
+				        color="white"
+				      >
+				      <img src="/images/check.png" />
+				 </v-list-item-avatar>
 				    </v-list-item>
 
 				  </v-card>
@@ -52,8 +54,10 @@
 				      <v-list-item-avatar
 				        tile
 				        size="80"
-				        color="grey"
-				      ></v-list-item-avatar>
+				        color="white"
+				      >
+				        <img src="/images/question.png" />
+				 </v-list-item-avatar>
 				    </v-list-item>
 
 				  </v-card>
@@ -83,8 +87,10 @@
 				      <v-list-item-avatar
 				        tile
 				        size="80"
-				        color="grey"
-				      ></v-list-item-avatar>
+				        color="white"
+				      >
+				        <img src="/images/x.png" />
+				 </v-list-item-avatar>
 				    </v-list-item>
 
 				  </v-card>
@@ -114,8 +120,10 @@
 				      <v-list-item-avatar
 				        tile
 				        size="80"
-				        color="grey"
-				      ></v-list-item-avatar>
+				        color="white"
+				      >
+				        <img src="/images/block.png" />
+				 </v-list-item-avatar>
 				    </v-list-item>
 
 				  </v-card>
