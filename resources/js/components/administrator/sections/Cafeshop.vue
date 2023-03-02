@@ -179,6 +179,9 @@
                         Filename
                       </th>
                       <th class="text-left">
+                       Date
+                      </th>
+                      <th class="text-left">
                        
                       </th>
                     </tr>
@@ -189,6 +192,7 @@
                       :key="item.name"
                     >
                       <td>{{ item.documents }}</td>
+                       <td> {{ new Date(item.created_at).getMonth()+1 }}/{{ new Date(item.created_at).getDay() }}/{{ new Date(item.created_at).getFullYear() }}</td>
                       <td><v-btn color="brown" @click="showDocuments(item.documents)" small style="color:white">SHOW</v-btn></td>
                     </tr>
                   </tbody>

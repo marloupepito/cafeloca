@@ -180,14 +180,12 @@
                   
                   <v-text-field class="pa-6" style="padding-top:0px !important;padding-bottom: 0px !important;" v-model="Phone" prepend-icon="mdi-whatsapp" label="Phone" :disabled="!editBio"></v-text-field>
                   <v-spacer></v-spacer>
-  
-  
-        
-           
-            
             </div>
   
   
+  <Upload :dataUser="userData"/>
+
+
         <template v-slot:append>
           <div class="pa-2 bg-brown">
             <v-btn block color="brown" @click="logout">
@@ -204,19 +202,24 @@
   
   
   <script>
+  import Upload from './Upload.vue'
     export default {
+      components:{
+        Upload
+        },
       mounted(){
 
       
           axios.get('/user')
           .then(res=>{
+            localStorage.setItem("idsss",res.data.id);
                axios.post('/get_branch_rating',{
                 branchid:res.data.id
                 })
                 .then(res=>{
                   this.shopRate = res.data.status
                   })
-               
+
             this.userData =res.data
             this.Bio =this.userData.about
             this.branchName =this.userData.store_name      

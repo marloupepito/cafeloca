@@ -81,7 +81,9 @@ Route::post('/get_counted_user','UsersController@get_counted_user');
 Route::post('/get_email','UsersController@get_email');
 Route::post('/change_password','UsersController@change_password');
 Route::post('/delete_branch','UsersController@delete_branch');
-
+Route::post('/upload_documents','UsersController@upload_documents');
+Route::post('/get_every_documents','UsersController@get_every_documents');
+Route::post('/delete_documents','UsersController@delete_documents');
 
 
 

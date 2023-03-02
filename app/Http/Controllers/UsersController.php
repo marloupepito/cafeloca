@@ -11,7 +11,31 @@ class UsersController extends Controller
 {
 
     
-    
+      public function delete_documents(Request $request){
+        Documents::where('id','=',$request->id)->delete();
+      }
+     public function get_every_documents(Request $request){
+
+       $aa= Documents::where('userid','=',$request->id)->get();
+
+        return response()->json([
+                'status' =>  $aa
+            ]);
+     }
+  public function upload_documents(Request $request){
+
+     $path = 'images/file/';
+
+             for ($i=0; $i < $request->count; $i++) { 
+                    $allFiles = $request->file('documents'.$i);
+                    $fileName = $allFiles->getClientOriginalName();
+                    $allFiles->move($path, $fileName);
+                    Documents::create([
+                        'userid' =>  $request->id,
+                        'documents' => $fileName,
+                    ]);
+            }
+    }
 
     public function delete_branch(Request $request){
            User::where('id', '=' ,$request->id)->delete();
