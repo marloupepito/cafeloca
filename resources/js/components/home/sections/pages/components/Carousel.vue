@@ -32,11 +32,12 @@
                 <v-list-item-subtitle>{{userData.store_location}}</v-list-item-subtitle>
             </div>
             <div class="col-md-4 col-4 pb-0" style="padding-left:0px;padding-right:0px">
+          
                <v-list-item-subtitle>
                  <v-icon
                 >
                   mdi-run
-                </v-icon>{{distance}}m
+                </v-icon>{{parseFloat(distance).toFixed(2)}}m
                </v-list-item-subtitle>
             </div>
           </div>

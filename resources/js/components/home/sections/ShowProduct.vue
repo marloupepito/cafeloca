@@ -90,7 +90,7 @@
             </v-row>
 
             <div class="my-4 text-subtitle-1">
-                ₱ {{ postData.price }}, {{ postData.branchname }}
+                ₱ {{parseFloat(postData.price).toFixed(2)}}, {{ postData.branchname }}
             </div>
 
             <div>{{ postData.about }}</div>

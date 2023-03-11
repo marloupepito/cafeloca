@@ -30,7 +30,7 @@
                           </v-list-item-avatar>
                         </v-list-item>
                           <div class="grey--text ms-4">
-                         ₱ {{item.price}}
+                         ₱ {{parseFloat(item.price).toFixed(2)}}
                         </div>
                         <center>
             <a @click="updateRate(item.id)">
